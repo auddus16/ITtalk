@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-확인123
+확인12
 </body>
 </html>
