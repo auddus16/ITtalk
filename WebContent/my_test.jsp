@@ -7,7 +7,7 @@
 <title>git연동</title>
 </head>
 <body>
-확인확인
+확인확인hhh
 <h2>커밋커밋</h2>
 </body>
 </html>
