@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-박정인 확인
+확인
 </body>
 </html>
