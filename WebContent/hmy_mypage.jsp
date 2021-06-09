@@ -59,19 +59,17 @@
       </div>
       
     </header>
-	<section class="site-section">
-      <div class="container" style="text-align:center;">
-        <div style="display:inline-block">
-        <form action="#" method="post">
-        <table style="width:800px;">
-        	<tr><td><input type="text" class="form-control" placeholder="검색할 내용을 입력하세요!"></td>
-        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
-        </table>
-		</form>
-		</div>
-      </div>
-    </section>
-	
+ 	
+ 	<section class="site-section">
+     <div class="categories" style="float:left; margin-left:50px;">
+                <h3>마이페이지</h3>
+                <li><a href="#">개인정보 </a></li>
+                <li><a href="#">내가 쓴 게시글/댓글 </a></li>
+                <li><a href="#">알림 </a></li>
+                <li><a href="#">좋아요 게시글</a></li>
+              </div>
+      </section>
+ 	
  	<section class="site-section">
   		<div class="p-4 mb-3 bg-white" style="text-align:center;">
   			<div style="display:inline-block">
@@ -95,7 +93,7 @@
             </div>	
   		</div>
   	</section>
-    
+  	
     <footer class="site-footer">
       <div class="container">
         <div class="row">
