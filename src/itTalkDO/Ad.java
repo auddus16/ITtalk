@@ -1,6 +1,6 @@
 package itTalkDO;
 
-public class Admin {
+public class Ad {
 
 	private int ad_no;
 	private String ad_id;
