@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-    
+    <script type="text/javascript">
+ 		
+ 	</script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
@@ -63,34 +65,18 @@
  	<section class="site-section">
      <div class="categories" style="float:left; margin-left:50px;">
                 <h3>마이페이지</h3>
-                <li><a href="#">개인정보 </a></li>
-                <li><a href="#">내가 쓴 게시글/댓글 </a></li>
-                <li><a href="#">알림 </a></li>
-                <li><a href="#">좋아요 게시글</a></li>
+                <li><button id="my">개인정보</button></li>
+                <li><button id="mywrite">내가 쓴 게시글/댓글</button></li>
+                <li><button id="mycall">알림</button></li>
+                <li><button id="myfav">좋아요 게시글</button></li>
               </div>
       </section>
  	
  	<section class="site-section">
   		<div class="p-4 mb-3 bg-white" style="text-align:center;">
-  			<div style="display:inline-block">
-  			<dl>
-                <dt>실시간 인기글</dt>
-                <dd>
-                    <ol>
-                        <li><a href="#">1 순위</a></li>
-                        <li><a href="#">2 순위</a></li>
-                        <li><a href="#">3 순위</a></li>
-                        <li><a href="#">4 순위</a></li>
-                        <li><a href="#">5 순위</a></li>
-                        <li><a href="#">6 순위</a></li>
-                        <li><a href="#">7 순위</a></li>
-                        <li><a href="#">8 순위</a></li>
-                        <li><a href="#">9 순위</a></li>
-                        <li><a href="#">10 순위</a></li>
-                    </ol>
-                </dd>
-            </dl>
-            </div>	
+  			<div id="inHere">
+  			
+  			</div>
   		</div>
   	</section>
   	
