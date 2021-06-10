@@ -58,7 +58,7 @@
       </div>
       
     </header>
- 	
+ 	<!-- 
  	<section class="site-section">
      <div class="categories" style="float:left; margin-left:50px;">
                 <h3>마이페이지</h3>
@@ -76,7 +76,7 @@
   			</div>
   		</div>
   	</section>
-  	
+  	-->
     <footer class="site-footer">
       <div class="container">
         <div class="row">
