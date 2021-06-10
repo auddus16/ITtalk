@@ -46,7 +46,7 @@ public class EncodingFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		this.encoding=fConfig.getServletContext().getInitParameter("encoding");
+		this.encoding=fConfig.getServletContext().getInitParameter("UTF-8");
 	}
 
 }
