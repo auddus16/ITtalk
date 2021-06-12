@@ -9,4 +9,14 @@
     <param-name>encoding</param-name>
     <param-value>UTF-8</param-value>
   </context-param>
+  
+  <servlet>
+  	<servlet-name>fc</servlet-name>
+  	<servlet-class>controller.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fc</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -56,31 +56,31 @@ public class FrontController extends HttpServlet {
 		// XxxAction.java 파일들을 작성할 예정
 		// Controller : M->보낼 데이터의 유무   V->어디로 보낼지
 		ActionForward forward=null;
-		if(command.equals("/hmy_main.jsp")) {
+		if(command.equals("/hmy_main.do")) {
 			try {
 				forward=new MainAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/회원가입.jsp")) {
+		else if(command.equals("/회원가입.do")) {
 			forward=new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("form.jsp");
 		}
-		else if(command.equals("/로그인.jsp")) {
+		else if(command.equals("/로그인.do")) {
 
 		}
-		else if(command.equals("/id,pw찾기.jsp")) {
+		else if(command.equals("/id,pw찾기.do")) {
 			
 		}
-		else if(command.equals("/마이페이지.jsp")) {
+		else if(command.equals("/마이페이지.do")) {
 
 		}
-		else if(command.equals("/관리자.jsp")) {
+		else if(command.equals("/관리자.do")) {
 
 		}
-		else if(command.equals("/게시판.jsp")) {
+		else if(command.equals("/게시판.do")) {
 
 		}
 		else {
