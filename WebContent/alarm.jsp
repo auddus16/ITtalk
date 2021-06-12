@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-커밋 확인
-확인
+<p>시스템 알림</p>
 </body>
 </html>
