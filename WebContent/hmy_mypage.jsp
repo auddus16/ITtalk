@@ -26,7 +26,14 @@
 
     <link rel="stylesheet" href="css/style.css">
     
+    
   </head>
+  <%
+  	String pagefile=request.getParameter("page");
+  	if(pagefile==null){
+  		pagefile="info";
+  	}
+  %>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <header style="margin-top:0;"class="site-navbar bg-white js-sticky-header site-navbar-target" role="banner">
@@ -58,24 +65,17 @@
       </div>
       
     </header>
+ 	<div style="float:left">
+ 	<jsp:include page="hmy_sidemenu.jsp"/>
+ 	</div>
  	
- 	<section class="site-section">
-     <div class="categories" style="float:left; margin-left:50px;">
-                <h3>마이페이지</h3>
-                <li><button id="my">개인정보</button></li>
-                <li><button id="mywrite">내가 쓴 게시글/댓글</button></li>
-                <li><button id="mycall">알림</button></li>
-                <li><button id="myfav">좋아요 게시글</button></li>
-              </div>
-      </section>
- 	
- 	<section class="site-section">
-  		<div class="p-4 mb-3 bg-white" style="text-align:center;">
-  			<div id="inHere">
-  				<jsp:include page="hmy_myinfo.jsp" flush="false">
+ 	<aside class="site-section">
+  		<div class="p-4 mb-3 bg-white">
+  			<div id="inHere" style="width:1000px;text-aligh:left;padding:100px;text-align:center;">
+  				<jsp:include page='<%=pagefile+".jsp" %>'/>
   			</div>
   		</div>
-  	</section>
+  	</aside>
   	
     <footer class="site-footer">
       <div class="container">
@@ -162,7 +162,5 @@
 
   <script src="js/main.js"></script>
   
-
-
   </body>
 </html>

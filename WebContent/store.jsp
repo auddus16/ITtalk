@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>개인정보</h2>
-<hr><hr>
+<p>좋아요한 게시글</p>
 </body>
 </html>
