@@ -35,7 +35,7 @@ public class EncodingFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
+		System.out.println("»Æ¿Œ");
 		request.setCharacterEncoding(encoding);
 		
 		
@@ -46,7 +46,7 @@ public class EncodingFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		this.encoding=fConfig.getServletContext().getInitParameter("encoding");
+		this.encoding="UTF-8";
 	}
 
 }
