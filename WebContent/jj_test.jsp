@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:useBean id="memDAO" class="itTalkDAO.Membership"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-커밋 확인
-확인
+
+<form>
+<% if(memDAO.idCheck("ss")){
+	out.print("확인");
+	out.print("확인");
+}
+%>
+</form>
+
+
 </body>
 </html>
