@@ -1,12 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지3-좋아요 한 게시글</title>
+<style type="text/css">
+table.type09 {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+
+}
+table.type09 thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+}
+table.type09 tbody th {
+  width: 300px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+table.type09 td {
+  width: 200px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+</style>
 </head>
 <body>
-<p>좋아요한 게시글</p>
+<!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
+<div id="mypost">
+<h4>'좋아요' 한 게시글</h4>
+<hr>
+	<table class="type09">
+  <thead>
+  <tr>
+    <th scope="cols">제목</th>
+    <th scope="cols">등록일자</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- 내가 쓴 게시글 출력 forEach -->
+  <tr>
+    <th scope="row">제목1</th>
+    <td>등록일자1</td>
+  </tr>
+  <tr>
+    <th scope="row">제목1</th>
+    <td>등록일자1</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<br>
+
 </body>
 </html>

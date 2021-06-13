@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지2-내가 쓴 게시글/댓글</title>
+<title>관리자페이지-1신고게시글</title>
 <style type="text/css">
 table.type09 {
   border-collapse: collapse;
@@ -21,7 +20,7 @@ table.type09 thead th {
   border-bottom: 3px solid #036;
 }
 table.type09 tbody th {
-  width: 200px;
+  width: 300px;
   padding: 10px;
   font-weight: bold;
   vertical-align: top;
@@ -39,29 +38,29 @@ table.type09 td {
 </head>
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
-<div id="mypost">
-<h4>내가 쓴 댓글</h4>
+<div>
+<h4>신고게시글</h4>
 <hr>
 	<table class="type09">
   <thead>
   <tr>
-    <th scope="cols">제목</th>
-    <th scope="cols">댓글내용</th>
-    <th scope="cols">등록일자</th>
+    <th scope="cols">신고게시글번호</th>
+    <th scope="cols">신고자</th>
+    <th scope="cols">신고내용</th>
+    <th scope="cols">신고일자</th>
+    <th scope="cols">삭제</th>
   </tr>
   </thead>
   <tbody>
-  <!-- 내가 쓴 게시글 출력 forEach -->
+  <!-- 신고받은 게시글forEach -->
   <tr>
-    <th scope="row">제목1</th>
-    <td>댓글내용1</td>
-    <td>등록일자1</td>
+    <th scope="row">게시글번호1</th>
+    <td>신고자1</td>
+    <td>신고내용1</td>
+    <td>신고일자</td>
+    <td><button class="btn btn-primary btn-md text-white">삭제</button></td>
   </tr>
-  <tr>
-    <th scope="row">제목1</th>
-    <td>댓글내용1</td>
-    <td>등록일자1</td>
-  </tr>
+  
   </tbody>
 </table>
 </div>

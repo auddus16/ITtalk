@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FrontController_user
  */
-@WebServlet("*.mem")
-public class FrontController_user extends HttpServlet {
+@WebServlet("*.ad")
+public class FrontController_ad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FrontController_user() {
+    public FrontController_ad() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,7 +44,8 @@ public class FrontController_user extends HttpServlet {
 		String action=uri.substring(cp.length());
 		
 		ActionForward forward=null;
-		if(action.equals("/mypage.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+		if(action.equals("/adpage.ad")) { //관리자페이지 처음 이동
+			System.out.println("adpage들어옴");
 			try {
 				forward=new MainAction().execute(req, res);
 			} catch (Exception e) {
@@ -52,55 +53,15 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/modify.mem")) {//개인정보 수정
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/modifypw.mem")) {//비밀번호만 수정
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/withdraw.mem")) {//회원탈퇴
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/mypost.mem")) {//내가 쓴 게시글 조회
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/myreply.mem")) {//내가 쓴 댓글 조회
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/store.mem")) {//좋아요 한 게시글 조회
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		
+		else if(action.equals("/modifycate.mem")) {//게시판카테고리 수정
+			try {
+				forward=new NewmsgAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		else {
 			// 에러페이지로 이동-404
 			forward=new ActionForward();
@@ -119,4 +80,5 @@ public class FrontController_user extends HttpServlet {
 		}
 	}
 }
+
 

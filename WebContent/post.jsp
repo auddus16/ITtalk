@@ -7,28 +7,60 @@
 <meta charset="UTF-8">
 <title>마이페이지2-내가 쓴 게시글/댓글</title>
 <style type="text/css">
-table{
-	border-collapse:collapse;
-}
+table.type09 {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
 
-table tr th td{
-	text-align:center;
-	border:2px soild mint;
-	padding:5px;
+}
+table.type09 thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+}
+table.type09 tbody th {
+  width: 300px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+table.type09 td {
+  width: 200px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
 }
 
 </style>
 </head>
 <body>
+<!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
 <div id="mypost">
-	<p>[내 게시글]</p>
-	<table>
-		<!-- forEach로 내가 쓴 게시글 출력하기 -->
-		<tr>
-			<td>게시글 제목입니당</td>
-			<td>게시글 등록일자</td>
-		</tr>
-	</table>
+<h4>내가 쓴 게시글</h4>
+<hr>
+	<table class="type09">
+  <thead>
+  <tr>
+    <th scope="cols">제목</th>
+    <th scope="cols">등록일자</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- 내가 쓴 게시글 출력 forEach -->
+  <tr>
+    <th scope="row">제목1</th>
+    <td>등록일자1</td>
+  </tr>
+  <tr>
+    <th scope="row">제목1</th>
+    <td>등록일자1</td>
+  </tr>
+  </tbody>
+</table>
 </div>
 <br>
 
