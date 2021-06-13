@@ -31,17 +31,6 @@ table tr th td{
 	</table>
 </div>
 <br>
-<div id="mypost">
-	<p>[내 댓글]</p>
-	<table>
-		
-		<!-- forEach로 내가 쓴 댓글 출력하기 -->
-		<tr>
-			<td>게시글 제목입니당</td>
-			<td>댓글 내용</td>
-			<td>댓글 등록일자</td>
-		</tr>
-	</table>
-</div>
+
 </body>
 </html>

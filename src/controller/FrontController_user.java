@@ -76,7 +76,15 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/mywrite.mem")) {//내가 쓴 게시글/댓글 조회
+		else if(action.equals("/mypost.mem")) {//내가 쓴 게시글 조회
+			try {
+				forward=new NewmsgAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/myreply.mem")) {//내가 쓴 댓글 조회
 			try {
 				forward=new NewmsgAction().execute(req, res);
 			} catch (Exception e) {
@@ -85,14 +93,6 @@ public class FrontController_user extends HttpServlet {
 			}
 		}
 		else if(action.equals("/store.mem")) {//좋아요 한 게시글 조회
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/checknick.mem")) {//중복된 닉네임이 없는지 확인
 			try {
 				forward=new NewmsgAction().execute(req, res);
 			} catch (Exception e) {
