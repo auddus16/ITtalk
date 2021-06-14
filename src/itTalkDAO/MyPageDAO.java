@@ -16,25 +16,17 @@ public class MyPageDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 	
-	// 로그인된 사용자의 댓글 출력
-	public ArrayList<String> getMyComment() {
+	// 로그인된 사용자의 댓글 출력 
+	public ArrayList<String> getMyComment(String mb_no) {
 		conn= DBManager.connect();
-		
 		ArrayList<String> myComments=new ArrayList();
-		
-		String sql="select mb_no from C";
-		
+		String sql="select c_write FROM C WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				myComments.add(rs.getString("c_no"));
-				myComments.add(rs.getString("b_no"));
 				myComments.add(rs.getString("c_write"));
-				myComments.add(rs.getString("c_date"));
-				myComments.add(rs.getString("c_secret"));
-				myComments.add(rs.getString("c_deleted"));
-				myComments.add(rs.getString("c_report"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,19 +45,104 @@ public class MyPageDAO {
 	}
 	
 	// 로그인된 사용자의 게시글 출력
+	public ArrayList<String> getMyBoard(String mb_no) {
+		conn= DBManager.connect();
+		ArrayList<String> myBoards=new ArrayList();
+		String sql="select b_title FROM B WHERE mb_no=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mb_no);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				myBoards.add(rs.getString("b_title"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return myBoards;
+		
+	}
 	
-	// 로그인된 사용자의 정보
+	// 로그인된 사용자의 정보 ?
+	public ArrayList<String> getMyInfo(Mb member) {
+		conn= DBManager.connect();
+		ArrayList<String> myInfo=new ArrayList();
+		String sql="select mb_id, mb_pw, mb_email, mb_nick, mb_job FROM Mb WHERE mb_no=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				myInfo.add(rs.getString("mb_id"));
+				myInfo.add(rs.getString("mb_pw"));
+				myInfo.add(rs.getString("mb_email"));
+				myInfo.add(rs.getString("mb_nick"));
+				myInfo.add(rs.getString("mb_job"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return myInfo;
+		
+	}
+	
+	
+	
+	
 	
 	// 로그인된 사용자의 좋아요 한 게시글 출력
+	public ArrayList<String> getMyBoardSave(String mb_no) {
+		conn= DBManager.connect();
+		ArrayList<String> myBoardsSave=new ArrayList();
+		String sql="select b_no FROM Bs WHERE mb_no=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mb_no);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				myBoardsSave.add(rs.getString("b_no"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return myBoardsSave;
+		
+	}
 	
-	// 사용자 비밀번호 확인 기능   
-	public String getMember_pw(String id) {
+	// 사용자 비밀번호 확인 기능 
+	public String getMember_pw(String mb_no) {
 		conn=DBManager.connect();
 		String sql = "SELECT mb_pw FROM Mb WHERE mb_no=?";
 		String member_pw = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, mb_no);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -112,17 +189,19 @@ public class MyPageDAO {
 	}
 	
 	// 회원 탈퇴 기능   
-	public void deleteMember(int mb_no) {
+	public boolean deleteMember(int mb_no) {
 		conn=DBManager.connect();
-		String sql="DELETE FROM Member WHERE mb_no = ?";
+		String sql="DELETE FROM Member WHERE mb_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
 			
 			pstmt.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				pstmt.close();
@@ -132,6 +211,7 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
+		
 	}
 
 }
