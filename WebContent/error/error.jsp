@@ -10,7 +10,7 @@
 	
 <h2>처리중에 에러 발생!</h2>
 <hr>
-<p>상태코드: ${pageContext.errorData.statusCode} %></p>
+<p>상태코드: ${pageContext.errorData.statusCode}</p>
 <br>
 <p>예외타입: ${pageContext.errorData.throwable}</p>
 
