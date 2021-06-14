@@ -20,13 +20,20 @@ public class MyPageDAO {
 	public ArrayList<String> getMyComment(String mb_no) {
 		conn= DBManager.connect();
 		ArrayList<String> myComments=new ArrayList();
-		String sql="select c_write FROM C WHERE mb_no=?";
+		String sql="select * FROM C WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
+				myComments.add(rs.getString("c_no"));
+				myComments.add(rs.getString("b_no"));
+				myComments.add(rs.getString("mb_no"));
 				myComments.add(rs.getString("c_write"));
+				myComments.add(rs.getString("c_date"));
+				myComments.add(rs.getString("c_secret"));
+				myComments.add(rs.getString("c_deleted"));
+				myComments.add(rs.getString("c_report"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -48,13 +55,22 @@ public class MyPageDAO {
 	public ArrayList<String> getMyBoard(String mb_no) {
 		conn= DBManager.connect();
 		ArrayList<String> myBoards=new ArrayList();
-		String sql="select b_title FROM B WHERE mb_no=?";
+		String sql="select * FROM B WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
+				myBoards.add(rs.getString("b_no"));
+				myBoards.add(rs.getString("mb_no"));
+				myBoards.add(rs.getString("bc_no"));
 				myBoards.add(rs.getString("b_title"));
+				myBoards.add(rs.getString("b_write"));
+				myBoards.add(rs.getString("b_file"));
+				myBoards.add(rs.getString("b_date"));
+				myBoards.add(rs.getString("b_hits"));
+				myBoards.add(rs.getString("b_deleted"));
+				myBoards.add(rs.getString("b_report"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -72,7 +88,7 @@ public class MyPageDAO {
 		
 	}
 	
-	// 로그인된 사용자의 정보 ?
+	// 로그인된 사용자의 정보 
 	public ArrayList<String> getMyInfo(Mb member) {
 		conn= DBManager.connect();
 		ArrayList<String> myInfo=new ArrayList();
@@ -111,13 +127,16 @@ public class MyPageDAO {
 	public ArrayList<String> getMyBoardSave(String mb_no) {
 		conn= DBManager.connect();
 		ArrayList<String> myBoardsSave=new ArrayList();
-		String sql="select b_no FROM Bs WHERE mb_no=?";
+		String sql="select * FROM Bs WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
+				myBoardsSave.add(rs.getString("bs_no"));
+				myBoardsSave.add(rs.getString("mb_no"));
 				myBoardsSave.add(rs.getString("b_no"));
+				myBoardsSave.add(rs.getString("bs_date"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
