@@ -2,9 +2,14 @@ package itTalkDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import itTalkDO.*;
+import com.mysql.cj.protocol.Message;
+
+import itTalkDO.B;
+import itTalkDO.C;
 
 public class Board {
 
@@ -19,7 +24,7 @@ public class Board {
 	public boolean newReply(C c){
 		try {
 			conn=DBManager.connect();
-			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?,now())";
+			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.setInt(2, c.getMb_no());
@@ -207,12 +212,181 @@ public class Board {
 		return true;
 	}
 	
-	// 검색 게시글 출력
+	// 검색 게시글 목록 출력(제목+내용)
+	public ArrayList<B> titleSearch(String search){
+
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_title=? or b_write=? ";
+			pstmt=conn.prepareStatement(sql);
+
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+
+
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return datas;
+	}
+	
+	// 검색 게시글 목록 출력(작성자)
+	public ArrayList<B> nickSearch(String nick){
 		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_nick=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, nick);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return datas;
+	}
+	
 	// 게시글 목록 출력
+	public ArrayList<B> boardPrint(){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b";
+			pstmt=conn.prepareStatement(sql);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return datas;
+	}
 	
-	// 카테고리 게시글 출력
+	// 카테고리 게시글 목록 출력
 	
-	
+	public ArrayList<B> bcSearch(String nick){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_nick=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, nick);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return datas;
+	}
 	
 }
