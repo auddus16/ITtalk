@@ -22,7 +22,7 @@ public class Board {
 	// 게시글 수정
 	
 	// 게시글 출력
-	public ArrayList<BoardSet> BoardPrint(int b_no){
+	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
 
 		ArrayList<BoardSet> datas=new ArrayList<>();
 		BoardSet bs = new BoardSet();
@@ -119,7 +119,7 @@ public class Board {
 	}
 	
 	// 게시글 삭제
-	public boolean delB(int b_id){
+	public boolean delB(int b_id){//게시글 번호
 		try {
 			conn=DBManager.connect();
 			String sql="delete from b where b_id=?";
@@ -144,7 +144,7 @@ public class Board {
 	}
 	
 	// 댓글 삭제
-	public boolean delC(int c_id){
+	public boolean delC(int c_id){//댓글번호
 		try {
 			conn=DBManager.connect();
 			String sql="delete from c where c_id=?";
@@ -168,7 +168,7 @@ public class Board {
 		return true;
 	}
 	// 게시글 좋아요
-	public boolean like(int mb_no , int b_no) {
+	public boolean like(int mb_no , int b_no) {//회원번호,게시글번호
 		try {
 			conn=DBManager.connect();
 			String sql="insert into bs(mb_no , b_no) values (?,?)";
@@ -194,7 +194,7 @@ public class Board {
 	}
 	
 	// 게시글 조회수
-	public void hits(int b_no) {
+	public void hits(int b_no) {//게시글 번호
 		try {
 			conn=DBManager.connect();
 			String sql="update b set b_hits=b_hits+1 where b_no=?";
@@ -217,7 +217,7 @@ public class Board {
 	}
 	
 	// 게시글 신고
-	public boolean ReportB(int b_no , int mb_no , int rctg_no , String rc_write) {
+	public boolean ReportB(int b_no , int mb_no , int rctg_no , String rc_write) {//게시글번호,회원번호,신고카테고리번호,신고내용
 		try {
 			conn=DBManager.connect();
 			String sql="insert into rc(b_no , mb_no , rctg_no , rc_write) values (?,?,?,?)";
@@ -251,7 +251,7 @@ public class Board {
 	}
 
 	// 댓글 신고
-	public boolean ReportC(int c_no , int mb_no , int rctg_no , String rc_write) {
+	public boolean ReportC(int c_no , int mb_no , int rctg_no , String rc_write) {//신고댓글,알림이 갈 회원,신고카테고리번호,신고내용
 		try {
 			conn=DBManager.connect();
 			String sql="insert into rc(c_no , mb_no , rctg_no , rc_write) values (?,?,?,?)";
