@@ -77,7 +77,7 @@ public class Membership {
 	public boolean addMember(Mb mb) {
 		conn= DBManager.connect();
 
-		String sql="insert into member(mb_id,mb_pw,mb_email,mb_nick,mb_job,mb_certify) values (?,?,?,?,?,?)";
+		String sql="insert into mb(mb_id,mb_pw,mb_email,mb_nick,mb_job,mb_certify) values (?,?,?,?,?,?)";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mb.getMb_id());
