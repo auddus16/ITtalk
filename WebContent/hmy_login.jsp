@@ -31,42 +31,41 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
+    
     <section class="site-section">
       <div class="container" style="text-align:center;">
         <div style="display:inline-block">
-        <form action="#" method="post">
-        <table style="width:800px;">
-        	<tr><td><input type="text" class="form-control" placeholder="검색할 내용을 입력하세요!"></td>
-        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
-        </table>
-		</form>
-		</div>
+       <form class="p-5 bg-white" style="display:inline-block;">
+              
+              <h2 class="h4 text-black mb-5">Login</h2> 
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label for="id">아이디</label> 
+                  <input type="text" name="id" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label for="pw">비밀번호</label>
+                  <input type="password" name="pw" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6">
+                <button type="submit" class="btn btn-primary btn-md text-white" formaction="withdraw.mem">login</button>
+                </div> 
+                </div> 
+            </form>
+        
+        
+        
+       </div>
       </div>
     </section>
-	
- 	<section class="site-section">
-  		<div class="p-4 mb-3 bg-white" style="text-align:center;">
-  			<div style="display:inline-block">
-  			<dl>
-                <dt>실시간 인기글</dt>
-                <dd>
-                    <ol>
-                        <li><a href="#">1 순위</a></li>
-                        <li><a href="#">2 순위</a></li>
-                        <li><a href="#">3 순위</a></li>
-                        <li><a href="#">4 순위</a></li>
-                        <li><a href="#">5 순위</a></li>
-                        <li><a href="#">6 순위</a></li>
-                        <li><a href="#">7 순위</a></li>
-                        <li><a href="#">8 순위</a></li>
-                        <li><a href="#">9 순위</a></li>
-                        <li><a href="#">10 순위</a></li>
-                    </ol>
-                </dd>
-            </dl>
-            </div>	
-  		</div>
-  	</section>
     
     <footer class="site-footer">
       <div class="container">
