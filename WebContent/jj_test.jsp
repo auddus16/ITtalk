@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<form>
+<div>
 <% if(memDAO.idCheck("ss")){
 	out.print("확인");
 	out.print("확인");
 }
 %>
-</form>
+</div>
 
 
 </body>
