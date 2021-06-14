@@ -83,7 +83,7 @@ public class FrontController extends HttpServlet {
 		else {
 			forward=new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("error.jsp");
+			forward.setPath("/error/error404.jsp");
 		}
 
 		if(forward!=null) {//방식과 경로가 있다면
