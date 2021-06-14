@@ -9,7 +9,7 @@ public class C {
 	private String c_date;
 	private boolean c_secret;
 	private boolean c_deleted;
-	private int c_reoirt;
+	private int c_report;
 	 
 	public int getC_no() {
 		return c_no;
@@ -53,11 +53,11 @@ public class C {
 	public void setC_deleted(boolean c_deleted) {
 		this.c_deleted = c_deleted;
 	}
-	public int getC_reoirt() {
-		return c_reoirt;
+	public int getC_report() {
+		return c_report ;
 	}
-	public void setC_reoirt(int c_reoirt) {
-		this.c_reoirt = c_reoirt;
+	public void setC_report(int c_report ) {
+		this.c_report  = c_report ;
 	}
 	
 	

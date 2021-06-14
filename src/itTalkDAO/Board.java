@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.mysql.cj.protocol.Message;
 
 import itTalkDO.B;
+import itTalkDO.BoardSet;
 import itTalkDO.C;
 
 public class Board {
@@ -19,6 +20,76 @@ public class Board {
 	// 게시글 등록
 
 	// 게시글 수정
+	
+	// 게시글 출력
+	public ArrayList<BoardSet> BoardPrint(int b_no){
+
+		ArrayList<BoardSet> datas=new ArrayList<>();
+		BoardSet bs = new BoardSet();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				
+				ArrayList<C> cs=new ArrayList<>();
+
+				String sql2="select * from c where b_no=?";
+				pstmt=conn.prepareStatement(sql2);
+				pstmt.setInt(1, b_no);
+				ResultSet rs2=pstmt.executeQuery();
+				while(rs2.next()) {
+					C c=new C();
+					c.setC_no(rs2.getInt("c_no"));
+					c.setB_no(rs2.getInt("b_no"));
+					c.setMb_no(rs2.getInt("mb_no"));
+				    c.setC_write(rs2.getString("c_weite"));
+					c.setC_date(rs2.getString("c_date"));
+					c.setC_secret(rs2.getBoolean("c_secret"));
+					c.setC_deleted(rs2.getBoolean("c_deleted"));
+					c.setC_report(rs2.getInt("c_report"));
+					cs.add(c);
+				}
+				rs2.close();
+				
+
+				bs.setBoard(b);;
+				bs.setRlist(cs);
+
+				datas.add(bs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return datas;
+	}
+	
 	
 	// 댓글 등록
 	public boolean newReply(C c){
@@ -303,7 +374,7 @@ public class Board {
 	}
 	
 	// 게시글 목록 출력
-	public ArrayList<B> boardPrint(){
+	public ArrayList<B> search(){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
