@@ -71,6 +71,7 @@ public class MyPageDAO {
 				myBoards.add(rs.getString("b_hits"));
 				myBoards.add(rs.getString("b_deleted"));
 				myBoards.add(rs.getString("b_report"));
+				myBoards.add(rs.getString("b_cnt"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
