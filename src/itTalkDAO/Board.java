@@ -17,9 +17,54 @@ public class Board {
 	Connection conn;
 	PreparedStatement pstmt;
 	
+	// 게시글 불러오기
+	public B Load(int b_no){
+		B b=new B();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("게시글 불러오기 실패");
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("게시글 불러오기 성공");
+		return b;
+	}
+	
 	// 게시글 등록
-
-	// 게시글 수정
+	
 	
 	// 게시글 출력
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
@@ -73,10 +118,13 @@ public class Board {
 				bs.setRlist(cs);
 
 				datas.add(bs);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("게시글 출력 실패");
+			return null;
 		}
 		finally {
 			try {
@@ -87,12 +135,13 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("게시글 출력 성공");
 		return datas;
 	}
 	
 	
 	// 댓글 등록
-	public boolean newReply(C c){
+	public boolean newReply(C c){//Comment
 		try {
 			conn=DBManager.connect();
 			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";
@@ -101,9 +150,11 @@ public class Board {
 			pstmt.setInt(2, c.getMb_no());
 			pstmt.setString(3, c.getC_write());
 			pstmt.executeUpdate();
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("댓글 등록 실패");
 			return false;
 		}
 		finally {
@@ -115,20 +166,22 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("댓글 등록 성공");
 		return true;
 	}
 	
 	// 게시글 삭제
-	public boolean delB(int b_id){//게시글 번호
+	public boolean delB(int b_no){//게시글 번호
 		try {
 			conn=DBManager.connect();
-			String sql="delete from b where b_id=?";
+			String sql="delete from b where b_no=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, b_id);
+			pstmt.setInt(1, b_no);
 			pstmt.executeUpdate();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("게시글 삭제 실패");
 			return false;
 		}
 		finally {
@@ -140,20 +193,22 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("게시글 삭제 완료");
 		return true;
 	}
 	
 	// 댓글 삭제
-	public boolean delC(int c_id){//댓글번호
+	public boolean delC(int c_no){//댓글번호
 		try {
 			conn=DBManager.connect();
-			String sql="delete from c where c_id=?";
+			String sql="delete from c where c_no=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, c_id);
+			pstmt.setInt(1, c_no);
 			pstmt.executeUpdate();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("댓글 삭제 실패");
 			return false;
 		}
 		finally {
@@ -165,8 +220,10 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("댓글 삭제 성공");
 		return true;
 	}
+	
 	// 게시글 좋아요
 	public boolean like(int mb_no , int b_no) {//회원번호,게시글번호
 		try {
@@ -179,6 +236,7 @@ public class Board {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("좋아요 실패");
 			return false;
 		}
 		finally {
@@ -190,6 +248,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("좋아요 성공");
 		return true;
 	}
 	
@@ -236,6 +295,7 @@ public class Board {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("게시글 신고 실패");
 			return false;
 		}
 		finally {
@@ -247,6 +307,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("게시글 신고 성공");
 		return true;
 	}
 
@@ -269,6 +330,7 @@ public class Board {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("댓글 신고 실패");
 			return false;
 		}
 		finally {
@@ -280,6 +342,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("댓글 신고 성공");
 		return true;
 	}
 	
@@ -315,6 +378,7 @@ public class Board {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("검색 게시글 목록 출력 실패(제목+내용)");
 			return null;
 		}
 		finally {
@@ -326,6 +390,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("검색 게시글 목록 출력 성공(제목+내용)");
 		return datas;
 	}
 	
@@ -359,6 +424,7 @@ public class Board {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("검색 게시글 목록 출력 실패(작성자)");
 			return null;
 		}
 		finally {
@@ -370,6 +436,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("검색 게시글 목록 출력 성공(작성자)");
 		return datas;
 	}
 	
@@ -401,6 +468,7 @@ public class Board {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("게시글 목록 출력 실패");
 			return null;
 		}
 		finally {
@@ -412,20 +480,21 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("게시글 목록 출력 성공");
 		return datas;
 	}
 	
 	// 카테고리 게시글 목록 출력
 	
-	public ArrayList<B> bcSearch(String nick){
+	public ArrayList<B> bcSearch(String bc_no){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_nick=?";
+			String sql="select * from b where bc_no=?";
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, nick);
+			pstmt.setString(1, bc_no);
 			
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -446,6 +515,7 @@ public class Board {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("카테고리 게시글 목록 출력 실패");
 			return null;
 		}
 		finally {
@@ -457,6 +527,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("카테고리 게시글 목록 출력 성공");
 		return datas;
 	}
 	
