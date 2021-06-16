@@ -39,9 +39,11 @@ public class FrontController_user extends HttpServlet {
 	}
 	
 	private void actionDo(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
 		String uri=req.getRequestURI();
 		String cp=req.getContextPath();
 		String action=uri.substring(cp.length());
+		System.out.println(action);
 		
 		ActionForward forward=null;
 		if(action.equals("/mypage.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
@@ -52,9 +54,10 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+		else if(action.equals("/myinfo.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+			System.out.println("프론트들어옴");
 			try {
-				forward=new MypageAction().execute(req, res);
+				forward=new InfoAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,10 +113,11 @@ public class FrontController_user extends HttpServlet {
 		}
 		
 		else {
-			// 에러페이지로 이동-404
-			forward=new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/error/error404.jsp");
+//			// 에러페이지로 이동-404
+//			forward=new ActionForward();
+//			forward.setRedirect(false);
+//			forward.setPath("/error/error404.jsp");
+			System.out.println(action);
 		}
 		
 		if(forward!=null) {
