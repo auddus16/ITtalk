@@ -46,7 +46,15 @@ public class FrontController_user extends HttpServlet {
 		ActionForward forward=null;
 		if(action.equals("/mypage.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
 			try {
-				forward=new MainAction().execute(req, res);
+				forward=new MypageAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+			try {
+				forward=new MypageAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
