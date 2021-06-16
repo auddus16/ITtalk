@@ -151,6 +151,11 @@ public class Board {
 			pstmt.setString(3, c.getC_write());
 			pstmt.executeUpdate();
 			
+			sql="update b set b_cnt=b_cnt+1 where b_no=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getB_no());
+			pstmt.executeUpdate();
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
