@@ -18,7 +18,7 @@ public class Board {
 	PreparedStatement pstmt;
 	
 	// 게시글 불러오기
-	public B Load(int b_no){
+	public B Load(int b_no){//게시글 번호
 		B b=new B();
 		try {
 			conn=DBManager.connect();

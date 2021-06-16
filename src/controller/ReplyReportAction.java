@@ -12,7 +12,7 @@ public class ReplyReportAction implements Action{// 댓글신고
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 
-
+		//c_report 신고수
 
 
 		forward.setRedirect(false);
