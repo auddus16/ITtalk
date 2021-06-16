@@ -15,15 +15,14 @@ public class DelmsgAction implements Action{//게시글 삭제
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-
+		
 
 		Board board = new Board();//dao
 		
 		Mb mb =new Mb();//do
 		B b =new B();//do
 		
-		//게시글 출력(해당 게시글을 삭제하기위함)
-		
+	
 		//mb_nick; 닉네임
 		mb.setMb_nick(req.getParameter("mb_nick"));
 		//mb_no fk.회원번호
@@ -40,6 +39,14 @@ public class DelmsgAction implements Action{//게시글 삭제
 		b.setB_file(req.getParameter("b_file"));
 		//b_date; 등록일자
 		b.setB_date(req.getParameter("b_date"));
+		
+		
+		
+		//게시글 불러오기(해당 게시글을 삭제하기위함)
+		b =board.Load(Integer.parseInt(req.getParameter("b_no")));
+		
+		//게시글 삭제
+		boolean b_no=board.delB(Integer.parseInt(req.getParameter("b_no")));
 		
 		
 		forward.setRedirect(false);
