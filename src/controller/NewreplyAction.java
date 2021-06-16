@@ -7,10 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import itTalkDAO.Board;
+import itTalkDO.B;
 import itTalkDO.C;
 import itTalkDO.Mb;
 
-public class NewreplyAction implements Action{//댓글 작성(비밀 댓글도 포함)
+public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -20,19 +21,47 @@ public class NewreplyAction implements Action{//댓글 작성(비밀 댓글도 포함)
 		
 		C c=new C();//do
 		Mb mb =new Mb();//do
+		B b =new B();//do
 		
 		//c_no pk.댓글번호
+		c.setC_no(Integer.parseInt(req.getParameter("c_no")));
 		//b_no fk.게시글번호
+		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		//mb_nick; 닉네임
 		mb.setMb_nick(req.getParameter("mb_nick"));
 		//mb_no fk.회원번호
 		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
 		//c_write 댓글내용
+		c.setC_write(req.getParameter("c_write"));
 		//c_date 등록일자
+		c.setC_date(req.getParameter("c_date"));
 		//c_secret 비밀댓글여부
-
+		
+		// 보류 c.setC_secret(c.isC_secret());
+		
+		String cnt=req.getParameter("cnt");
+		// 게시글을 몇개까지 볼수있는지에 대한 데이터
+		
+		int rcnt;
+		if(cnt==null){
+			rcnt=0;
+		}
+		else{
+			rcnt=Integer.parseInt(cnt);
+		}
+		req.setAttribute("cnt", rcnt);
+		
+	
+		//댓글 등록 b_no,mb_no,c_write
+		
+		Boolean comment=board.newReply(c);
+		
 
 		
+		//req.setAttribute("datas", 댓글s); 보낼 데이터 정보
+		
+		
+	
 
 
 		forward.setRedirect(false);
