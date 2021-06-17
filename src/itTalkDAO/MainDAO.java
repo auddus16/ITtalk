@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import itTalkDO.B;
+import itTalkDO.Ts;
+
 
 public class MainDAO {
 	
@@ -54,7 +57,39 @@ public class MainDAO {
 	
 	
 	// 메인에 출력 메소드
-	
+	public ArrayList<Ts> top(){
+		
+		ArrayList<Ts> topMain = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from Ts";
+			pstmt=conn.prepareStatement(sql);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Ts ts=new Ts();
+				
+				ts.setTs_no(rs.getInt("ts_no"));
+				ts.setB_no(rs.getInt("b_no"));
+				ts.setB_title(rs.getString("b_title"));
+				topMain.add(ts);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return topMain;
+	}
 	
 	
 	// 제목&내용 검색 기능 -> 검색한 게시물 목록 전체 출력

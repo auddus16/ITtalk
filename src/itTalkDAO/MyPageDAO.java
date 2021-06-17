@@ -222,13 +222,12 @@ public class MyPageDAO {
 	// È¸¿ø Å»Åð ±â´É   
 	public boolean deleteMember(int mb_no) {
 		conn=DBManager.connect();
-		String sql="DELETE FROM Member WHERE mb_no=?";
+		String sql="DELETE FROM Mb WHERE mb_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
 			
 			pstmt.executeUpdate();
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -242,7 +241,7 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
-		
+		return true;
 	}
 
 }
