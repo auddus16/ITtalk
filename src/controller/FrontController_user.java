@@ -54,7 +54,7 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/myinfo.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+		else if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
 			System.out.println("프론트들어옴");
 			try {
 				forward=new InfoAction().execute(req, res);
