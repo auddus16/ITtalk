@@ -1,6 +1,5 @@
 package itTalkDO;
 
-import com.mysql.cj.jdbc.Blob;
 
 public class B {
 
