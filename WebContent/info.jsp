@@ -28,7 +28,7 @@ function newpw(){
                 <br>
                 <div class="col-md-6">
                   <label class="text-black" for="nick">닉네임</label>
-                  <input type="text" name="nick" class="form-control" value="${mem.nick}" required><!-- 닉네임 ${mem.nick}-->
+                  <input type="text" name="nick" class="form-control" required><!-- 닉네임 ${mem.nick}-->
                   <button type="submit" name="action" value="checknick" class="btn btn-primary btn-md text-white" formaction="control_user.jsp">중복확인</button>
                 </div>
               </div>
@@ -37,7 +37,7 @@ function newpw(){
                 
                 <div class="col-md-12">
                   <label class="text-black" for="id">아이디</label> 
-                  <input type="text" name="id" class="form-control" required>
+                  <input type="text" name="id" class="form-control"  value="${myInfo.mb_id}"  disabled>
                 </div>
               </div>
 

@@ -46,15 +46,8 @@ public class FrontController_user extends HttpServlet {
 		System.out.println(action);
 		
 		ActionForward forward=null;
-		if(action.equals("/mypage.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
-			try {
-				forward=new MypageAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
+		
+		if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
 			System.out.println("프론트들어옴");
 			try {
 				forward=new InfoAction().execute(req, res);
@@ -89,7 +82,7 @@ public class FrontController_user extends HttpServlet {
 		}
 		else if(action.equals("/mypost.mem")) {//내가 쓴 게시글 조회
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new MypostAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
