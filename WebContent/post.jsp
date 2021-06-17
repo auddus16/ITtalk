@@ -56,7 +56,7 @@ table.type09 td {
   <c:forEach var="v" items="${mypostList}">
 	  
 	  <tr>
-	    <th scope="row">${v.b_title}</th>
+	    <th scope="row"><a href="ff.jsp">${v.b_title}</a></th>
 	    <td>${v.b_date}</td>
 	  </tr>
   

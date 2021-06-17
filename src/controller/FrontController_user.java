@@ -90,7 +90,7 @@ public class FrontController_user extends HttpServlet {
 		}
 		else if(action.equals("/myreply.mem")) {//내가 쓴 댓글 조회
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new MyreplyAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
