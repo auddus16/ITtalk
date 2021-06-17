@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import itTalkDAO.DBManager;
 import itTalkDO.B;
+import itTalkDO.Bs;
 import itTalkDO.C;
 import itTalkDO.Mb;
 
@@ -18,23 +19,27 @@ public class MyPageDAO {
 	PreparedStatement pstmt;
 	
 	// 로그인된 사용자의 댓글 출력 
-	public ArrayList<String> getMyComment(String mb_no) {
+	public ArrayList<C> getMyComment(int mb_no) {
 		conn= DBManager.connect();
-		ArrayList<String> myComments=new ArrayList();
+		ArrayList<C> myComments=new ArrayList();
 		String sql="select * FROM C WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, mb_no);
+			pstmt.setInt(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				myComments.add(rs.getString("c_no"));
-				myComments.add(rs.getString("b_no"));
-				myComments.add(rs.getString("mb_no"));
-				myComments.add(rs.getString("c_write"));
-				myComments.add(rs.getString("c_date"));
-				myComments.add(rs.getString("c_secret"));
-				myComments.add(rs.getString("c_deleted"));
-				myComments.add(rs.getString("c_report"));
+				C c=new C();
+				c.setC_no(rs.getInt("c_no"));
+				c.setB_no(rs.getInt("b_no"));
+				c.setMb_no(rs.getInt("mb_no"));
+				c.setC_write(rs.getString("c_write"));
+				c.setC_date(rs.getString("c_date"));
+				c.setC_secret(rs.getBoolean("c_secret"));
+				c.setC_deleted(rs.getBoolean("c_deleted"));
+				c.setC_report(rs.getInt("c_report"));
+			
+				myComments.add(c);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,26 +58,28 @@ public class MyPageDAO {
 	}
 	
 	// 로그인된 사용자의 게시글 출력
-	public ArrayList<String> getMyBoard(String mb_no) {
+	public ArrayList<B> getMyBoard(int mb_no) {
 		conn= DBManager.connect();
-		ArrayList<String> myBoards=new ArrayList();
+		ArrayList<B> myBoards=new ArrayList();
 		String sql="select * FROM B WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, mb_no);
+			pstmt.setInt(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				myBoards.add(rs.getString("b_no"));
-				myBoards.add(rs.getString("mb_no"));
-				myBoards.add(rs.getString("bc_no"));
-				myBoards.add(rs.getString("b_title"));
-				myBoards.add(rs.getString("b_write"));
-				myBoards.add(rs.getString("b_file"));
-				myBoards.add(rs.getString("b_date"));
-				myBoards.add(rs.getString("b_hits"));
-				myBoards.add(rs.getString("b_deleted"));
-				myBoards.add(rs.getString("b_report"));
-				myBoards.add(rs.getString("b_cnt"));
+				B b=new B();
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				b.setB_cnt(rs.getInt("b_cnt"));
+				myBoards.add(b);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -111,7 +118,7 @@ public class MyPageDAO {
 				mb.setMb_email(rs.getString("mb_email"));
 				mb.setMb_nick(rs.getString("mb_nick"));
 				mb.setMb_job(rs.getBoolean("mb_job"));
-				mb.setMb_certify(rs.getBoolean("mb_certify"));
+				mb.setMb_certify(rs.getBoolean("mb_certify"));	
 				
 			}
 		} catch (SQLException e) {
@@ -136,19 +143,22 @@ public class MyPageDAO {
 	
 	
 	// 로그인된 사용자의 좋아요 한 게시글 출력
-	public ArrayList<String> getMyBoardSave(String mb_no) {
+	public ArrayList<Bs> getMyBoardSave(int mb_no) {
 		conn= DBManager.connect();
-		ArrayList<String> myBoardsSave=new ArrayList();
+		ArrayList<Bs> myBoardsSave=new ArrayList();
 		String sql="select * FROM Bs WHERE mb_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, mb_no);
+			pstmt.setInt(1, mb_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				myBoardsSave.add(rs.getString("bs_no"));
-				myBoardsSave.add(rs.getString("mb_no"));
-				myBoardsSave.add(rs.getString("b_no"));
-				myBoardsSave.add(rs.getString("bs_date"));
+				Bs bs=new Bs();
+				bs.setBs_no(rs.getInt("bs_no"));
+				bs.setMb_no(rs.getInt("mb_no"));
+				bs.setB_no(rs.getInt("b_no"));
+				bs.setBs_date(rs.getString("bs_date"));
+				
+				myBoardsSave.add(bs);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
