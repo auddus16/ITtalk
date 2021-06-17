@@ -102,7 +102,7 @@ public class MyPageDAO {
 		Mb mb=new Mb();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where mb_no=?";
+			String sql="select * from Mb where mb_no=?";
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, mb_no);
