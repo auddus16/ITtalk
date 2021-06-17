@@ -14,7 +14,14 @@ public class B {
 	private int b_hits;
 	private boolean b_deleted;
 	private int b_report;
+	private int b_cnt;
 	
+	public int getB_cnt() {
+		return b_cnt;
+	}
+	public void setB_cnt(int b_cnt) {
+		this.b_cnt = b_cnt;
+	}
 	public int getB_no() {
 		return b_no;
 	}
