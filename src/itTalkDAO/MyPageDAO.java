@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import itTalkDAO.DBManager;
+import itTalkDO.B;
 import itTalkDO.C;
 import itTalkDO.Mb;
 
@@ -90,24 +91,35 @@ public class MyPageDAO {
 	}
 	
 	// 로그인된 사용자의 정보 
-	public ArrayList<String> getMyInfo(Mb member) {
-		conn= DBManager.connect();
-		ArrayList<String> myInfo=new ArrayList();
-		String sql="select mb_id, mb_pw, mb_email, mb_nick, mb_job FROM Mb WHERE mb_no=?";
+	public Mb Info(int mb_no){
+		Mb mb=new Mb();
 		try {
+			conn=DBManager.connect();
+			String sql="select * from b where mb_no=?";
 			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mb_no);
+			
 			ResultSet rs=pstmt.executeQuery();
+			
 			while(rs.next()) {
-				myInfo.add(rs.getString("mb_id"));
-				myInfo.add(rs.getString("mb_pw"));
-				myInfo.add(rs.getString("mb_email"));
-				myInfo.add(rs.getString("mb_nick"));
-				myInfo.add(rs.getString("mb_job"));
+				
+				
+				mb.setMb_no(rs.getInt("mb_no"));
+				mb.setMb_id(rs.getString("mb_id"));
+				mb.setMb_pw(rs.getString("mb_pw"));
+				mb.setMb_email(rs.getString("mb_email"));
+				mb.setMb_nick(rs.getString("mb_nick"));
+				mb.setMb_job(rs.getBoolean("mb_job"));
+				mb.setMb_certify(rs.getBoolean("mb_certify"));
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+			return null;
+		}
+		finally {
 			try {
 				pstmt.close();
 				conn.close();
@@ -116,8 +128,7 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
-		return myInfo;
-		
+		return mb;
 	}
 	
 	
@@ -211,13 +222,12 @@ public class MyPageDAO {
 	// 회원 탈퇴 기능   
 	public boolean deleteMember(int mb_no) {
 		conn=DBManager.connect();
-		String sql="DELETE FROM Member WHERE mb_no=?";
+		String sql="DELETE FROM Mb WHERE mb_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
 			
 			pstmt.executeUpdate();
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -231,7 +241,7 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
-		
+		return true;
 	}
 
 }

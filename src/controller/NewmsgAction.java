@@ -10,7 +10,7 @@ import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Mb;
 
-public class NewmsgAction implements Action{// 게시글 작성
+public class NewmsgAction implements Action{// 게시글 등록
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -22,10 +22,13 @@ public class NewmsgAction implements Action{// 게시글 작성
 		Mb mb =new Mb();//do
 		B b =new B();//do
 		
+		//--등록할 때 필요한 정보--
+		
 		//mb_nick; 닉네임
 		mb.setMb_nick(req.getParameter("mb_nick"));
 		//mb_no fk.회원번호
 		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
+		
 		//b_no; 게시글번호
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		//bc_no; 카테고리번호 -> 인자로는 int지만, 보낼때는 문자열로 보내야됨.  뷰에서 받을때 번호로 받아야함.(num)
@@ -39,13 +42,31 @@ public class NewmsgAction implements Action{// 게시글 작성
 		//b_date; 등록일자
 		b.setB_date(req.getParameter("b_date"));
 		
-	
-
-
-		//전체 게시글 목록 출력
-
+		String cnt=req.getParameter("cnt");
+		// 게시글을 몇개까지 볼수있는지에 대한 데이터
+		
+		int mcnt;
+		if(cnt==null){
+			mcnt=0;
+		}
+		else{
+			mcnt=Integer.parseInt(cnt);
+		}
+		req.setAttribute("cnt", mcnt);
 		
 		
+		
+		
+		
+//		if(!msgDAO.newMsg(msg)) {//게시글 등록 메소드(작성해야함)
+//			throw new Exception("메세지 추가 실패");
+//		}
+
+
+		//작성하고난후에 전체 게시글 목록 출력
+		
+		
+		//req.setAttribute("datas", datas); 보낼 데이터 정보
 
 		forward.setRedirect(false);
 		forward.setPath("게시글작성.jsp");

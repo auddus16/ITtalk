@@ -30,7 +30,7 @@
     
   </head>
   <%
-  	String pagefile=request.getParameter("page");
+  	String pagefile=(String)request.getAttribute("kind");
   	if(pagefile==null){
   		pagefile="info";
   	}
@@ -103,7 +103,6 @@
       </div>
     </footer>
 
-  </div> <!-- .site-wrap -->
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -118,19 +117,6 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
-  <script src="js/typed.js"></script>
-            <script>
-            var typed = new Typed('.typed-words', {
-            strings: ["Web Apps"," WordPress"," Mobile Apps"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-            });
-            </script>
 
   <script src="js/main.js"></script>
   

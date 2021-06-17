@@ -33,7 +33,7 @@
 	<c:choose>
 	<c:when test="${ujob == null}"><!-- 개발자/예비개발자 아이콘 -->
 			<!-- 예비 -->
-			<li><a href="#work-section" class="nav-link"><img src="images/user1.png" width="40" height="40" alt="예비"></a></li>
+			<li><a href="info.mem" class="nav-link"><img src="images/user1.png" width="40" height="40" alt="예비"></a></li>
 		</c:when>
 		<c:otherwise>
 			<!-- 개발자 -->
