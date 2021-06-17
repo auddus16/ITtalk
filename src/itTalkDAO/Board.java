@@ -6,7 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.mysql.cj.protocol.Message;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import itTalkDO.B;
 import itTalkDO.BoardSet;
@@ -64,7 +72,46 @@ public class Board {
 	}
 	
 	// 게시글 등록
+		public void Upload (HttpServletRequest request, HttpServletResponse response) {
+			System.out.println("확인1");
+			ServletContext context = request.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
+			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
+
+			int maxSize = 3 * 1024 * 1024; // 3MB
+			String encoding = "euc-kr";
+			
+			// saveDir: 경로
+					// maxSize: 크기제한 설정
+					// encoding: 인코딩타입 설정
+					// new DefaultFileRenamePolicy(): 동일한 이름일 경우 자동으로 (1),(2)..붙게 해줌
+
+					boolean isMulti = ServletFileUpload.isMultipartContent(request);// boolean타입. ??????
+					if (isMulti) {
+						try {
+							MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding,
+									new DefaultFileRenamePolicy());
+							conn=DBManager.connect();
+							String sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
+							pstmt=conn.prepareStatement(sql);
+							pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
+							pstmt.setInt(2, Integer.parseInt(multi.getParameter("bc_no")));
+							pstmt.setString(3, multi.getParameter("b_title"));
+							pstmt.setString(4, multi.getParameter("b_write"));
+							pstmt.setString(5, multi.getFilesystemName("b_file"));
+							pstmt.executeUpdate();
+							
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					} else {
+						System.out.println("일반 전송 form 입니다.");
+					}
+			
+		}
 	
+	// 게시글 수정
 	
 	// 게시글 출력
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
