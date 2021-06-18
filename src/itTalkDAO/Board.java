@@ -1,5 +1,6 @@
 package itTalkDAO;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.mysql.cj.protocol.Message;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -54,8 +54,8 @@ public class Board {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("게시글 불러오기 실패");
+			e.printStackTrace();
 			return null;
 		}
 		finally {
@@ -72,9 +72,8 @@ public class Board {
 	}
 	
 	// 게시글 등록
-		public void Upload (HttpServletRequest request, HttpServletResponse response) {
-			System.out.println("확인1");
-			ServletContext context = request.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
+		public void Upload (HttpServletRequest req, HttpServletResponse res) {
+			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
 
 			int maxSize = 3 * 1024 * 1024; // 3MB
@@ -85,10 +84,10 @@ public class Board {
 					// encoding: 인코딩타입 설정
 					// new DefaultFileRenamePolicy(): 동일한 이름일 경우 자동으로 (1),(2)..붙게 해줌
 
-					boolean isMulti = ServletFileUpload.isMultipartContent(request);// boolean타입. ??????
+					boolean isMulti = ServletFileUpload.isMultipartContent(req);// boolean타입. ??????
 					if (isMulti) {
 						try {
-							MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding,
+							MultipartRequest multi = new MultipartRequest(req, saveDir, maxSize, encoding,
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
@@ -205,8 +204,8 @@ public class Board {
 			
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("댓글 등록 실패");
+			e.printStackTrace();
 			return false;
 		}
 		finally {
@@ -222,32 +221,45 @@ public class Board {
 		return true;
 	}
 	
+	
 	// 게시글 삭제
-	public boolean delB(int b_no){//게시글 번호
-		try {
-			conn=DBManager.connect();
-			String sql="delete from b where b_no=?";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, b_no);
-			pstmt.executeUpdate();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("게시글 삭제 실패");
-			return false;
-		}
-		finally {
+		public boolean delB(HttpServletRequest req, HttpServletResponse res){//게시글 번호
 			try {
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				conn=DBManager.connect();
+				String sql="select b_file from b where b_no=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1,Integer.parseInt(req.getParameter("b_no")));
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
+				String saveDir = context.getRealPath("");
+				String url = saveDir+rs.getString(1); 
+				File uploadfile = new File (url);
+				
+				uploadfile.delete();       // 파일 삭제
+				
+				sql="delete from b where b_no=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(req.getParameter("b_no")));
+				pstmt.executeUpdate();
 			}
+			catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("게시글 삭제 실패");
+				return false;
+			}
+			finally {
+				try {
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println("게시글 삭제 완료");
+			return true;
 		}
-		System.out.println("게시글 삭제 완료");
-		return true;
-	}
 	
 	// 댓글 삭제
 	public boolean delC(int c_no){//댓글번호
@@ -259,8 +271,8 @@ public class Board {
 			pstmt.executeUpdate();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("댓글 삭제 실패");
+			e.printStackTrace();
 			return false;
 		}
 		finally {
@@ -287,8 +299,8 @@ public class Board {
 			pstmt.executeUpdate();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("좋아요 실패");
+			e.printStackTrace();
 			return false;
 		}
 		finally {
@@ -346,8 +358,8 @@ public class Board {
 			
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("게시글 신고 실패");
+			e.printStackTrace();
 			return false;
 		}
 		finally {
@@ -381,8 +393,8 @@ public class Board {
 			pstmt.executeUpdate();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("댓글 신고 실패");
+			e.printStackTrace();
 			return false;
 		}
 		finally {
@@ -429,8 +441,8 @@ public class Board {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("검색 게시글 목록 출력 실패(제목+내용)");
+			e.printStackTrace();
 			return null;
 		}
 		finally {
@@ -475,8 +487,8 @@ public class Board {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("검색 게시글 목록 출력 실패(작성자)");
+			e.printStackTrace();
 			return null;
 		}
 		finally {
@@ -519,8 +531,8 @@ public class Board {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("게시글 목록 출력 실패");
+			e.printStackTrace();
 			return null;
 		}
 		finally {
@@ -566,8 +578,8 @@ public class Board {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("카테고리 게시글 목록 출력 실패");
+			e.printStackTrace();
 			return null;
 		}
 		finally {
