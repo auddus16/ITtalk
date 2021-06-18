@@ -112,7 +112,7 @@ public class Board {
 		}
 		
 		// 게시글 등록
-		public void Upload (HttpServletRequest req, HttpServletResponse res) {
+		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
 
@@ -167,11 +167,13 @@ public class Board {
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							return false;
 						}
 
 					} else {
 						System.out.println("일반 전송 form 입니다.");
 					}
+					return true;
 			
 		}
 	
@@ -380,7 +382,7 @@ public class Board {
 	}
 	
 	// 게시글 조회수
-	public void hits(int b_no) {//게시글 번호
+	public boolean hits(int b_no) {//게시글 번호
 		try {
 			conn=DBManager.connect();
 			String sql="update b set b_hits=b_hits+1 where b_no=?";
@@ -390,6 +392,7 @@ public class Board {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 		finally {
 			try {
@@ -400,6 +403,7 @@ public class Board {
 				e.printStackTrace();
 			}
 		}
+		return true;
 	}
 	
 	// 게시글 신고
