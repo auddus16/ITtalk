@@ -102,13 +102,6 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/∫Òπ–¥Ò±€¿€º∫.do")) {
-			try {
-				forward=new NewscretmsgAction().execute(req, res);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
 		else if(command.equals("/¥Ò±€Ω≈∞Ì.do")) {
 			try {
 				forward=new ReplyReportAction().execute(req, res);

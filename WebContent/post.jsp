@@ -50,15 +50,18 @@ table.type09 td {
   </tr>
   </thead>
   <tbody>
+
   <!-- 내가 쓴 게시글 출력 forEach -->
-  <tr>
-    <th scope="row">제목1</th>
-    <td>등록일자1</td>
-  </tr>
-  <tr>
-    <th scope="row">제목1</th>
-    <td>등록일자1</td>
-  </tr>
+
+  <c:forEach var="v" items="${mypostList}">
+	  
+	  <tr>
+	    <th scope="row"><a href="ff.jsp">${v.b_title}</a></th>
+	    <td>${v.b_date}</td>
+	  </tr>
+  
+  </c:forEach>
+
   </tbody>
 </table>
 </div>
