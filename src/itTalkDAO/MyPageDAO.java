@@ -57,14 +57,16 @@ public class MyPageDAO {
 		
 	}
 	
-	// 로그인된 사용자의 게시글 출력
-	public ArrayList<B> getMyBoard(int mb_no) {
+	// 로그인된 사용자의 게시글 출력>스크롤이벤트 위함
+
+	public ArrayList<B> getMyBoard(int mb_no, int cnt) {
 		conn= DBManager.connect();
 		ArrayList<B> myBoards=new ArrayList();
-		String sql="select * FROM B WHERE mb_no=?";
+		String sql="select * FROM B WHERE mb_no=? ORDER BY b_date DESC limit 0,?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
+			pstmt.setInt(2, cnt);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();
