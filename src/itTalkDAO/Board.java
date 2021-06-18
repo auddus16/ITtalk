@@ -71,7 +71,47 @@ public class Board {
 		return b;
 	}
 	
-	// 게시글 등록
+	// 이미지 삭제
+		public boolean delF(HttpServletRequest req, HttpServletResponse res){//게시글 번호
+			try {
+				conn=DBManager.connect();
+				String sql="select b_file from b where b_no=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1,Integer.parseInt(req.getParameter("b_no")));
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
+				String saveDir = context.getRealPath("");
+				String url = saveDir+rs.getString(1); 
+				File uploadfile = new File (url);
+				
+				uploadfile.delete();       // 파일 삭제
+				
+				sql = "update b set b_file=' ' where b_no=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1,Integer.parseInt(req.getParameter("b_no")));
+				pstmt.executeUpdate();
+				
+			}
+			catch(Exception e) {
+				System.out.println("이미지 삭제 실패");
+				e.printStackTrace();
+				return false;
+			}
+			finally {
+				try {
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println("이미지 삭제 완료");
+			return true;
+		}
+		
+		// 게시글 등록
 		public void Upload (HttpServletRequest req, HttpServletResponse res) {
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
@@ -83,21 +123,46 @@ public class Board {
 					// maxSize: 크기제한 설정
 					// encoding: 인코딩타입 설정
 					// new DefaultFileRenamePolicy(): 동일한 이름일 경우 자동으로 (1),(2)..붙게 해줌
-
 					boolean isMulti = ServletFileUpload.isMultipartContent(req);// boolean타입. ??????
 					if (isMulti) {
 						try {
 							MultipartRequest multi = new MultipartRequest(req, saveDir, maxSize, encoding,
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
-							String sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
-							pstmt=conn.prepareStatement(sql);
-							pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
-							pstmt.setInt(2, Integer.parseInt(multi.getParameter("bc_no")));
-							pstmt.setString(3, multi.getParameter("b_title"));
-							pstmt.setString(4, multi.getParameter("b_write"));
-							pstmt.setString(5, multi.getFilesystemName("b_file"));
-							pstmt.executeUpdate();
+							String sql = null;
+							System.out.println(req.getParameter("b_no"));
+							if(req.getParameter("b_no").equals("")) {
+								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
+								pstmt=conn.prepareStatement(sql);
+								pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
+								pstmt.setInt(2, Integer.parseInt(multi.getParameter("bc_no")));
+								pstmt.setString(3, multi.getParameter("b_title"));
+								pstmt.setString(4, multi.getParameter("b_write"));
+								pstmt.setString(5, multi.getFilesystemName("b_file"));
+								pstmt.executeUpdate();
+							}
+							else {
+								if(multi.getFilesystemName("b_file")!=null) {
+									new Board().delF(req, res); 
+									sql="update b set bc_no=? , b_title=? , b_write=?,b_file=?,b_date=now() where b_no=?";
+									pstmt=conn.prepareStatement(sql);
+									pstmt.setInt(1, Integer.parseInt(multi.getParameter("bc_no")));
+									pstmt.setString(2, multi.getParameter("b_title"));
+									pstmt.setString(3, multi.getParameter("b_write"));
+									pstmt.setString(4, multi.getFilesystemName("b_file"));
+									pstmt.setString(5, req.getParameter("b_no"));
+									pstmt.executeUpdate();
+								}
+								else {
+									sql="update b set bc_no=? , b_title=? , b_write=?,b_date=now() where b_no=?";
+									pstmt=conn.prepareStatement(sql);
+									pstmt.setInt(1, Integer.parseInt(multi.getParameter("bc_no")));
+									pstmt.setString(2, multi.getParameter("b_title"));
+									pstmt.setString(3, multi.getParameter("b_write"));
+									pstmt.setString(4, req.getParameter("b_no"));
+									pstmt.executeUpdate();
+								}
+							}
 							
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
@@ -109,8 +174,6 @@ public class Board {
 					}
 			
 		}
-	
-	// 게시글 수정
 	
 	// 게시글 출력
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
@@ -351,7 +414,7 @@ public class Board {
 			pstmt.setString(4, rc_write);
 			pstmt.executeUpdate();
 			
-			sql="update b set b_report=b_report+1 where b_no=?";
+			sql="update b set b_report=b_report+1 b_deleted=true, where b_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
 			pstmt.executeUpdate();
@@ -387,7 +450,7 @@ public class Board {
 			pstmt.setString(4, rc_write);
 			pstmt.executeUpdate();
 			
-			sql="update c set c_report=c_report+1 where c_no=?";
+			sql="update c set c_report=c_report+1,c_deleted=true where c_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c_no);
 			pstmt.executeUpdate();
@@ -409,6 +472,9 @@ public class Board {
 		System.out.println("댓글 신고 성공");
 		return true;
 	}
+	
+	
+	
 	
 	// 검색 게시글 목록 출력(제목+내용)
 	public ArrayList<B> titleSearch(String search){
