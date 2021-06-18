@@ -56,7 +56,46 @@ public class MyPageDAO {
 		return myComments;
 		
 	}
-	
+	// 로그인된 사용자의 게시글 출력
+
+		public ArrayList<B> getMyBoard(int mb_no) {
+			conn= DBManager.connect();
+			ArrayList<B> myBoards=new ArrayList();
+			String sql="select * FROM B WHERE mb_no=? ORDER BY b_date DESC";
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, mb_no);
+				ResultSet rs=pstmt.executeQuery();
+				while(rs.next()) {
+					B b=new B();
+					b.setB_no(rs.getInt("b_no"));
+					b.setMb_no(rs.getInt("mb_no"));
+					b.setBc_no(rs.getInt("bc_no"));
+					b.setB_title(rs.getString("b_title"));
+					b.setB_write(rs.getString("b_write"));
+					b.setB_file(rs.getString("b_file"));
+					b.setB_date(rs.getString("b_date"));
+					b.setB_hits(rs.getInt("b_hits"));
+					b.setB_deleted(rs.getBoolean("b_deleted"));
+					b.setB_report(rs.getInt("b_report"));
+					b.setB_cnt(rs.getInt("b_cnt"));
+					myBoards.add(b);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return myBoards;
+			
+		}
 	// 로그인된 사용자의 게시글 출력>스크롤이벤트 위함
 
 	public ArrayList<B> getMyBoard(int mb_no, int cnt) {
