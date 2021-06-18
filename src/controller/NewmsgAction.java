@@ -58,9 +58,14 @@ public class NewmsgAction implements Action{// 게시글 등록
 		
 		
 		
-//		if(!msgDAO.newMsg(msg)) {//게시글 등록 메소드(작성해야함)
-//			throw new Exception("메세지 추가 실패");
-//		}
+		if(!board.Upload(req, res)) {//게시글 등록 메소드(작성해야함)
+			try {
+				throw new Exception("게시글 등록 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 
 		//작성하고난후에 전체 게시글 목록 출력

@@ -43,10 +43,12 @@ public class DelmsgAction implements Action{//게시글 삭제
 		
 		
 		//게시글 불러오기(해당 게시글을 삭제하기위함)
-		b =board.Load(Integer.parseInt(req.getParameter("b_no")));
+		req.setAttribute("b_no", board.Load(Integer.parseInt(req.getParameter("b_no"))));//게시글 불러오기 기능
 		
 		//게시글 삭제
-		boolean b_no=board.delB(Integer.parseInt(req.getParameter("b_no")));
+		boolean b_no=board.delB(req, res);
+		
+		// 이미지 삭제
 		
 		
 		forward.setRedirect(false);
