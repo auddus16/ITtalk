@@ -213,7 +213,7 @@ public class Board {
 					c.setC_no(rs2.getInt("c_no"));
 					c.setB_no(rs2.getInt("b_no"));
 					c.setMb_no(rs2.getInt("mb_no"));
-				    c.setC_write(rs2.getString("c_weite"));
+				    c.setC_write(rs2.getString("c_write"));
 					c.setC_date(rs2.getString("c_date"));
 					c.setC_secret(rs2.getBoolean("c_secret"));
 					c.setC_deleted(rs2.getBoolean("c_deleted"));
