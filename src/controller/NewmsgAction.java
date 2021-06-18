@@ -66,9 +66,11 @@ public class NewmsgAction implements Action{// 게시글 등록
 				e.printStackTrace();
 			}
 		}
+		//게시글 등록 성공
+		Boolean msg=board.Upload(req, res);
 
-
-		//작성하고난후에 전체 게시글 목록 출력
+		
+		
 		
 		
 		//req.setAttribute("datas", datas); 보낼 데이터 정보

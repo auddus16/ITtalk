@@ -40,7 +40,7 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		// 보류 c.setC_secret(c.isC_secret());
 		
 		String cnt=req.getParameter("cnt");
-		// 게시글을 몇개까지 볼수있는지에 대한 데이터
+		// 댓글을 몇개까지 볼수있는지에 대한 데이터
 		
 		int rcnt;
 		if(cnt==null){
@@ -49,11 +49,19 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		else{
 			rcnt=Integer.parseInt(cnt);
 		}
-		req.setAttribute("cnt", rcnt);
+		req.setAttribute("rcnt", rcnt);
 		
 	
 		//댓글 등록 b_no,mb_no,c_write
-		
+		if(!board.newReply(c)) {//댓글 등록(비밀 댓글 포함) 실패
+			try {
+				throw new Exception("댓글 등록 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//댓글 등록 성공
 		Boolean comment=board.newReply(c);
 		
 
@@ -61,6 +69,8 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		//req.setAttribute("datas", 댓글s); 보낼 데이터 정보
 		
 		
+		
+		//댓글 단 해당 게시판 출력
 	
 
 
