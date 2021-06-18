@@ -52,16 +52,16 @@ table.type09 td {
   </thead>
   <tbody>
   <!-- 내가 쓴 게시글 출력 forEach -->
+  
+  <c:forEach var=v items="${myreplyList}">
   <tr>
-    <th scope="row">제목1</th>
+    <th scope="row">ww</th>
     <td>댓글내용1</td>
     <td>등록일자1</td>
   </tr>
-  <tr>
-    <th scope="row">제목1</th>
-    <td>댓글내용1</td>
-    <td>등록일자1</td>
-  </tr>
+  
+  </c:forEach>
+ 
   </tbody>
 </table>
 </div>

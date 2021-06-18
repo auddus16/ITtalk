@@ -21,8 +21,9 @@ public class InfoAction implements Action{
 		HttpSession session= req.getSession();
 		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호로 구현수정해야함..
 		
-		//Mb myInfo= mypageDAO.Info(1);
-		//myInfo.setMb_id("auddus16");
+//		Mb myInfo= mypageDAO.Info(1);
+//		myInfo.setMb_id("auddus16");
+		
 		Mb myInfo= new Mb();//db mypageDAO.Info() 수정 후 바꿔야함..
 		myInfo.setMb_id("auddus16");
 		
