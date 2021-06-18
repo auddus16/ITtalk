@@ -482,7 +482,7 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_title=? or b_write=? ";
+			String sql="select * from b where b_title=? or b_write=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 
 			pstmt.setString(1, search);
@@ -530,7 +530,7 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_nick=?";
+			String sql="select * from b where b_nick=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, nick);
@@ -576,7 +576,7 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b";
+			String sql="select * from b order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
 			ResultSet rs=pstmt.executeQuery();
@@ -621,7 +621,7 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where bc_no=?";
+			String sql="select * from b where bc_no=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, bc_no);
