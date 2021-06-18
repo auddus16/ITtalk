@@ -58,15 +58,14 @@ public class Scroll {
 	}
 	
 	// 로그인된 사용자의 게시글 출력
-	public ArrayList<B> getMyBoard(int mb_no, int cnt) {
+	public ArrayList<B> getMyBoard(int mb_no) {
 		conn= DBManager.connect();
-		ArrayList<B> myBoards=new ArrayList();
-		String sql="select * FROM B WHERE mb_no=? limit 0,?";
+		ArrayList<B> myBoards=new ArrayList<>();
+		String sql="select * FROM B WHERE mb_no=?";
 		//(?+1)행부터 10개 조회
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
-			pstmt.setInt(2, cnt);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();

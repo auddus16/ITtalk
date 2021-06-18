@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,17 @@ function newpw(){
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
+
+function newpw2(){
+	window.open("newpw.jsp?c=withdraw","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=300"
+	//어떤 페이지를 어떻게 띄울지 옵션
+);
+}
+
+function printName()  {
+	  const name = document.getElementById('name').value;
+	  document.getElementById("result").innerText = name;
+	}
 </script>
 </head>
 <body>
@@ -23,13 +35,22 @@ function newpw(){
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="job">회원구분</label>
-                  <input type="text" name="job" class="form-control" required><!-- 회원구분 ${mem.job}-->
+                  <c:choose>
+	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 아이콘 -->
+			<!-- 예비 -->
+			<input type="text" name="job" class="form-control" value="개발자" required><!-- 회원구분 ${mem.job}-->
+		</c:when>
+		<c:otherwise>
+			<!-- 개발자 -->
+			<input type="text" name="job" class="form-control" value="예비개발자" required><!-- 회원구분 ${mem.job}-->
+		</c:otherwise>
+	</c:choose>
                 </div>
                 <br>
                 <div class="col-md-6">
                   <label class="text-black" for="nick">닉네임</label>
-                  <input type="text" name="nick" class="form-control" required><!-- 닉네임 ${mem.nick}-->
-                  <button type="submit" name="action" value="checknick" class="btn btn-primary btn-md text-white" formaction="control_user.jsp">중복확인</button>
+                  <input type="text" name="nick" class="form-control" value="${myInfo.mb_nick}" onchange='printName()' required><!-- 닉네임 ${mem.nick}-->
+                  <button type="submit" name="action" value="checknick" class="btn btn-primary btn-md text-white" formaction="checknick.mem">중복확인</button>
                 </div>
               </div>
 
@@ -45,15 +66,23 @@ function newpw(){
                 
                 <div class="col-md-12">
                   <label class="text-black" for="pw">비밀번호</label> 
-                  <input type="password" name="pw" class="form-control" required>
+                  <input type="password" name="pw" class="form-control" value="${myInfo.mb_pw}" disabled>
                   <button class="btn btn-primary btn-md text-white" onclick="javascript:newpw();">변경</button>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-6">
-                <button type="submit" class="btn btn-primary btn-md text-white" formaction="withdraw.mem">회원탈퇴</button>
-                <button type="submit" class="btn btn-primary btn-md text-white" formaction="modify.mem">수정완료</button>
+                <button type="submit" class="btn btn-primary btn-md text-white" onclick="javascript:newpw2();">회원탈퇴</button>
+                
+                <c:choose>
+	<c:when test="${flag == true}">
+			<button type="submit" class="btn btn-primary btn-md text-white" formaction="modify.mem">수정완료</button>
+		</c:when>
+		<c:otherwise>
+			<button type="submit" class="btn btn-primary btn-md text-white" formaction="modify.mem" onmouseover="<div>닉네임 중복확인하세요.</div>"disabled>수정완료</button>
+		</c:otherwise>
+	</c:choose>
                 </div> 
                 </div> 
             </form>

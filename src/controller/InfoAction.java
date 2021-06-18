@@ -13,7 +13,6 @@ import itTalkDO.Mb;
 public class InfoAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("인포액션 들어옴");
 		ActionForward forward= new ActionForward();
 		
 		MyPageDAO mypageDAO= new MyPageDAO();//마이페이지 사용시 필요한 정보를 가져오기
@@ -24,10 +23,10 @@ public class InfoAction implements Action{
 //		Mb myInfo= mypageDAO.Info(1);
 //		myInfo.setMb_id("auddus16");
 		
-		Mb myInfo= new Mb();//db mypageDAO.Info() 수정 후 바꿔야함..
-		myInfo.setMb_id("auddus16");
+		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
 		
 		req.setAttribute("myInfo", myInfo);//개인정보
+		req.setAttribute("flag", false);
 		req.setAttribute("kind", "info");//마이페이지에서 어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);

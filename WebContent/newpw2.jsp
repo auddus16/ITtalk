@@ -20,12 +20,12 @@
              <div class="row form-group">
                <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="pw">비밀번호 확인</label>
-                  <input type="password" name="pw" class="form-control">
+                  <input type="password" name="checkpw" class="form-control">
                 </div>
                 </div>
                 <br>
               
-               <button type="submit" name="action" value="modifypw" class="btn btn-primary btn-md text-white" formaction="control_user.jsp">확인</button>
+               <button type="submit" class="btn btn-primary btn-md text-white" formaction="modifypw.mem">확인</button>
                <button type="submit" class="btn btn-primary btn-md text-white" onclick="javascript:window.open('','_self').close();">취소</button>
                  
             </form>
