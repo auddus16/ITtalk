@@ -47,7 +47,7 @@ public class FrontController_user extends HttpServlet {
 		
 		ActionForward forward=null;
 		
-		if(action.equals("/info.mem")) { 
+		if(action.equals("/info.mem")) { //개인정보 로드
 			try {
 				forward=new InfoAction().execute(req, res);
 			} catch (Exception e) {
@@ -55,7 +55,7 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/checknick.mem")) {//개인정보 수정
+		else if(action.equals("/checknick.mem")) {//닉네임 중복확인
 			try {
 				forward=new ChecknickAction().execute(req, res);
 			} catch (Exception e) {
@@ -63,15 +63,15 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/modify.mem")) {//개인정보 수정
+		else if(action.equals("/Mymodify.mem")) {//개인정보 수정
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new MymodifyAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/checkmem.mem")) {//비밀번호만 수정
+		else if(action.equals("/checkmem.mem")) {//본인인증->비밀번호변경시 & 회원탈퇴시
 			try {
 				forward=new CheckmemAction().execute(req, res);
 			} catch (Exception e) {

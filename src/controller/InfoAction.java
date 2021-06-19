@@ -18,7 +18,6 @@ public class InfoAction implements Action{
 		MyPageDAO mypageDAO= new MyPageDAO();//마이페이지 사용시 필요한 정보를 가져오기
 		
 		HttpSession session= req.getSession();
-		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호로 구현수정해야함..
 		
 //		Mb myInfo= mypageDAO.Info(1);
 //		myInfo.setMb_id("auddus16");
@@ -26,7 +25,14 @@ public class InfoAction implements Action{
 		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
 		
 		req.setAttribute("myInfo", myInfo);//개인정보
-		req.setAttribute("flag", false);
+		if(req.getParameter("flag") != null && req.getParameter("flag").equals("false")) {
+			req.setAttribute("flag", false);//다음단계로 넘어갈수있는지 여부
+			
+		}
+		else {
+			
+			req.setAttribute("flag", true);
+		}
 		req.setAttribute("kind", "info");//마이페이지에서 어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);

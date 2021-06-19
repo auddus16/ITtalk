@@ -18,11 +18,6 @@ function newpw2(){
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
-
-function printName()  {
-	  const name = document.getElementById('name').value;
-	  document.getElementById("result").innerText = name;
-	}
 </script>
 </head>
 <body>
@@ -36,7 +31,7 @@ function printName()  {
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="job">회원구분</label>
                   <c:choose>
-	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 아이콘 -->
+	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 구분하는 부분 -->
 			<!-- 예비 -->
 			<input type="text" name="job" class="form-control" value="개발자" required><!-- 회원구분 ${mem.job}-->
 		</c:when>
@@ -49,7 +44,21 @@ function printName()  {
                 <br>
                 <div class="col-md-6">
                   <label class="text-black" for="nick">닉네임</label>
-                  <input type="text" name="nick" class="form-control" value="${myInfo.mb_nick}" onchange='printName()' required><!-- 닉네임 ${mem.nick}-->
+                  <%
+                  String n = request.getParameter("nick");
+                  if(n!=null){
+                	  
+					%>
+                  <input type="text" name="nick" class="form-control" value='<%=n %>' required><!-- 닉네임 ${mem.nick}-->
+					<%
+                  }
+					else {
+					%>
+                  <input type="text" name="nick" class="form-control" value="${myInfo.mb_nick}" required><!-- 닉네임 ${mem.nick}-->
+					<%	
+						
+					}
+                  %>
                   <button type="submit" name="action" value="checknick" class="btn btn-primary btn-md text-white" formaction="checknick.mem">중복확인</button>
                 </div>
               </div>
@@ -86,6 +95,7 @@ function printName()  {
                 </div> 
                 </div> 
             </form>
+          <div>${flag}</div>
 </div>
 </body>
 </html>

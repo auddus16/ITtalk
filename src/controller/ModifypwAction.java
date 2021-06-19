@@ -24,10 +24,10 @@ public class ModifypwAction implements Action{
 		
 		String paramPw =req.getParameter("pw");
 		
-		PrintWriter out=res.getWriter();
-		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out=res.getWriter();
 		
 		if(paramPw.equals(req.getParameter("checkpw"))) {
 			//비밀번호확인됨.

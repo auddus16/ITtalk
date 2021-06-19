@@ -27,23 +27,30 @@ public class ChecknickAction implements Action{
 		
 		String paramNick =req.getParameter("nick");
 		
-		PrintWriter out=res.getWriter();
-		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		
-		if(paramNick == myInfo.getMb_nick()) {
+		PrintWriter out=res.getWriter();
+		
+		if(paramNick.equals( myInfo.getMb_nick())) {
 			//넘어온 닉네임과 현재 닉네임이 같을때 == 즉 변경하지 않았을 경우
 			req.setAttribute("flag", true);
+			
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/info.mem");
+			
+			return forward;
 		}
 		else {
 			if(!(memDAO.nickCheck(paramNick))) {
 				req.setAttribute("flag", true);
-				out.println("<script>alert('사용가능한 닉네임입니다.');history.go(-1);</script>");
+				//info.jsp에 변경된 닉네임이 안보임..
+				out.println("<script>alert('사용가능한 닉네임입니다.');location.href='info.mem?flag=true&nick="+paramNick+"';</script>");
 			}
 			else {
+				out.println("<script>alert('이미 사용중인 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');location.href='info.mem?flag=false';</script>");
 				req.setAttribute("flag", false);//넘어가면 안됨
-				out.println("<script>alert('이미 사용중인 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');history.go(-1);</script>");
 			}
 			
 		}
