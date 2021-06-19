@@ -19,6 +19,7 @@ public class InfoAction implements Action{
 		
 		HttpSession session= req.getSession();
 		
+		
 //		Mb myInfo= mypageDAO.Info(1);
 //		myInfo.setMb_id("auddus16");
 		

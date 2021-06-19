@@ -37,7 +37,7 @@ function newpw2(){
 		</c:when>
 		<c:otherwise>
 			<!-- 개발자 -->
-			<input type="text" name="job" class="form-control" value="예비개발자" required><!-- 회원구분 ${mem.job}-->
+			<input type="text" name="job" class="form-control" value="예비개발자" required>
 		</c:otherwise>
 	</c:choose>
                 </div>
