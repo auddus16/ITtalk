@@ -96,7 +96,7 @@ public class MyPageDAO {
 			return myBoards;
 			
 		}
-	// 로그인된 사용자의 게시글 출력>스크롤이벤트 위함
+	// 로그인된 사용자의 게시글 출력->스크롤이벤트 위함
 
 	public ArrayList<B> getMyBoard(int mb_no, int cnt) {
 		conn= DBManager.connect();
