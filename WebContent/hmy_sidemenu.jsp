@@ -14,9 +14,9 @@
                 <hr>
                 <li><a href="info.mem">개인정보</a></li>
                 <li><a href="mypost.mem?cnt=10">내가 쓴 게시글</a></li>
-                <li><a href="myreply.mem">내가 쓴 댓글</a></li>
+                <li><a href="myreply.mem?cnt=5">내가 쓴 댓글</a></li>
                 <li><a href="#">알림</a></li>
-                <li><a href="store.mem">좋아요 게시글</a></li>
+                <li><a href="mystore.mem?cnt=5">좋아요 게시글</a></li>
 
               </div>
       </section>

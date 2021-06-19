@@ -47,7 +47,7 @@ $(document).ready(function(){
 	var list='<c:out value="${mypostList}"/>';
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
 	
-	$('#postTable').scroll(function(){
+	$(window.parent.document).scroll(function(){
 		var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
         var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
         var contentH = $('#hei').height(); //문서 전체 내용을 갖는 div의 높이
@@ -56,6 +56,7 @@ $(document).ready(function(){
         		var tag='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
         		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
         	}
+        console.log("ddd")
         	$('#postTable>tbody').prepend(tag);//table의 tbody요소 앞에 append
         }
 	});
@@ -64,7 +65,7 @@ $(document).ready(function(){
 
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
-<div id="mypost">
+<div id="mypost" align="center">
 <h4>내가 쓴 게시글</h4>
 <hr>
 <div align="right">

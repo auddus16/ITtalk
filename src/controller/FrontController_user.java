@@ -104,9 +104,9 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/store.mem")) {//좋아요 한 게시글 조회
+		else if(action.equals("/mystore.mem")) {//좋아요 한 게시글 조회
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new MystoreAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

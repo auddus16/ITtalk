@@ -43,7 +43,7 @@ public class ChecknickAction implements Action{
 			}
 			else {
 				req.setAttribute("flag", false);//넘어가면 안됨
-				out.println("<script>alert('중복되는 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');history.go(-1);</script>");
+				out.println("<script>alert('이미 사용중인 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');history.go(-1);</script>");
 			}
 			
 		}
