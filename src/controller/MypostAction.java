@@ -34,11 +34,11 @@ public class MypostAction implements Action{
 		
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
-		ArrayList<B> arrB = mypageDAO.getMyBoard(1, cnt);
-		ArrayList<B> total= new MyPageDAO().getMyBoard(1);
+		ArrayList<B> arrB= mypageDAO.getMyBoard(1);
 		
-		req.setAttribute("total", total.size());
+		
 		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
+		
 		req.setAttribute("kind", "post");//마이페이지에서 어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);

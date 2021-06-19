@@ -47,10 +47,17 @@ public class FrontController_user extends HttpServlet {
 		
 		ActionForward forward=null;
 		
-		if(action.equals("/info.mem")) { //마이페이지 처음 이동->필요한 개인정보를 넣어놓기,,?
-			System.out.println("프론트들어옴");
+		if(action.equals("/info.mem")) { 
 			try {
 				forward=new InfoAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/checknick.mem")) {//개인정보 수정
+			try {
+				forward=new ChecknickAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,22 +71,23 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equals("/checkmem.mem")) {//비밀번호만 수정
+			try {
+				forward=new CheckmemAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		else if(action.equals("/modifypw.mem")) {//비밀번호만 수정
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new ModifypwAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/withdraw.mem")) {//회원탈퇴
-			try {
-				forward=new NewmsgAction().execute(req, res);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 		else if(action.equals("/mypost.mem")) {//내가 쓴 게시글 조회
 			try {
 				forward=new MypostAction().execute(req, res);

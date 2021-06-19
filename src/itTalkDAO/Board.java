@@ -26,6 +26,7 @@ public class Board {
 	PreparedStatement pstmt;
 	
 	// 게시글 불러오기
+	// 작성된 게시글을 수정할떄 저장되어있던 데이터를 불러오는 메서드
 	public B Load(int b_no){//게시글 번호
 		B b=new B();
 		try {
@@ -72,7 +73,9 @@ public class Board {
 	}
 	
 	// 이미지 삭제
-		public boolean delF(HttpServletRequest req, HttpServletResponse res){//게시글 번호
+	// 사용자가 저장한 이미지 파일을 서버에서 삭제하는 메소드
+	// 게시글 번호가 파라미터 값에 있어야함
+		public boolean delF(HttpServletRequest req, HttpServletResponse res){// 서블릿 request , response
 			try {
 				conn=DBManager.connect();
 				String sql="select b_file from b where b_no=?";
@@ -81,13 +84,13 @@ public class Board {
 				ResultSet rs = pstmt.executeQuery();
 				rs.next();
 				ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
-				String saveDir = context.getRealPath("");
-				String url = saveDir+rs.getString(1); 
+				String saveDir = context.getRealPath(""); //절대 경로 가져옴
+				String url = saveDir+rs.getString(1); // 절대 경로 + DB에 저장된 경로
 				File uploadfile = new File (url);
 				
 				uploadfile.delete();       // 파일 삭제
 				
-				sql = "update b set b_file=' ' where b_no=?";
+				sql = "update b set b_file=' ' where b_no=?";//DB에 저장된 경로 삭제
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setInt(1,Integer.parseInt(req.getParameter("b_no")));
 				pstmt.executeUpdate();
@@ -112,7 +115,9 @@ public class Board {
 		}
 		
 		// 게시글 등록
-		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {
+		// 게시글 번호가 파라미터 값에 없으면 등록
+		// 게시글 번호가 파라미터 값에 있으면 수정
+		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
 
@@ -130,8 +135,7 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
-							System.out.println(req.getParameter("b_no"));
-							if(req.getParameter("b_no").equals("")) {
+							if(req.getParameter("b_no").equals("")) { // 게시글을 등록할경우
 								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
 								pstmt=conn.prepareStatement(sql);
 								pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
@@ -141,8 +145,8 @@ public class Board {
 								pstmt.setString(5, multi.getFilesystemName("b_file"));
 								pstmt.executeUpdate();
 							}
-							else {
-								if(multi.getFilesystemName("b_file")!=null) {
+							else {// 게시글을 수정할경우
+								if(multi.getFilesystemName("b_file")!=null) {// 수정할떄 새로운 파일이 업로드됄경우
 									new Board().delF(req, res); 
 									sql="update b set bc_no=? , b_title=? , b_write=?,b_file=?,b_date=now() where b_no=?";
 									pstmt=conn.prepareStatement(sql);
@@ -153,7 +157,7 @@ public class Board {
 									pstmt.setString(5, req.getParameter("b_no"));
 									pstmt.executeUpdate();
 								}
-								else {
+								else {// 수정할떄 새로운 파일이 업로드 돼지 않을떄
 									sql="update b set bc_no=? , b_title=? , b_write=?,b_date=now() where b_no=?";
 									pstmt=conn.prepareStatement(sql);
 									pstmt.setInt(1, Integer.parseInt(multi.getParameter("bc_no")));
@@ -178,6 +182,7 @@ public class Board {
 		}
 	
 	// 게시글 출력
+	// 사용자에게 보여지는 게시글 출력 메서드
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
 
 		ArrayList<BoardSet> datas=new ArrayList<>();
@@ -190,7 +195,7 @@ public class Board {
 			pstmt.setInt(1, b_no);
 			
 			ResultSet rs=pstmt.executeQuery();
-			while(rs.next()) {
+			while(rs.next()) {// 게시글 데이터
 				B b=new B();
 				
 				b.setB_no(rs.getInt("b_no"));
@@ -210,7 +215,7 @@ public class Board {
 				pstmt=conn.prepareStatement(sql2);
 				pstmt.setInt(1, b_no);
 				ResultSet rs2=pstmt.executeQuery();
-				while(rs2.next()) {
+				while(rs2.next()) { //게시글 댓글 데이터
 					C c=new C();
 					c.setC_no(rs2.getInt("c_no"));
 					c.setB_no(rs2.getInt("b_no"));
@@ -252,17 +257,17 @@ public class Board {
 	
 	
 	// 댓글 등록
-	public boolean newReply(C c){//Comment
+	public boolean newReply(C c){//Comment 댓글 객체
 		try {
 			conn=DBManager.connect();
-			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";
+			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";//댓글 추가
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.setInt(2, c.getMb_no());
 			pstmt.setString(3, c.getC_write());
 			pstmt.executeUpdate();
 			
-			sql="update b set b_cnt=b_cnt+1 where b_no=?";
+			sql="update b set b_cnt=b_cnt+1 where b_no=?"; // 게시글 댓글 갯수 ++
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.executeUpdate();
@@ -288,7 +293,8 @@ public class Board {
 	
 	
 	// 게시글 삭제
-		public boolean delB(HttpServletRequest req, HttpServletResponse res){//게시글 번호
+	// 게시글 번호가 파라미터 값으로 가지고 있어야함
+		public boolean delB(HttpServletRequest req, HttpServletResponse res){//서블릿 request , response
 			try {
 				conn=DBManager.connect();
 				String sql="select b_file from b where b_no=?";

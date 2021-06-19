@@ -40,16 +40,26 @@ table.type09 td {
 </style>
 
 </head>
-
+<script src="jquery-3.6.0.min.js"></script>
 <script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
-/*
-document.addEventListener('scroll', function(){
-	var more = document.getElementById('load-more');
-	var event = document.createEvent("MouseEvents"); 
-	event.initEvent("click", false, true); 
-	more.dispatchEvent(event);
+//추가될 태그를 문자열로,,
+$(document).ready(function(){
+	var list='<c:out value="${mypostList}"/>';
+	var addList=list.slice(10);//10번 인덱스부터 끝까지
+	
+	$('#postTable').scroll(function(){
+		var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
+        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
+        var contentH = $('#hei').height(); //문서 전체 내용을 갖는 div의 높이
+        if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
+        	for(var i=0; i<addList.size(); i++){
+        		var tag='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+        		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
+        	}
+        	$('#postTable>tbody').prepend(tag);//table의 tbody요소 앞에 append
+        }
+	});
 });
-*/
 </script>
 
 <body>
@@ -58,9 +68,9 @@ document.addEventListener('scroll', function(){
 <h4>내가 쓴 게시글</h4>
 <hr>
 <div align="right">
-	<h6>총 ${total}개</h6>
+	<h6>총 ${fn:length(mypostList)}개</h6>
 </div>
-<div align="center">
+<div id="postTable" align="center">
 	<table class="type09">
   <thead>
   <tr>
@@ -73,7 +83,7 @@ document.addEventListener('scroll', function(){
 
   <!-- 내가 쓴 게시글 출력 forEach -->
 
-  <c:forEach var="v" items="${mypostList}" varStatus="status">
+  <c:forEach var="v" items="${mypostList}" end="9" varStatus="status">
 	  
 	  <tr>
 	    <th scope="row">${status.count}</th>
@@ -82,7 +92,7 @@ document.addEventListener('scroll', function(){
 	  </tr>
   
   </c:forEach>
-
+	
   </tbody>
 </table>
 </div>
