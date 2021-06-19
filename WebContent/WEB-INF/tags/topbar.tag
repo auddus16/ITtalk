@@ -31,12 +31,16 @@
 			<input type="hidden" name="action" value="logout">
 			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
+		
 		<c:otherwise>
 			<!-- 로그인 -->
 			<input type="hidden" name="action" value="login">
 			<li><a class="nav-link" href="hmy_login.jsp">로그인</a></li>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${mb_id == null && ad_id==null }" >
+	<li><a class="nav-link" href="newmem.jsp">회원가입</a><li>
+	</c:if>
 	
 	<!-- ****관리자인지 회원인지 먼저 구별해야함.. 관리자아이콘도 추가 -->
 	<c:choose>
