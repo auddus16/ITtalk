@@ -244,6 +244,30 @@ public class MyPageDAO {
 		return member_pw;
 	}
 	
+	// 회원 비밀번호 변경
+	public void updateMemberPw(Mb mb) {
+		conn=DBManager.connect();
+		String sql="update Mb set mb_pw=? where mb_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mb.getMb_pw());
+			pstmt.setInt(2, mb.getMb_no());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	// 회원 정보 변경 기능
 	public void updateMember(Mb mb) {
 		conn=DBManager.connect();
