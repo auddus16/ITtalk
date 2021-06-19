@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Login;
+import itTalkDAO.MyPageDAO;
+import itTalkDO.Mb;
+
 
 public class LoginAction implements Action{
 
@@ -16,14 +19,18 @@ public class LoginAction implements Action{
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		Login login = new Login();
-		
+		MyPageDAO dao=new MyPageDAO();
 		String id=req.getParameter("id");
+		Mb mb=new Mb();
+
 		ActionForward forward= null;
 		String password = req.getParameter("pw");
-		System.out.println(password+" "+id);
+		System.out.println("id : "+id+"/ pw : "+password);
 		if(login.login(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
 			session.setAttribute("mb_id", id);
+			session.setAttribute("mb_no", mb.getMb_no());
+			System.out.println("mb_no : "+dao.getMb_no(id));
 			forward=new ActionForward();
 			forward.setPath("main.main");
 			forward.setRedirect(false);
