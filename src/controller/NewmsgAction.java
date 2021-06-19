@@ -42,23 +42,21 @@ public class NewmsgAction implements Action{// 게시글 등록
 		//b_date; 등록일자
 		b.setB_date(req.getParameter("b_date"));
 		
-		String cnt=req.getParameter("cnt");
-		// 게시글을 몇개까지 볼수있는지에 대한 데이터
+//		String cnt=req.getParameter("cnt");
+//		// 게시글을 몇개까지 볼수있는지에 대한 데이터
 		
-		int mcnt;
-		if(cnt==null){
-			mcnt=0;
-		}
-		else{
-			mcnt=Integer.parseInt(cnt);
-		}
-		req.setAttribute("cnt", mcnt);
-		
-		
+//		int mcnt;
+//		if(cnt==null){//게시글이 없다면
+//			mcnt=0;
+//		}
+//		else{//게시글이 있다면 게시글 수 만큼 출력
+//			mcnt=Integer.parseInt(cnt);
+//		}
+//		req.setAttribute("cnt", mcnt);//게시글 수
 		
 		
 		
-		if(!board.Upload(req, res)) {//게시글 등록 메소드(작성해야함)
+		if(!board.Upload(req, res)) {//게시글 등록 실패
 			try {
 				throw new Exception("게시글 등록 실패");
 			} catch (Exception e) {
@@ -66,11 +64,12 @@ public class NewmsgAction implements Action{// 게시글 등록
 				e.printStackTrace();
 			}
 		}
-		//게시글 등록 성공
-		Boolean msg=board.Upload(req, res);
+		else {//게시글 등록 성공
+			Boolean msg=board.Upload(req, res);
+			req.setAttribute("msg", msg);//등록한 댓글 정보
+		}
+		
 
-		
-		
 		
 		
 		//req.setAttribute("datas", datas); 보낼 데이터 정보

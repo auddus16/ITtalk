@@ -20,6 +20,8 @@ public class TitelCheckAction implements Action{//게시글 제목을 클릭했을 때 나오
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 		
+		ArrayList<BoardSet> write =new ArrayList<>();//게시글 출력
+		
 		Board board = new Board();//dao
 		
 		Mb mb =new Mb(); //do
@@ -45,9 +47,14 @@ public class TitelCheckAction implements Action{//게시글 제목을 클릭했을 때 나오
 		
 		//해당 게시글 출력
 		//ArrayList<BoardSet> BoardPrint(int b_no);
+		write=board.BoardPrint(Integer.parseInt(req.getParameter("b_no")));
+		req.setAttribute("write", write);
+		
 
+		//view에 제목 정보를 넘겨야함.
+		
 		forward.setRedirect(false);
-		forward.setPath("게시글.jsp");
+		forward.setPath("제목클릭했을때 보는게시글.jsp");
 
 
 		return forward;

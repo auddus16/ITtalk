@@ -30,26 +30,27 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		//mb_nick; 닉네임
 		mb.setMb_nick(req.getParameter("mb_nick"));
 		//mb_no fk.회원번호
-		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
+		c.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
 		//c_write 댓글내용
 		c.setC_write(req.getParameter("c_write"));
 		//c_date 등록일자
 		c.setC_date(req.getParameter("c_date"));
 		//c_secret 비밀댓글여부
+		c.setC_secret(c.isC_secret());
 		
-		// 보류 c.setC_secret(c.isC_secret());
 		
-		String cnt=req.getParameter("cnt");
-		// 댓글을 몇개까지 볼수있는지에 대한 데이터
 		
-		int rcnt;
-		if(cnt==null){
-			rcnt=0;
-		}
-		else{
-			rcnt=Integer.parseInt(cnt);
-		}
-		req.setAttribute("rcnt", rcnt);
+//		String cnt=req.getParameter("cnt");
+//		 댓글을 몇개까지 볼수있는지에 대한 데이터
+		
+//		int rcnt;
+//		if(cnt==null){//댓글이 없다면
+//			rcnt=0;
+//		}
+//		else{//댓글이 있다면 댓글 수 만큼 출력
+//			rcnt=Integer.parseInt(cnt);
+//		}
+//		req.setAttribute("rcnt", rcnt);
 		
 	
 		//댓글 등록 b_no,mb_no,c_write
@@ -61,16 +62,15 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 				e.printStackTrace();
 			}
 		}
-		//댓글 등록 성공
-		Boolean comment=board.newReply(c);
+		else {//댓글 등록(비밀 댓글 포함) 성공	
+			Boolean comment=board.newReply(c);
+			req.setAttribute("comment", comment);//등록한 댓글 정보
+		}
 		
 
 		
 		//req.setAttribute("datas", 댓글s); 보낼 데이터 정보
 		
-		
-		
-		//댓글 단 해당 게시판 출력
 	
 
 

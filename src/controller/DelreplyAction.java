@@ -21,7 +21,6 @@ public class DelreplyAction implements Action{// 댓글 삭제(비밀댓글도 포함)
 		C c=new C();//do
 		Mb mb =new Mb();//do
 		
-		//댓글 목록 출력
 
 		//c_no pk.댓글번호
 		//b_no fk.게시글번호
@@ -32,6 +31,11 @@ public class DelreplyAction implements Action{// 댓글 삭제(비밀댓글도 포함)
 		//c_write 댓글내용
 		//c_date 등록일자
 		//c_secret 비밀댓글여부
+		
+		
+		
+		// 댓글 삭제
+		//board.delC(Integer.parseInt(req.getParameter("c_no")));
 
 
 		forward.setRedirect(false);

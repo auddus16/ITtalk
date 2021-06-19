@@ -46,10 +46,10 @@ public class DelmsgAction implements Action{//게시글 삭제
 		req.setAttribute("b_no", board.Load(Integer.parseInt(req.getParameter("b_no"))));//게시글 불러오기 기능
 		
 		//게시글 삭제
-		boolean b_no=board.delB(req, res);
+		//board.delB(req, res);
 		
 		// 이미지 삭제
-		
+		//board.delF(req, res);
 		
 		forward.setRedirect(false);
 		forward.setPath("게시글삭제.jsp");
