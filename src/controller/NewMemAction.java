@@ -16,7 +16,10 @@ public class NewMemAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		ActionForward forward=new ActionForward();
+		
 		Membership membership=new Membership();
+		
 		Mb mem=new Mb();
 		mem.setMb_id(req.getParameter("mb_id"));
 		mem.setMb_pw(req.getParameter("mb_pw"));
@@ -33,6 +36,7 @@ public class NewMemAction implements Action {
 		else{
 			out.println("<script>alert('회원가입 실패');history.go(-1);</script>");
 		}
+		
 		
 		return null;
 		

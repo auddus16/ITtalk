@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FrontController_main
  */
-@WebServlet("*.do")
+@WebServlet("*.main")
 public class FrontController_main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -50,7 +50,7 @@ public class FrontController_main extends HttpServlet {
 		System.out.println("action "+action);
 		
 		ActionForward forward=null;
-		if(action.equals("/main.do")) {
+		if(action.equals("/main.main")) {
 			try {
 				forward=new MainAction().execute(req, res);
 			} catch (Exception e) {
@@ -59,7 +59,7 @@ public class FrontController_main extends HttpServlet {
 			}
 		}
 		
-		else if(action.equals("/check.do")) {
+		else if(action.equals("/check.main")) {
 			try {
 				if(req.getParameter("action").equals("login")) {
 					forward=new LoginAction().execute(req, res);
@@ -72,8 +72,24 @@ public class FrontController_main extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equals("/checkid.main")) {
+			try {
+				forward=new MbidCheckAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
-		else if(action.equals("/newmem.do")) {
+		else if(action.equals("/checknick.main")) {
+			try {
+				forward=new Mb_nickCheckAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/newmem.main")) {
 			try {
 				forward=new NewMemAction().execute(req, res);
 			} catch (Exception e) {
@@ -81,6 +97,7 @@ public class FrontController_main extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
 		
 		else {
 			// 에러페이지로 이동-404

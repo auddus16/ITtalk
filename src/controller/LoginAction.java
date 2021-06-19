@@ -17,20 +17,20 @@ public class LoginAction implements Action{
 		
 		Login login = new Login();
 		
-		String mb_id=req.getParameter("mb_id");
-		String ad_id=req.getParameter("ad_id");
+		String id=req.getParameter("id");
 		ActionForward forward= null;
-		
-		if(login.login(mb_id, req.getParameter("mb_pw"))) {
+		String password = req.getParameter("pw");
+		System.out.println(password+" "+id);
+		if(login.login(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
-			session.setAttribute("mb_id", mb_id);
+			session.setAttribute("mb_id", id);
 			forward=new ActionForward();
 			forward.setPath("main.do");
 			forward.setRedirect(false);
 		}
-		else if(login.adminLogin(ad_id, req.getParameter("ad_pw"))) {
+		else if(login.adminLogin(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
-			session.setAttribute("ad_id", ad_id);
+			session.setAttribute("ad_id", id);
 			forward=new ActionForward();
 			forward.setPath("main.do");
 			forward.setRedirect(false);
