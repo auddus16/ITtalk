@@ -19,6 +19,8 @@ public class WriteCheckAction implements Action{// 게시글 번호를 클릭했을 때 나�
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
+		
+		ArrayList<BoardSet> write =new ArrayList<>();//게시글 출력
 
 		Board board = new Board();//dao
 
@@ -45,9 +47,14 @@ public class WriteCheckAction implements Action{// 게시글 번호를 클릭했을 때 나�
 
 		//해당 게시글 출력
 		//ArrayList<BoardSet> BoardPrint(int b_no);
-
+		write=board.BoardPrint(Integer.parseInt(req.getParameter("b_no")));
+		req.setAttribute("write", write);
+		
+		
+		//view에 해당 게시글 번호 정보를 넘겨야함.
+		
 		forward.setRedirect(false);
-		forward.setPath("게시글화면.jsp");
+		forward.setPath("글번호 클릭했을때 보는 게시글.jsp");
 
 
 		return forward;
