@@ -320,20 +320,20 @@ public class MyPageDAO {
 	}
 	
 	// 로그인할때 입력받은 mb_id로  mb_no을 받을 수 있는 메소드
-	public Mb getMb_no(int mb_no){
+	public Mb getMb_no(int mb_id){
 		Mb mb=new Mb();
 		try {
 			conn=DBManager.connect();
-			String sql="select mb_id from Mb where mb_no=?";
+			String sql="select mb_no from Mb where mb_id=?";
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, mb_no);
+			pstmt.setInt(1, mb_id);
 			
 			ResultSet rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				
-				mb.setMb_id(rs.getString("mb_id"));
+				mb.setMb_no(rs.getInt("mb_no"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
