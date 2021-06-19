@@ -59,18 +59,21 @@ public class FrontController_main extends HttpServlet {
 			}
 		}
 		
-		else if(action.equals("/check.main")) {
+		else if(action.equals("/login.main")) {
 			try {
-				if(req.getParameter("action").equals("login")) {
-					forward=new LoginAction().execute(req, res);
-				}
-				else {
-					forward=new LogoutAction().execute(req, res);
-				}
+				forward=new LoginAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		else if(action.equals("/logout.main")) {
+			try {
+				forward=new LogoutAction().execute(req, res);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 		else if(action.equals("/checkid.main")) {
 			try {

@@ -14,10 +14,9 @@ public class LogoutAction implements Action {
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session=req.getSession();
 		session.invalidate(); 
-		session.removeAttribute("mb_id");
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("main.do");
+		forward.setPath("main.main");
 		forward.setRedirect(false);
 		
 		return forward;

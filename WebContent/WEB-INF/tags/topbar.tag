@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header style="margin-top:0;"class="site-navbar bg-white js-sticky-header site-navbar-target" role="banner">
-
+	
       <div class="container">
         <div class="row align-items-center">
           
@@ -18,26 +18,26 @@
                   <a href="#services-section" class="nav-link">글쓰기</a>
                 </li>
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
+
 	<c:choose>
 		<c:when test="${mb_id != null}">
 		<li>${mb_id}님,환영합니다!</li>&nbsp;&nbsp;
 			<!-- 로그아웃 -->
 			<input type="hidden" name="action" value="logout">
-			<li><a href="check?main?action=logout" class="nav-link">로그아웃</a></li>
+			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
 		<c:when test="${ad_id != null }">
 			<li>${ad_id}님,환영합니다!</li>&nbsp;&nbsp;
 			<input type="hidden" name="action" value="logout">
-			<li><a href="check?main?action=logout" class="nav-link">로그아웃</a></li>
+			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
 		<c:otherwise>
 			<!-- 로그인 -->
 			<input type="hidden" name="action" value="login">
-			<input type="text" name="id">&nbsp;
-			<input type="password" name="pw">&nbsp;
-			<li><a href="check.main?action=login" class="nav-link">로그인</a></li>
+			<li><a class="nav-link" href="hmy_login.jsp">로그인</a></li>
 		</c:otherwise>
 	</c:choose>
+	
 	<!-- ****관리자인지 회원인지 먼저 구별해야함.. 관리자아이콘도 추가 -->
 	<c:choose>
 	<c:when test="${ujob == null}"><!-- 개발자/예비개발자 아이콘 -->

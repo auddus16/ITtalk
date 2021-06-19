@@ -25,14 +25,14 @@ public class LoginAction implements Action{
 			HttpSession session=req.getSession();
 			session.setAttribute("mb_id", id);
 			forward=new ActionForward();
-			forward.setPath("main.do");
+			forward.setPath("main.main");
 			forward.setRedirect(false);
 		}
 		else if(login.adminLogin(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
 			session.setAttribute("ad_id", id);
 			forward=new ActionForward();
-			forward.setPath("main.do");
+			forward.setPath("main.main");
 			forward.setRedirect(false);
 		}
 		else {
