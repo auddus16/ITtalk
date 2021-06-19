@@ -96,7 +96,7 @@ public class MyPageDAO {
 			return myBoards;
 			
 		}
-	// 로그인된 사용자의 게시글 출력->스크롤이벤트 위함
+	// 로그인된 사용자의 게시글 출력-->스크롤이벤트 위함
 
 	public ArrayList<B> getMyBoard(int mb_no, int cnt) {
 		conn= DBManager.connect();
@@ -318,5 +318,37 @@ public class MyPageDAO {
 		}
 		return true;
 	}
-
+	
+	// 로그인할때 입력받은 mb_id로  mb_no을 받을 수 있는 메소드
+	public Mb getMb_no(int mb_no){
+		Mb mb=new Mb();
+		try {
+			conn=DBManager.connect();
+			String sql="select mb_id from Mb where mb_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mb_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				mb.setMb_id(rs.getString("mb_id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return mb;
+	}
 }
