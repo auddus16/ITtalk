@@ -22,7 +22,6 @@ public class MypostAction implements Action{
 		Scroll mypageDAO= new Scroll();//마이페이지 사용시 필요한 정보를 가져오기
 		
 		HttpSession session= req.getSession();
-		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호
 		
 		int cnt=0; //처음 몇개 게시글을 업로드 할지 저장하는 변수
 		if(req.getParameter("cnt")==null){//기본 게시글 개수 10개로 지정
@@ -34,8 +33,8 @@ public class MypostAction implements Action{
 		
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
+		//ArrayList<B> arrB= mypageDAO.getMyBoard((Integer)session.getAttribute("mb_no"));
 		ArrayList<B> arrB= mypageDAO.getMyBoard(1);
-		
 		
 		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
 		

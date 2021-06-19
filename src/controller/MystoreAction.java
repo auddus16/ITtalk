@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import itTalkDAO.MyPageDAO;
-import itTalkDO.C;
+import itTalkDO.Bs;
 
-public class MyreplyAction implements Action {
+public class MystoreAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class MyreplyAction implements Action {
 		HttpSession session= req.getSession();
 		
 		int cnt=0; //처음 몇개 게시글을 업로드 할지 저장하는 변수
-		if(req.getParameter("cnt")==null){//기본 댓글 개수 5개로 지정
+		if(req.getParameter("cnt")==null){//기본 게시글 개수 5개로 지정
 			cnt=5;
 		}
 		else {
@@ -33,17 +33,18 @@ public class MyreplyAction implements Action {
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
 		//ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
-		ArrayList<C> arrC= mypageDAO.getMyComment(1);
+		ArrayList<Bs> arrB= mypageDAO.getMyBoardSave(1);
 		
 		
-		req.setAttribute("myreplyList", arrC);//댓글이 담긴 리스트
+		req.setAttribute("mystoreList", arrB);//게시글이 담긴 리스트
 		
-		req.setAttribute("kind", "reply");//마이페이지에서 어떤 페이지를 include할지 정보
+		req.setAttribute("kind", "store");//마이페이지에서 어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);
 		forward.setPath("/hmy_mypage.jsp");
 		
 		return forward;
 	}
+
 
 }
