@@ -218,13 +218,13 @@ public class MyPageDAO {
 	}
 	
 	// 사용자 비밀번호 확인 기능 
-	public String getMember_pw(String mb_no) {
+	public String getMember_pw(int mb_no) {
 		conn=DBManager.connect();
 		String sql = "SELECT mb_pw FROM Mb WHERE mb_no=?";
 		String member_pw = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mb_no);
+			pstmt.setInt(1, mb_no);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
