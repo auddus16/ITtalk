@@ -18,11 +18,13 @@ public class ModifypwAction implements Action{
 		MyPageDAO mypageDAO= new MyPageDAO();
 		
 		HttpSession session= req.getSession();
-		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호로 구현수정해야함..
-		
-		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
 		
 		String paramPw =req.getParameter("pw");
+		
+		Mb mb= new Mb();
+		mb.setMb_no((Integer)session.getAttribute("mb_no"));
+		mb.setMb_pw(paramPw);
+		
 		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
@@ -31,7 +33,7 @@ public class ModifypwAction implements Action{
 		
 		if(paramPw.equals(req.getParameter("checkpw"))) {
 			//비밀번호확인됨.
-			//db메소드로 비밀번호 변경해야함.
+			mypageDAO.updateMemberPw(mb);
 			out.println("<script>alert('비밀번호 변경했습니다.');window.close();</script>");
 		}
 		else {

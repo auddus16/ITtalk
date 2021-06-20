@@ -63,7 +63,7 @@ public class FrontController_user extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/Mymodify.mem")) {//개인정보 수정
+		else if(action.equals("/modify.mem")) {//개인정보 수정
 			try {
 				forward=new MymodifyAction().execute(req, res);
 			} catch (Exception e) {
