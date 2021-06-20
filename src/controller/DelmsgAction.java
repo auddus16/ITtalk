@@ -43,13 +43,54 @@ public class DelmsgAction implements Action{//게시글 삭제
 		
 		
 		//게시글 불러오기(해당 게시글을 삭제하기위함)
-		req.setAttribute("b_no", board.Load(Integer.parseInt(req.getParameter("b_no"))));//게시글 불러오기 기능
+		//B Load(int b_no)
+		
+		b=board.Load(Integer.parseInt(req.getParameter("b_no")));
+		req.setAttribute("b", b);//게시글 불러오기 기능
+		
+		
+		
 		
 		//게시글 삭제
-		//board.delB(req, res);
+		//boolean delB(HttpServletRequest req, HttpServletResponse res)
+		
+		
+		if(!board.delB(req, res)) {//게시글 삭제 실패
+			try {
+				throw new Exception("게시글 삭제 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {//게시글 삭제 성공
+			Boolean writedelete =board.delB(req, res);
+			req.setAttribute("writedelete", writedelete);
+		}
+		
+		
+		
+		
 		
 		// 이미지 삭제
-		//board.delF(req, res);
+		//boolean delF(HttpServletRequest req, HttpServletResponse res)
+
+			
+		if(!board.delF(req, res)) {//이미지 삭제 실패
+			try {
+				throw new Exception("이미지 삭제 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {//이미지 삭제 성공
+			Boolean imagedelete =board.delF(req, res);
+			req.setAttribute("imagedelete", imagedelete);
+		}
+		
+		
+		
 		
 		forward.setRedirect(false);
 		forward.setPath("게시글삭제.jsp");

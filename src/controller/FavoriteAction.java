@@ -24,15 +24,30 @@ public class FavoriteAction implements Action {// 좋아요
 		
 		
 		//mb_no 회원번호
-		
+		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
 		//b_no 게시글번호
+		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		
 		
 		
 		
 		
 		// 게시글 좋아요
-		//board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")));
+			
+		
+		if(!board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")))) {//게시글 좋아요 실패
+			try {
+				throw new Exception("좋아요 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {// 게시글 좋아요 성공
+			Boolean like=board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")));
+			req.setAttribute("like", like);
+		}
+		
 		
 		
 
