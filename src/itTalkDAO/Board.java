@@ -72,7 +72,7 @@ public class Board {
 		return b;
 	}
 	
-	// 이미지 삭제
+	// 이미지 삭제☆☆
 	// 사용자가 저장한 이미지 파일을 서버에서 삭제하는 메소드
 	// 게시글 번호가 파라미터 값에 있어야함
 		public boolean delF(HttpServletRequest req, HttpServletResponse res){// 서블릿 request , response
@@ -114,7 +114,7 @@ public class Board {
 			return true;
 		}
 		
-		// 게시글 등록
+		// 게시글 등록 ☆☆☆
 		// 게시글 번호가 파라미터 값에 없으면 등록
 		// 게시글 번호가 파라미터 값에 있으면 수정
 		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
@@ -181,7 +181,7 @@ public class Board {
 			
 		}
 	
-	// 게시글 출력
+	// 게시글 출력 ☆☆☆
 	// 사용자에게 보여지는 게시글 출력 메서드
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
 
@@ -445,6 +445,7 @@ public class Board {
 			}
 		}
 		System.out.println("게시글 신고 성공");
+		
 		return true;
 	}
 
@@ -624,7 +625,7 @@ public class Board {
 		return datas;
 	}
 	
-	// 카테고리 게시글 목록 출력
+	// 카테고리 게시글 목록 출력 
 	
 	public ArrayList<B> bcSearch(String bc_no){
 		
