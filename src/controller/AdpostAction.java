@@ -6,21 +6,18 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import itTalkDAO.MyPageDAO;
-import itTalkDO.C;
+import itTalkDAO.AdminMenu;
+import itTalkDO.Rb;
 
-public class MyreplyAction implements Action {
-
+public class AdpostAction implements Action{
+	
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		ActionForward forward= new ActionForward();
 		
-		MyPageDAO mypageDAO= new MyPageDAO();//마이페이지 사용시 필요한 정보를 가져오기
-		
-		HttpSession session= req.getSession();
+		AdminMenu adDAO = new AdminMenu();
 		
 		int cnt=0; //처음 몇개 게시글을 업로드 할지 저장하는 변수
 		if(req.getParameter("cnt")==null){//기본 댓글 개수 5개로 지정
@@ -32,18 +29,14 @@ public class MyreplyAction implements Action {
 		
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
-		//ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
-		ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
+		ArrayList<Rb> adpostList= adDAO.getReportBoardList();
+		req.setAttribute("myreplyList", adpostList);//댓글이 담긴 리스트
 		
-		
-		req.setAttribute("myreplyList", arrC);//댓글이 담긴 리스트
-		
-		req.setAttribute("kind", "reply");//마이페이지에서 어떤 페이지를 include할지 정보
+		req.setAttribute("kind", "adpost");//어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);
-		forward.setPath("/hmy_mypage.jsp");
+		forward.setPath("/hmy_adpage.jsp");
 		
 		return forward;
 	}
-
 }

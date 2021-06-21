@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import itTalkDAO.MyPageDAO;
 import itTalkDAO.Scroll;
 import itTalkDO.B;
 
@@ -34,7 +33,7 @@ public class MypostAction implements Action{
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
 		//ArrayList<B> arrB= mypageDAO.getMyBoard((Integer)session.getAttribute("mb_no"));
-		ArrayList<B> arrB= mypageDAO.getMyBoard(1);
+		ArrayList<B> arrB= mypageDAO.getMyBoard((Integer)session.getAttribute("mb_no"));
 		
 		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
 		

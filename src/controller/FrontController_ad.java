@@ -43,9 +43,13 @@ public class FrontController_ad extends HttpServlet {
 		String cp=req.getContextPath();
 		String action=uri.substring(cp.length());
 		
+//		<li><a href="adrepost.ad?cnt=10">신고게시글</a></li>
+//        <li><a href="adreply.ad?cnt=10">신고댓글</a></li>
+//        <li><a href="adallpost.ad?cnt=10">전체 게시글 조회 및 삭제</a></li>
+//        <li><a href="admodifycate.ad">게시판카테고리 수정</a></li>
+		
 		ActionForward forward=null;
-		if(action.equals("/adpage.ad")) { //관리자페이지 처음 이동
-			System.out.println("adpage들어옴");
+		if(action.equals("/adpost.ad")) { //신고게시글 확인
 			try {
 				forward=new MainAction().execute(req, res);
 			} catch (Exception e) {
@@ -54,7 +58,23 @@ public class FrontController_ad extends HttpServlet {
 			}
 		}
 		
-		else if(action.equals("/modifycate.mem")) {//게시판카테고리 수정
+		else if(action.equals("/admodifycate.ad")) {//게시판카테고리 수정
+			try {
+				forward=new NewmsgAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/adreply.ad")) {//신고게시글 수정
+			try {
+				forward=new NewmsgAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/adallpost.ad")) {//전체 게시글조회 및 삭제
 			try {
 				forward=new NewmsgAction().execute(req, res);
 			} catch (Exception e) {
