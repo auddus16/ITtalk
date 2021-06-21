@@ -17,7 +17,7 @@ public class Mb_nickCheckAction implements Action {
 		String mb_nick = req.getParameter("mb_nick");
 		Membership membership = new Membership();
 
-		boolean check = membership.idCheck(mb_nick);
+		boolean check = membership.nickCheck(mb_nick);
 
 		PrintWriter out = res.getWriter();
 
