@@ -6,15 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+radio{
+	width:5px;
+	height:5px;
+	border:1px;
+}
+</style>
 <script type="text/javascript">
 function newpw(){
-	window.open("newpw.jsp","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=300"
+	window.open("newpw.jsp","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=500,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
 
 function newpw2(){
-	window.open("newpw.jsp?c=withdraw","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=300"
+	window.open("newpw.jsp?c=withdraw","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=500,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
@@ -30,14 +37,17 @@ function newpw2(){
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="job">회원구분</label>
+                  <br><br>
                   <c:choose>
 	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 구분하는 부분 -->
 			<!-- 예비 -->
-			<input type="text" name="job" class="form-control" value="개발자" required><!-- 회원구분 ${mem.job}-->
+			<input type="radio" name="job" value="1" style="width:15px;height:15px;border:1px;" checked>개발자<!-- 회원구분 ${mem.job}-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:15px;height:15px;border:1px;" >예비개발자<!-- 회원구분 ${mem.job}-->
 		</c:when>
 		<c:otherwise>
 			<!-- 개발자 -->
-			<input type="text" name="job" class="form-control" value="예비개발자" required>
+			<input type="radio" name="job" value="1" style="width:30px;height:30px;border:1px;" >개발자<!-- 회원구분 ${mem.job}-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:30px;height:30px;border:1px;" checked>예비개발자<!-- 회원구분 ${mem.job}-->
 		</c:otherwise>
 	</c:choose>
                 </div>

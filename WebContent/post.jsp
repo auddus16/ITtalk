@@ -46,8 +46,10 @@ table.type09 td {
 $(document).ready(function(){
 	var list='<c:out value="${mypostList}"/>';
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
+    console.log("ready");
 	
 	$(window.parent.document).scroll(function(){
+		console.log("action");
 		var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
         var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
         var contentH = $('#hei').height(); //문서 전체 내용을 갖는 div의 높이
@@ -56,7 +58,6 @@ $(document).ready(function(){
         		var tag='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
         		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
         	}
-        console.log("ddd")
         	$('#postTable>tbody').prepend(tag);//table의 tbody요소 앞에 append
         }
 	});

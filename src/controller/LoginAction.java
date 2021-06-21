@@ -29,8 +29,10 @@ public class LoginAction implements Action{
 		if(login.login(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
 			session.setAttribute("mb_id", id);
-			session.setAttribute("mb_no", mb.getMb_no());
+			session.setAttribute("mb_no", dao.getMb_no(id));
 			System.out.println("mb_no : "+dao.getMb_no(id));
+			System.out.println("技记 mb_id : "+session.getAttribute("mb_id"));
+			System.out.println("技记 mb_no : "+session.getAttribute("mb_no"));
 			forward=new ActionForward();
 			forward.setPath("main.main");
 			forward.setRedirect(false);

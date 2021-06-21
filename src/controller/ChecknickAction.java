@@ -34,11 +34,10 @@ public class ChecknickAction implements Action{
 		
 		if(paramNick.equals( myInfo.getMb_nick())) {
 			//넘어온 닉네임과 현재 닉네임이 같을때 == 즉 변경하지 않았을 경우
-			req.setAttribute("flag", true);
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/info.mem");
+			forward.setPath("info.mem?flag='true'");
 			
 			return forward;
 		}

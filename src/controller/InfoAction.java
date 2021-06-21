@@ -19,14 +19,17 @@ public class InfoAction implements Action{
 		
 		HttpSession session= req.getSession();
 		
-		
 //		Mb myInfo= mypageDAO.Info(1);
 //		myInfo.setMb_id("auddus16");
 		
-		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
+		Mb myInfo= mypageDAO.Info((Integer)session.getAttribute("mb_no"));// 수정 후 바꿔야함..
+		
+		System.out.println("InfoAction"+myInfo.getMb_id());
+		System.out.println(session.getAttribute("mb_no"));
 		
 		req.setAttribute("myInfo", myInfo);//개인정보
-		if(req.getParameter("flag") != null && req.getParameter("flag").equals("false")) {
+		
+		if(req.getParameter("flag") == null || req.getParameter("flag").equals("false")) {
 			req.setAttribute("flag", false);//다음단계로 넘어갈수있는지 여부
 			
 		}
@@ -35,7 +38,6 @@ public class InfoAction implements Action{
 			req.setAttribute("flag", true);
 		}
 		req.setAttribute("kind", "info");//마이페이지에서 어떤 페이지를 include할지 정보
-		
 		forward.setRedirect(false);
 		forward.setPath("/hmy_mypage.jsp");
 		

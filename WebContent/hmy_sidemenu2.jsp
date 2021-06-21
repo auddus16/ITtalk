@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 <br><br>
@@ -12,10 +12,10 @@
      <div class="categories" style="float:left; margin-left:50px; height:100%;">
                 <h3>관리자페이지</h3>
                 <hr>
-                <li><a href="?&page=repost">신고게시글</a></li>
-                <li><a href="?page=rereply">신고댓글</a></li>
-                <li><a href="?page=allpost">전체 게시글 조회 및 삭제</a></li>
-                <li><a href="?page=modifycate">게시판카테고리 수정</a></li>
+                <li><a href="adrepost.ad?cnt=10">신고게시글</a></li>
+                <li><a href="adreply.ad?cnt=10">신고댓글</a></li>
+                <li><a href="adallpost.ad?cnt=10">전체 게시글 조회 및 삭제</a></li>
+                <li><a href="admodifycate.ad">게시판카테고리 수정</a></li>
               </div>
       </section>
 </body>

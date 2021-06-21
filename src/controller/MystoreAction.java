@@ -33,7 +33,7 @@ public class MystoreAction implements Action{
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
 		//ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
-		ArrayList<Bs> arrB= mypageDAO.getMyBoardSave(1);
+		ArrayList<Bs> arrB= mypageDAO.getMyBoardSave((Integer)session.getAttribute("mb_no"));
 		
 		
 		req.setAttribute("mystoreList", arrB);//게시글이 담긴 리스트

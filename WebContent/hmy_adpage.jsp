@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,49 +30,20 @@
     
   </head>
   <%
-  	String pagefile=request.getParameter("page");
+  	String pagefile=(String)request.getAttribute("kind");
   	if(pagefile==null){
-  		pagefile="repost";
+  		pagefile="adpost";
   	}
   %>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  
-    <header style="margin-top:0;"class="site-navbar bg-white js-sticky-header site-navbar-target" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="hmy_main.jsp" class="text-black h2 mb-0">ITtalk<span class="text-primary">.</span> </a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#work-section" class="nav-link">게시판</a></li>
-                <li>
-                  <a href="#services-section" class="nav-link">글쓰기</a>
-                </li>
-                <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
-                <li><a href="#work-section" class="nav-link">로그인/로그아웃</a></li>
-                <li><a href="#work-section" class="nav-link">아이콘</a></li>
-              </ul>
-            </nav>
-          </div>
-
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
-
-        </div>
-      </div>
-      
-    </header>
+  <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
  	<div style="float:left">
  	<jsp:include page="hmy_sidemenu2.jsp"/>
  	</div>
  	
  	<aside class="site-section">
   		<div class="p-4 mb-3 bg-white">
-  			<div id="inHere" style="width:1000px;text-aligh:left;padding-left:230px;text-align:center;">
+  			<div id="inHere" style="width:1200px;text-aligh:left;padding-left:230px;text-align:center;">
   				<jsp:include page='<%=pagefile+".jsp" %>'/>
   			</div>
   		</div>
@@ -131,7 +103,6 @@
       </div>
     </footer>
 
-  </div> <!-- .site-wrap -->
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -146,19 +117,6 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
-  <script src="js/typed.js"></script>
-            <script>
-            var typed = new Typed('.typed-words', {
-            strings: ["Web Apps"," WordPress"," Mobile Apps"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-            });
-            </script>
 
   <script src="js/main.js"></script>
   

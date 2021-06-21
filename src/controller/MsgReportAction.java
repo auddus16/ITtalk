@@ -26,16 +26,39 @@ public class MsgReportAction implements Action{//게시글 신고
 		Rctg rctg =new Rctg();//do
 		
 		// b_no 게시글번호
+		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		// mb_no 회원번호
+		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
 		// rctg_no 신고카테고리번호
+		rctg.setRctg_no(Integer.parseInt(req.getParameter("rctg_no")));
 		// rc_write 신고내용
+		rc.setRc_write(req.getParameter("rc_write"));
 		// b_report 신고수
+		b.setB_report(Integer.parseInt(req.getParameter("b_report")));
 		// b_deleted 블라인드처리여부
+		b.setB_deleted(b.isB_deleted());
+		
+		
+		
 		
 		
 		// 게시글 신고 boolean ReportB(int b_no , int mb_no , int rctg_no , String rc_write)(게시글번호,회원번호,신고카테고리번호,신고내용)
 		//board.ReportB(Integer.parseInt(req.getParameter("b_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
 		
+		
+		
+		if(!board.ReportB(Integer.parseInt(req.getParameter("b_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"))) {//게시글 신고 실패
+			try {//게시글 신고 실패
+				throw new Exception("게시글 신고 실패");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {//게시글 신고 성공
+			Boolean reportb =board.ReportB(Integer.parseInt(req.getParameter("b_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
+			req.setAttribute("reportb", reportb);
+		}
 		
 		
 		
