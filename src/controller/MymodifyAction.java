@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +24,20 @@ public class MymodifyAction implements Action {
 		Mb mb= new Mb();
 		
 		mb.setMb_no((Integer)session.getAttribute("mb_no"));
-		mb.setMb_id((String)session.getAttribute("mb_id"));//생략가능
-		mb.setMb_pw("1234");//생략
 		mb.setMb_nick(req.getParameter("nick"));
 		mb.setMb_job(Boolean.parseBoolean(req.getParameter("job")));
 		
-		mypageDAO.updateMember(mb);
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out=res.getWriter();
+		
+		if(mypageDAO.updateMember(mb)) {
+			out.println("<script>alert('수정완료되었습니다.');</script>");
+		}
+		else {
+			out.println("<script>alert('비밀번호 변경했습니다.');history.go(-1);</script>");
+		}
 		
 		//req.setAttribute("kind", "info");//마이페이지에서 어떤 페이지를 include할지 정보
 		forward.setRedirect(false);

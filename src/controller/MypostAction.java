@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import itTalkDAO.Scroll;
+import itTalkDAO.MyPageDAO;
 import itTalkDO.B;
 
 public class MypostAction implements Action{
@@ -18,7 +18,7 @@ public class MypostAction implements Action{
 		
 		ActionForward forward= new ActionForward();
 		
-		Scroll mypageDAO= new Scroll();//마이페이지 사용시 필요한 정보를 가져오기
+		MyPageDAO mypageDAO= new MyPageDAO();//마이페이지 사용시 필요한 정보를 가져오기
 		
 		HttpSession session= req.getSession();
 		

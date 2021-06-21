@@ -47,6 +47,7 @@ table.type09 td {
   <tr>
     <th scope="cols">신고댓글번호</th>
     <th scope="cols">신고자</th>
+    <th scope="cols">신고유형</th>
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>
     <th scope="cols">삭제</th>
@@ -57,6 +58,7 @@ table.type09 td {
   <tr>
     <th scope="row">댓글번호1</th>
     <td>신고자1</td>
+    <td>신고유형1</td>
     <td>신고내용1</td>
     <td>신고일자</td>
     <td><button class="btn btn-primary btn-md text-white">삭제</button></td>

@@ -393,9 +393,9 @@ public class AdminMenu {
 	}
 	
 	// 신고 받은 카테고리 이름 목록 출력
-	public ArrayList<Rctg> getReportCategory(int rctg_no){
+	public String getReportCategory(int rctg_no){
 		
-		ArrayList<Rctg> ReportCategory = new ArrayList<>();
+		String result=null;
 		try {
 			conn=DBManager.connect();
 			String sql="select rctg_name from Rctg where rctg_no=?";
@@ -403,11 +403,9 @@ public class AdminMenu {
 			pstmt.setInt(1, rctg_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				Rctg rctg=new Rctg();
 				
-				rctg.setRctg_name(rs.getString("rctg_name"));
+				result= rs.getString("rctg_name");
 
-				ReportCategory.add(rctg);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -423,7 +421,7 @@ public class AdminMenu {
 				e.printStackTrace();
 			}
 		}
-		return ReportCategory;
+		return result;
 	}
 	
 }

@@ -33,8 +33,13 @@ public class ModifypwAction implements Action{
 		
 		if(paramPw.equals(req.getParameter("checkpw"))) {
 			//비밀번호확인됨.
-			mypageDAO.updateMemberPw(mb);
-			out.println("<script>alert('비밀번호 변경했습니다.');window.close();</script>");
+			if(mypageDAO.updateMemberPw(mb)) {
+				
+				out.println("<script>alert('비밀번호 변경했습니다.');window.close();</script>");
+			}
+			else {
+				out.println("<script>alert('다시 시도하세요.');window.close();</script>");
+			}
 		}
 		else {
 			//비밀번호 확인 실패

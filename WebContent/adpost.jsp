@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<jsp:useBean id="adDAO" class="itTalkDAO.AdminMenu"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +53,9 @@ table.type09 td {
 		<table class="type09">
   <thead>
   <tr>
-    <th scope="cols">게시글번호</th>
+    <th scope="cols">NO</th>
     <th scope="cols">신고회원번호</th>
+    <th scope="cols">신고유형</th>
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>
     <th scope="cols">조회</th>
@@ -74,7 +78,7 @@ table.type09 td {
 	  <tr>
 	    <th scope="row">${v.b_no}</th>
 	    <td>${v.mb_no}</td>
-	    <td>${v.rctg_no}</td>
+	    <td>${adDAO.getReportCategory(v.rctg_no)}</td>
 	    <td>${v.rb_write}</td>
 	    <td>${v.rb_date}</td>
 	    <td><a href="ff.jsp">${v.rb_date}</a></td><!-- 게시판 컨롤 -->
