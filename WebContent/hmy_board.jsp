@@ -41,7 +41,9 @@
 		border: 1px solid grey;
 		text-align:left;
 	}
-	
+	a{
+		color:black;
+	}
 </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -73,8 +75,10 @@
  	<section class="site-section">
  	<div align="center" style="margin-left:10%;">
  	<div class="home-list">
+ 	<!-- foreach 게시판카테고리개수만큼-->
      		<div class="categories">
-                <span><h3>코드 도움</h3>
+                <a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <h3>코드 도움</h3><!-- 해당카테고리화면으로 -->
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <li><a href="#">게시글1<span>(12)</span></a></li>
@@ -82,10 +86,11 @@
                 <li><a href="#">게시글3<span>(22)</span></a></li>
                 <li><a href="#">게시글4<span>(132)</span></a></li>
                 <li><a href="#">게시글5<span>(5)</span></a></li>
-				<span>
+				
               </div>
      		<div class="categories">
-                <span><h3>개발자의 회사생활</h3>
+     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <h3>개발자의 회사생활</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <li><a href="#">게시글1<span>(12)</span></a></li>
@@ -93,10 +98,11 @@
                 <li><a href="#">게시글3<span>(22)</span></a></li>
                 <li><a href="#">게시글4<span>(132)</span></a></li>
                 <li><a href="#">게시글5<span>(5)</span></a></li>
-				<span>
+				
               </div>
      		<div class="categories">
-                <span><h3>프로그램 이슈</h3>
+     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <h3>프로그램 이슈</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <li><a href="#">게시글1<span>(12)</span></a></li>
@@ -104,10 +110,11 @@
                 <li><a href="#">게시글3<span>(22)</span></a></li>
                 <li><a href="#">게시글4<span>(132)</span></a></li>
                 <li><a href="#">게시글5<span>(5)</span></a></li>
-				<span>
+				
               </div>
      		<div class="categories">
-                <span><h3>자유</h3>
+     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <h3>자유</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <li><a href="#">게시글1<span>(12)</span></a></li>
@@ -115,8 +122,9 @@
                 <li><a href="#">게시글3<span>(22)</span></a></li>
                 <li><a href="#">게시글4<span>(132)</span></a></li>
                 <li><a href="#">게시글5<span>(5)</span></a></li>
-				<span>
+				
               </div>
+              
               
               
              </div>
