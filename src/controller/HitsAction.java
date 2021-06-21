@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +21,19 @@ public class HitsAction implements Action{//조회수
 
 		B b=new B(); //do
 		
+		
 		//b_no 게시글 번호
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		//b_hits 조회수
 		b.setB_hits(Integer.parseInt(req.getParameter("b_hits")));
 
 
+		ServletContext application = req.getServletContext();
+		
 		//조회수
 		
 		Boolean hits=board.hits(Integer.parseInt(req.getParameter("b_no")));
-		req.setAttribute("hits", hits);
+		application.setAttribute("hits", hits);
 
 		
 		

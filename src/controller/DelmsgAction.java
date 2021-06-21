@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +55,7 @@ public class DelmsgAction implements Action{//게시글 삭제
 		//게시글 삭제
 		//boolean delB(HttpServletRequest req, HttpServletResponse res)
 		
+		ServletContext application = req.getServletContext();
 		
 		if(!board.delB(req, res)) {//게시글 삭제 실패
 			try {
@@ -65,7 +67,7 @@ public class DelmsgAction implements Action{//게시글 삭제
 		}
 		else {//게시글 삭제 성공
 			Boolean writedelete =board.delB(req, res);
-			req.setAttribute("writedelete", writedelete);
+			application.setAttribute("writedelete", writedelete);
 		}
 		
 		
@@ -86,7 +88,7 @@ public class DelmsgAction implements Action{//게시글 삭제
 		}
 		else {//이미지 삭제 성공
 			Boolean imagedelete =board.delF(req, res);
-			req.setAttribute("imagedelete", imagedelete);
+			application.setAttribute("imagedelete", imagedelete);
 		}
 		
 		

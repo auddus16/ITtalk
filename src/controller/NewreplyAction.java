@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,7 +53,8 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 //		}
 //		req.setAttribute("rcnt", rcnt);
 		
-	
+		ServletContext application = req.getServletContext();
+		
 		//댓글 등록 b_no,mb_no,c_write
 		if(!board.newReply(c)) {//댓글 등록(비밀 댓글 포함) 실패
 			try {
@@ -64,7 +66,7 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		}
 		else {//댓글 등록(비밀 댓글 포함) 성공	
 			Boolean comment=board.newReply(c);
-			req.setAttribute("comment", comment);//등록한 댓글 정보
+			application.setAttribute("comment", comment);//등록한 댓글 정보
 		}
 		
 

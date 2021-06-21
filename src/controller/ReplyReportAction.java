@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +40,9 @@ public class ReplyReportAction implements Action{// 댓글신고
 		c.setC_deleted(c.isC_deleted());
 		
 		
+		ServletContext application = req.getServletContext();
+
+
 		
 		//댓글 신고 boolean ReportC(int c_no , int mb_no , int rctg_no , String rc_write)(댓글 번호,회원번호,신고카테고리번호,신고내용)
 		//board.ReportC(Integer.parseInt(req.getParameter("c_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
@@ -54,8 +58,10 @@ public class ReplyReportAction implements Action{// 댓글신고
 		}
 		else {// 댓글 신고 성공
 			Boolean reportc=board.ReportC(Integer.parseInt(req.getParameter("c_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
-			req.setAttribute("reportc", reportc);
+			application.setAttribute("reportc", reportc);
 		}
+		
+		
 		
 		
 		forward.setRedirect(false);

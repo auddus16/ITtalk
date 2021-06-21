@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,7 +55,7 @@ public class NewmsgAction implements Action{// 게시글 등록
 //		}
 //		req.setAttribute("cnt", mcnt);//게시글 수
 		
-		
+		ServletContext application = req.getServletContext();
 		
 		if(!board.Upload(req, res)) {//게시글 등록 실패
 			try {
@@ -66,7 +67,7 @@ public class NewmsgAction implements Action{// 게시글 등록
 		}
 		else {//게시글 등록 성공
 			Boolean msg=board.Upload(req, res);
-			req.setAttribute("msg", msg);//등록한 댓글 정보
+			application.setAttribute("msg", msg);//등록한 댓글 정보
 		}
 		
 

@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Board;
 import itTalkDO.B;
@@ -30,7 +30,7 @@ public class FavoriteAction implements Action {// 좋아요
 		
 		
 		
-		
+		HttpSession session = req.getSession(false);
 		
 		// 게시글 좋아요
 			
@@ -45,7 +45,7 @@ public class FavoriteAction implements Action {// 좋아요
 		}
 		else {// 게시글 좋아요 성공
 			Boolean like=board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")));
-			req.setAttribute("like", like);
+			session.setAttribute("like", like);
 		}
 		
 		

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,9 +41,9 @@ public class DelreplyAction implements Action{// 댓글 삭제(비밀댓글도 포함)
 		c.setC_secret(c.isC_secret());
 		
 		
+		ServletContext application = req.getServletContext();
 		
 		// 댓글 삭제
-		
 		
 		if(!board.delC(Integer.parseInt(req.getParameter("c_no")))) {//댓글 삭제 실패
 			try {
@@ -54,7 +55,7 @@ public class DelreplyAction implements Action{// 댓글 삭제(비밀댓글도 포함)
 		}
 		else {//댓글 삭제 성공
 			Boolean delreply =board.delC(Integer.parseInt(req.getParameter("c_no")));
-			req.setAttribute("delreply", delreply);
+			application.setAttribute("delreply", delreply);
 		}
 
 		

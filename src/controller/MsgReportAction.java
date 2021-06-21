@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +41,9 @@ public class MsgReportAction implements Action{//게시글 신고
 		
 		
 		
-		
-		
+		ServletContext application = req.getServletContext();
+
+
 		// 게시글 신고 boolean ReportB(int b_no , int mb_no , int rctg_no , String rc_write)(게시글번호,회원번호,신고카테고리번호,신고내용)
 		//board.ReportB(Integer.parseInt(req.getParameter("b_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
 		
@@ -57,7 +59,7 @@ public class MsgReportAction implements Action{//게시글 신고
 		}
 		else {//게시글 신고 성공
 			Boolean reportb =board.ReportB(Integer.parseInt(req.getParameter("b_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
-			req.setAttribute("reportb", reportb);
+			application.setAttribute("reportb", reportb);
 		}
 		
 		
