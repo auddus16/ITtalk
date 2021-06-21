@@ -26,46 +26,102 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-    
+<style type="text/css">
+    .home-list {
+    	display: flex;
+    	flex-wrap: wrap;
+    	width:70%;
+    	align:center;
+	}
+	.categories{
+		width:40%;
+		margin-right:20px;
+		margin-bottom:20px;
+		float:left;
+		border: 1px solid grey;
+		text-align:left;
+	}
+	
+</style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
     
     <section class="site-section">
-      <div class="container" style="text-align:center;">
+      <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-       <form class="p-5 bg-white" style="display:inline-block;">
-              
-              <h2 class="h4 text-black mb-5">Login</h2> 
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label for="id">아이디</label> 
-                  <input type="text" name="id"required>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                
-                <div class="col-md-12">
-                  <label for="pw">비밀번호</label>
-                  <input type="password" name="pw" required>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-md-6">
-                <button type="submit" class="btn btn-primary btn-md text-white" formaction="login.main">login</button>
-                </div> 
-                </div> 
-            </form>
-        
-        
-        
-       </div>
+        <form action="#" method="post">
+        <table style="width:1000px;">
+        	<tr><td>
+        	<span style="float:right;">
+        	<label for="pet-select">검색옵션</label>
+			<select name="pets" id="pet-select">
+    			<option value="1">제목&내용</option>
+    			<option value="2">작성자</option>
+			</select>
+			</span>
+        	<input type="text" class="form-control" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
+        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
+        </table>
+		</form>
+		</div>
       </div>
     </section>
+	<!-- 코드도움, 프로그램이슈, 개발자회사생활, 자유 -->
+	<!-- 카테고리가 수정될 때 어떻게 해야할지 고민 -->
+ 	<section class="site-section">
+ 	<div align="center" style="margin-left:10%;">
+ 	<div class="home-list">
+     		<div class="categories">
+                <span><h3>코드 도움</h3>
+                <hr>
+                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
+                <li><a href="#">게시글1<span>(12)</span></a></li>
+                <li><a href="#">게시글2<span>(14)</span></a></li>
+                <li><a href="#">게시글3<span>(22)</span></a></li>
+                <li><a href="#">게시글4<span>(132)</span></a></li>
+                <li><a href="#">게시글5<span>(5)</span></a></li>
+				<span>
+              </div>
+     		<div class="categories">
+                <span><h3>개발자의 회사생활</h3>
+                <hr>
+                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
+                <li><a href="#">게시글1<span>(12)</span></a></li>
+                <li><a href="#">게시글2<span>(14)</span></a></li>
+                <li><a href="#">게시글3<span>(22)</span></a></li>
+                <li><a href="#">게시글4<span>(132)</span></a></li>
+                <li><a href="#">게시글5<span>(5)</span></a></li>
+				<span>
+              </div>
+     		<div class="categories">
+                <span><h3>프로그램 이슈</h3>
+                <hr>
+                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
+                <li><a href="#">게시글1<span>(12)</span></a></li>
+                <li><a href="#">게시글2<span>(14)</span></a></li>
+                <li><a href="#">게시글3<span>(22)</span></a></li>
+                <li><a href="#">게시글4<span>(132)</span></a></li>
+                <li><a href="#">게시글5<span>(5)</span></a></li>
+				<span>
+              </div>
+     		<div class="categories">
+                <span><h3>자유</h3>
+                <hr>
+                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
+                <li><a href="#">게시글1<span>(12)</span></a></li>
+                <li><a href="#">게시글2<span>(14)</span></a></li>
+                <li><a href="#">게시글3<span>(22)</span></a></li>
+                <li><a href="#">게시글4<span>(132)</span></a></li>
+                <li><a href="#">게시글5<span>(5)</span></a></li>
+				<span>
+              </div>
+              
+              
+             </div>
+             </div>
+      </section>
     
     <footer class="site-footer">
       <div class="container">

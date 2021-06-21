@@ -51,7 +51,7 @@ public class FrontController_ad extends HttpServlet {
 		ActionForward forward=null;
 		if(action.equals("/adpost.ad")) { //신고게시글 확인
 			try {
-				forward=new MainAction().execute(req, res);
+				forward=new AdpostAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

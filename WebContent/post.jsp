@@ -48,11 +48,11 @@ $(document).ready(function(){
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
     console.log("ready");
 	
-	$(window.parent.document).scroll(function(){
+	$('#mypost').scroll(function(){
 		console.log("action");
 		var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
         var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
-        var contentH = $('#hei').height(); //문서 전체 내용을 갖는 div의 높이
+        var contentH = $('#postTable').height(); //문서 전체 내용을 갖는 div의 높이
         if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
         	for(var i=0; i<addList.size(); i++){
         		var tag='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
@@ -66,7 +66,7 @@ $(document).ready(function(){
 
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
-<div id="mypost" align="center">
+<div id="mypost" align="center" style="overflow-y:scroll;position:relative">
 <h4>내가 쓴 게시글</h4>
 <hr>
 <div align="right">
@@ -84,7 +84,6 @@ $(document).ready(function(){
   <tbody>
 
   <!-- 내가 쓴 게시글 출력 forEach -->
-
   <c:forEach var="v" items="${mypostList}" end="9" varStatus="status">
 	  
 	  <tr>
@@ -94,7 +93,6 @@ $(document).ready(function(){
 	  </tr>
   
   </c:forEach>
-	
   </tbody>
 </table>
 </div>
