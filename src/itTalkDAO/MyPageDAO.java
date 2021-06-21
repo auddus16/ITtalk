@@ -245,7 +245,7 @@ public class MyPageDAO {
 	}
 	
 	// 회원 비밀번호 변경
-	public void updateMemberPw(Mb mb) {
+	public boolean updateMemberPw(Mb mb) {
 		conn=DBManager.connect();
 		String sql="update Mb set mb_pw=? where mb_no=?";
 		try {
@@ -257,6 +257,7 @@ public class MyPageDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				pstmt.close();
@@ -266,23 +267,24 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
+		return true;
 	}
 	
 	// 회원 정보 변경 기능
-	public void updateMember(Mb mb) {
+	public boolean updateMember(Mb mb) {
 		conn=DBManager.connect();
-		String sql="update Mb set mb_id=?,mb_pw=?,mb_nick=? where mb_no=?";
+		String sql="update Mb set mb_nick=?,mb_job=? where mb_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mb.getMb_id());
-			pstmt.setString(2, mb.getMb_pw());
-			pstmt.setString(3, mb.getMb_nick());
-			pstmt.setInt(4, mb.getMb_no());
+			pstmt.setString(1, mb.getMb_nick());
+			pstmt.setBoolean(2, mb.isMb_job());
+			pstmt.setInt(3, mb.getMb_no());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				pstmt.close();
@@ -292,6 +294,7 @@ public class MyPageDAO {
 				e.printStackTrace();
 			}
 		}
+		return true;
 	}
 	
 	// 회원 탈퇴 기능   

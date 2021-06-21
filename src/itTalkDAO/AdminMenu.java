@@ -11,6 +11,7 @@ import itTalkDO.Bc;
 import itTalkDO.Mb;
 import itTalkDO.Rb;
 import itTalkDO.Rc;
+import itTalkDO.Rctg;
 
 public class AdminMenu {
 
@@ -339,7 +340,7 @@ public class AdminMenu {
 	
 	
 	// 게시판 카테고리 수정 기능
-	public void updateBc(int bc_no) {
+	public boolean updateBc(int bc_no) {
 		conn=DBManager.connect();
 		String sql="update Bc set bc_no=?,bc_name=? where bc_no=?";
 		try {
@@ -353,6 +354,7 @@ public class AdminMenu {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				pstmt.close();
@@ -362,6 +364,7 @@ public class AdminMenu {
 				e.printStackTrace();
 			}
 		}
+		return true;
 	}
 	
 	// 게시판 카테고리 삭제 기능
@@ -388,6 +391,39 @@ public class AdminMenu {
 		}
 		return true;
 	}
+	
+	// 신고 받은 카테고리 이름 목록 출력
+	public ArrayList<Rctg> getReportCategory(int rctg_no){
+		
+		ArrayList<Rctg> ReportCategory = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select rctg_name from Rctg where rctg_no=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, rctg_no);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Rctg rctg=new Rctg();
+				
+				rctg.setRctg_name(rs.getString("rctg_name"));
 
+				ReportCategory.add(rctg);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return ReportCategory;
+	}
 	
 }
