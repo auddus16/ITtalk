@@ -25,7 +25,7 @@ public class AdminMenu {
 		ArrayList<Rb> ReportBoardList = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from Rb";
+			String sql="select * from Rb ORDER BY rb_date DESC";
 			pstmt=conn.prepareStatement(sql);
 			
 			ResultSet rs=pstmt.executeQuery();
@@ -130,7 +130,7 @@ public class AdminMenu {
 		ArrayList<Rc> ReportCommentList = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from Rc";
+			String sql="select * from Rc ORDER BY rc_date DESC";
 			pstmt=conn.prepareStatement(sql);
 			
 			ResultSet rs=pstmt.executeQuery();
@@ -233,7 +233,7 @@ public class AdminMenu {
 		ArrayList<B> boardList = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from B";
+			String sql="select * from B ORDER BY b_date DESC";
 			pstmt=conn.prepareStatement(sql);
 			
 			ResultSet rs=pstmt.executeQuery();
