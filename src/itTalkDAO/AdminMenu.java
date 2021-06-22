@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import itTalkDO.Ad;
 import itTalkDO.B;
 import itTalkDO.Bc;
 import itTalkDO.Mb;
@@ -423,5 +424,43 @@ public class AdminMenu {
 		}
 		return result;
 	}
+	
+	// 로그인된 관리자의 정보 
+	public Ad AdInfo(int ad_no){
+		Ad ad=new Ad();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from Ad where ad_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, ad_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				
+				ad.setAd_no(rs.getInt("ad_no"));
+				ad.setAd_id(rs.getString("ad_id"));
+				ad.setAd_pw(rs.getString("ad_pw"));
+				ad.setAd_email(rs.getString("ad_email"));
+				ad.setAd_nick(rs.getString("ad_nick"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return ad;
+	}	
 	
 }
