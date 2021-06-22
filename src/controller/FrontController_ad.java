@@ -60,7 +60,7 @@ public class FrontController_ad extends HttpServlet {
 		
 		else if(action.equals("/admodifycate.ad")) {//게시판카테고리 수정
 			try {
-				forward=new AdcateAction().execute(req, res);
+				forward=new AdmodicateAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -68,7 +68,7 @@ public class FrontController_ad extends HttpServlet {
 		}
 		else if(action.equals("/addelcate.ad")) {//게시판카테고리 삭제
 			try {
-				forward=new AdcateAction().execute(req, res);
+				forward=new AddelcateAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
