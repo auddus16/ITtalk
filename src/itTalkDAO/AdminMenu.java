@@ -372,7 +372,7 @@ public class AdminMenu {
 	}
 	
 	// 게시판 카테고리 수정 기능
-	public boolean updateBc(int bc_no) {
+	public boolean updateBc(int bc_no,String bc_name) {
 		conn=DBManager.connect();
 		String sql="update Bc set bc_no=?,bc_name=? where bc_no=?";
 		try {
