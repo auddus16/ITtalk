@@ -97,9 +97,18 @@ public class FrontController_main extends HttpServlet {
             forward=new NewMemAction().execute(req, res);
          } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            e.printStackTrace(); 
          }
       }
+      
+      else if(action.equals("/search.main")) {
+          try {
+             forward=new MainSearchAction().execute(req, res);
+          } catch (Exception e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+          }
+       }
       
       
       else {

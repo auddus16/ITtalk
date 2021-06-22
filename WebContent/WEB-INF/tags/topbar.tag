@@ -13,7 +13,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#work-section" class="nav-link">게시판</a></li>
+                <li><a href="hmy_board.jsp" class="nav-link">게시판</a></li>
                 <li>
                   <a href="#services-section" class="nav-link">글쓰기</a>
                 </li>
@@ -50,7 +50,7 @@
 		</c:when>
 		<c:when test="${mb_job == false}">
 			<!-- 개발자 -->
-			<li><a href="info.mem" class="nav-link"><img src="images/user2.png" width="40" height="40" alt="예비"></a></li>
+			<li><a href="info.mem" class="nav-link"><img src="images/user2.png" width="40" height="40" alt="개발자"></a></li>
 		</c:when>
 		<c:when test="${ad_id != null }">
 			<!-- 관리자 -->
