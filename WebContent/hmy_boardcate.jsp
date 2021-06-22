@@ -30,7 +30,7 @@
 <br><br>
 <section class="site-section">
      <div class="categories" style="float:left; margin-left:80px; height:100%;">
-                <h3>마이페이지</h3>
+                <h3>Category</h3>
                 <hr>
                 <!-- foreach로 카테고리 모두 출력 -->
                 <li><a href="#">코드 도움</a></li>

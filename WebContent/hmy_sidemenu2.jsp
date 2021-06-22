@@ -10,7 +10,7 @@
 <br><br>
 <section class="site-section">
      <div class="categories" style="float:left; margin-left:50px; height:100%;">
-                <h3>관리자페이지</h3>
+                <h3>Administrator</h3>
                 <hr>
                 <li><a href="adpost.ad?cnt=10">신고게시글</a></li>
                 <li><a href="adreply.ad?cnt=10">신고댓글</a></li>

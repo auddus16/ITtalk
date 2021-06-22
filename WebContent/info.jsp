@@ -29,7 +29,7 @@ function newpw2(){
 </head>
 <body>
 <!-- 닉네임, 아이디, 비밀번호, 이메일 -->
-<div style="text-align:left;">
+<div style="text-align:left; layout:fixed;margin-right:45%">
 <form class="p-5 bg-white">
               
               <h2 class="h4 text-black mb-5">개인정보</h2> 
