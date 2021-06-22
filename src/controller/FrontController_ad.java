@@ -106,6 +106,14 @@ public class FrontController_ad extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equals("/addelpost2.ad")) {//게시글 삭제
+			try {
+				forward=new Addelpost2Action().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		else if(action.equals("/addelreply.ad")) {//신고댓글 삭제
 			try {
 				forward=new AddelreplyAction().execute(req, res);
