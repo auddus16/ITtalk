@@ -73,7 +73,7 @@ public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
 		req.setAttribute("write", write);
 		
 		forward.setRedirect(false);
-		forward.setPath("게시판.jsp");
+		forward.setPath("hmy_board.jsp");
 
 
 		return forward;

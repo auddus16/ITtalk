@@ -34,7 +34,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;">
         <div style="display:inline-block">
-        <form action="#" method="post">
+        <form action="Board.do" method="post">
         <table style="width:800px;">
         	<tr><td><input type="text" class="form-control" placeholder="검색할 내용을 입력하세요!"></td>
         	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
