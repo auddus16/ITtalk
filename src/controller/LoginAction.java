@@ -50,7 +50,6 @@ public class LoginAction implements Action{
 		else if(login.adminLogin(id, req.getParameter("pw"))) {
 			session.setAttribute("ad_id", id);
 			session.setAttribute("ad_nick", ad.getAd_nick());
-			System.out.println("ad_nick :"+session.getAttribute("ad_nick"));
 			forward=new ActionForward();
 			forward.setPath("main.main");
 			forward.setRedirect(false);

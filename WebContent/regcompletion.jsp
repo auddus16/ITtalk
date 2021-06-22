@@ -52,8 +52,8 @@
         회원이 되신 것을 진심으로 축하드립니다.
     </div>
     <div class="btnfd right">
-        <button type=submit id="btnfd" name="button"input style="font-size:18px;" type="text"/><a href="">메인화면으로</a></button>
-        <button type=submit id="btnfd" name="button"input style="font-size:18px;" type="text"/><a href="">로그인</a></button>
+        <button type=submit id="btnfd" name="button"input style="font-size:18px;" type="text"/><a href="main.main">메인화면으로</a></button>
+        <button type=submit id="btnfd" name="button"input style="font-size:18px;" type="text"/><a href="hmy_login.jsp">로그인</a></button>
     </div>
 
 </body>

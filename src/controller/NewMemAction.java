@@ -23,22 +23,26 @@ public class NewMemAction implements Action {
 		Mb mem=new Mb();
 		mem.setMb_id(req.getParameter("mb_id"));
 		mem.setMb_pw(req.getParameter("mb_pw"));
-		mem.setMb_email(req.getParameter("md_email"));
+		mem.setMb_email(req.getParameter("mb_email"));
 		mem.setMb_nick(req.getParameter("mb_nick"));
 		mem.setMb_job(Boolean.parseBoolean(req.getParameter("mb_job")));
 		mem.setMb_certify(Boolean.parseBoolean(req.getParameter("mb_certify")));
 		
-		
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=res.getWriter();
 		if(membership.addMember(mem)){
-			out.println("<script>alert('회원가입 성공');opener.location.reload();window.close();</script>");
+			forward.setPath("regcompletion.jsp");
+			forward.setRedirect(false);
+			return forward;
 		}
 		else{
 			out.println("<script>alert('회원가입 실패');history.go(-1);</script>");
+			forward.setPath("newmem.main");
+			forward.setRedirect(false);
+			return forward;
 		}
 		
-		
-		return null;
 		
 		
 		

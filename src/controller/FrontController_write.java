@@ -53,56 +53,63 @@ public class FrontController_write extends HttpServlet {
 		// XxxAction.java 파일들을 작성할 예정
 		// Controller : M->보낼 데이터의 유무   V->어디로 보낼지
 		ActionForward forward=null;
-		if(command.equals("/게시글작성.do")) {
+		if(command.equals("/Newmsg.do")) {
 			try {
 				forward=new NewmsgAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/게시글삭제.do")) {
+		else if(command.equals("/Delmsg.do")) {
 			try {
 				forward=new DelmsgAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/게시글수정.do")) {
+		else if(command.equals("/UpdateMsg.do")) {
 			try {
 				forward=new UpdateMsgAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/게시글신고.do")) {
+		else if(command.equals("/MsgReport.do")) {
 			try {
 				forward=new MsgReportAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/좋아요.do")) {
+		else if(command.equals("/Board.do")) {
+			try {
+				forward=new BoardAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/Favorite.do")) {
 			try {
 				forward=new FavoriteAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/댓글작성.do")) {
+		else if(command.equals("/Newreply.do")) {
 			try {
 				forward=new NewreplyAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/댓글삭제.do")) {
+		else if(command.equals("Delreply.do")) {
 			try {
 				forward=new DelreplyAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/댓글신고.do")) {
+		else if(command.equals("/ReplyReport.do")) {
 			try {
 				forward=new ReplyReportAction().execute(req, res);
 			}catch(Exception e) {

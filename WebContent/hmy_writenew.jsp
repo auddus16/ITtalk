@@ -31,43 +31,50 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
+    <!-- 게시글 작성 폼 시작 -->
     <section class="site-section">
-      <div class="container" style="text-align:center;">
-        <div style="display:inline-block">
-        <form action="Board.do" method="post">
-        <table style="width:800px;">
-        	<tr><td><input type="text" class="form-control" placeholder="검색할 내용을 입력하세요!"></td>
-        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
-        </table>
-		</form>
-		</div>
-      </div>
+        <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:5%;">
+            <h3 class="mb-5">글쓰기</h3>
+              <div style="">
+                
+                <form action="#" class=""><!-- 컨롤링크 연결 -->
+                  
+                  <div>
+                  <span style="float:left;">
+        			<label for="pet-select">카테고리 *</label><!-- 이부분 카테고리table에서 카테고리가져와서 출력 -->
+						<select name="pets" id="category">
+						<!-- forEach 시작 -->
+    						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
+    						<option value="2">개발자의 회사생활</option>
+    						<option value="2">자유</option>
+    					<!-- forEach 끝 -->
+						</select>
+					</span>
+					</div>
+					<br><br>
+                  
+                  <div class="form-group">
+                    <label for="name">제목 *</label>
+                    <input type="text" class="form-control" id="title" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">첨부파일</label>
+                    <input type="file" class="form-control" id="" multiple> 
+                  </div>
+                  <div class="form-group">
+                    <label for="message">내용 *</label>
+                    <textarea name="" id="message" cols="30" rows="10" class="form-control" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="게시글 등록" class="btn btn-primary btn-md text-white" style="float:right;">
+                  </div>
+
+                </form>
+                </div>
+              </div>
     </section>
 	
- 	<section class="site-section">
-  		<div class="p-4 mb-3 bg-white" style="text-align:center;">
-  			<div style="display:inline-block">
-  			<dl>
-                <dt>실시간 인기글</dt>
-                <dd>
-                    <ol>
-                        <li><a href="#">1 순위</a></li>
-                        <li><a href="#">2 순위</a></li>
-                        <li><a href="#">3 순위</a></li>
-                        <li><a href="#">4 순위</a></li>
-                        <li><a href="#">5 순위</a></li>
-                        <li><a href="#">6 순위</a></li>
-                        <li><a href="#">7 순위</a></li>
-                        <li><a href="#">8 순위</a></li>
-                        <li><a href="#">9 순위</a></li>
-                        <li><a href="#">10 순위</a></li>
-                    </ol>
-                </dd>
-            </dl>
-            </div>	
-  		</div>
-  	</section>
-    
+ 	<!-- 작성폼 끝 -->
     <footer class="site-footer">
       <div class="container">
         <div class="row">

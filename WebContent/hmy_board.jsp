@@ -53,7 +53,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="#" method="post">
+        <form action="Board.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
@@ -77,7 +77,7 @@
  	<div class="home-list">
  	<!-- foreach 게시판카테고리개수만큼-->
      		<div class="categories">
-                <a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>코드 도움</h3><!-- 해당카테고리화면으로 -->
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
@@ -89,7 +89,7 @@
 				
               </div>
      		<div class="categories">
-     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>개발자의 회사생활</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
@@ -101,7 +101,7 @@
 				
               </div>
      		<div class="categories">
-     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>프로그램 이슈</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
@@ -113,7 +113,7 @@
 				
               </div>
      		<div class="categories">
-     		<a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
+     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>자유</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->

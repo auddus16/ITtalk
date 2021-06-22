@@ -54,7 +54,7 @@ table.type09 td {
   <thead>
   <tr>
     <th scope="cols">NO</th>
-    <th scope="cols">신고회원번호</th>
+    <th scope="cols">제목</th>
     <th scope="cols">신고유형</th>
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>

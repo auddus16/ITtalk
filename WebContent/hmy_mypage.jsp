@@ -43,7 +43,7 @@
  	
  	<aside class="site-section">
   		<div class="p-4 mb-3 bg-white">
-  			<div id="inHere" style="width:1000px;text-aligh:left;padding-left:230px;text-align:center;">
+  			<div id="inHere" style="width:100%;text-aligh:left;padding-left:230px;text-align:center;">
   				<jsp:include page='<%=pagefile+".jsp" %>'/>
   			</div>
   		</div>

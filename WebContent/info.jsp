@@ -29,7 +29,7 @@ function newpw2(){
 </head>
 <body>
 <!-- 닉네임, 아이디, 비밀번호, 이메일 -->
-<div style="text-align:left;">
+<div style="text-align:left; layout:fixed;margin-right:45%">
 <form class="p-5 bg-white">
               
               <h2 class="h4 text-black mb-5">개인정보</h2> 
@@ -79,6 +79,12 @@ function newpw2(){
                   <label class="text-black" for="id">아이디</label> 
                   <input type="text" name="id" class="form-control"  value="${myInfo.mb_id}"  disabled>
                 </div>
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="id">이메일</label> 
+                  <input type="text" name="email" class="form-control"  value="${myInfo.mb_email}"  disabled>
+                </div>
+                <br>
               </div>
 
               <div class="row form-group">
