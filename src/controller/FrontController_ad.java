@@ -68,7 +68,7 @@ public class FrontController_ad extends HttpServlet {
 		}
 		else if(action.equals("/adreply.ad")) {//신고게시글 수정
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new AdreplyAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,7 +76,23 @@ public class FrontController_ad extends HttpServlet {
 		}
 		else if(action.equals("/adallpost.ad")) {//전체 게시글조회 및 삭제
 			try {
-				forward=new NewmsgAction().execute(req, res);
+				forward=new AdallpostAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/addelpost.ad")) {//신고게시글 삭제
+			try {
+				forward=new AddelpostAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/addelreply.ad")) {//신고댓글 삭제
+			try {
+				forward=new AddelreplyAction().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

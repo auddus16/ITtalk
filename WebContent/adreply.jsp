@@ -43,13 +43,13 @@ table.type09 td {
 </head>
 <body>
 
-<div id="adpost" align="center">
+<div id="adreply" align="center">
 <h4>신고 댓글</h4>
 <hr>
 <div align="right">
 	<h6>총 ${fn:length(adreplyList)}개</h6>
 </div>
-<div id="adposttable" align="center">
+<div id="adreplytable" align="center">
 		<table class="type09">
   <thead>
   <tr>
@@ -82,7 +82,7 @@ table.type09 td {
 	    <td>${v.rc_write}</td>
 	    <td>${v.rc_date}</td>
 	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
-	    <td><a href="ff.jsp">삭제</a></td>
+	    <td><a href="addelreply.ad?c_no=${v.c_no}">삭제</a></td>
 	  </tr>
   
   </c:forEach>
