@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<jsp:useBean id="adDAO" class="itTalkDAO.AdminMenu"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자페이지-1신고게시글</title>
+<title>관리자페이지1-신고게시글 확인</title>
 <style type="text/css">
 table.type09 {
   border-collapse: collapse;
@@ -20,7 +25,7 @@ table.type09 thead th {
   border-bottom: 3px solid #036;
 }
 table.type09 tbody th {
-  width: 300px;
+  width: 60px;
   padding: 10px;
   font-weight: bold;
   vertical-align: top;
@@ -37,35 +42,56 @@ table.type09 td {
 </style>
 </head>
 <body>
-<!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
-<!-- 삭제액션 -->
-<div>
-<h4>신고댓글</h4>
+
+<div id="adpost" align="center">
+<h4>신고 댓글</h4>
 <hr>
-	<table class="type09">
+<div align="right">
+	<h6>총 ${fn:length(adreplyList)}개</h6>
+</div>
+<div id="adposttable" align="center">
+		<table class="type09">
   <thead>
   <tr>
-    <th scope="cols">신고댓글번호</th>
-    <th scope="cols">신고자</th>
+    <th scope="cols">NO</th>
+    <th scope="cols">신고회원번호</th>
     <th scope="cols">신고유형</th>
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>
+    <th scope="cols">조회</th>
     <th scope="cols">삭제</th>
   </tr>
   </thead>
   <tbody>
-  <!-- 신고받은 게시글forEach -->
-  <tr>
-    <th scope="row">댓글번호1</th>
-    <td>신고자1</td>
-    <td>신고유형1</td>
-    <td>신고내용1</td>
-    <td>신고일자</td>
-    <td><button class="btn btn-primary btn-md text-white">삭제</button></td>
-  </tr>
+
+  <!-- 신고게시글 출력 forEach 
+  private int rc_no; 
+	private int c_no;
+	private int mb_no;
+	private int rctg_no;
+	private String rc_write;
+	private String rc_date;
+  -->
+
+  <c:forEach var="v" items="${adreplyList}" varStatus="status">
+	  
+	  <tr>
+	    <th scope="row">${v.c_no}</th>
+	    <td>${v.mb_no}</td>
+	    <td>${adDAO.getReportCategory(v.rctg_no)}</td>
+	    <td>${v.rc_write}</td>
+	    <td>${v.rc_date}</td>
+	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="ff.jsp">삭제</a></td>
+	  </tr>
   
+  </c:forEach>
+	
   </tbody>
 </table>
+</div>
+<br>
+<div align="center"><a id="load-more" href="adreply.ad?cnt=${cnt+3}">더보려면 스크롤을 움직이세요.&gt;&gt;</a></div>
 </div>
 <br>
 

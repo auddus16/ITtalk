@@ -81,8 +81,8 @@ table.type09 td {
 	    <td>${adDAO.getReportCategory(v.rctg_no)}</td>
 	    <td>${v.rb_write}</td>
 	    <td>${v.rb_date}</td>
-	    <td><a href="ff.jsp">${v.rb_date}</a></td><!-- 게시판 컨롤 -->
-	    <td><a href="ff.jsp">${v.rb_date}</a></td>
+	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="ff.jsp">삭제</a></td>
 	  </tr>
   
   </c:forEach>

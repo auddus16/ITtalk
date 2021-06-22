@@ -54,7 +54,7 @@
 		</c:when>
 		<c:when test="${ad_id != null }">
 			<!-- 관리자 -->
-			<li><a href="adfost.ad" class="nav-link"><img src="images/ad.png" width="40" height="40" alt="관리자"></a></li>
+			<li><a href="adpost.ad" class="nav-link"><img src="images/ad.png" width="40" height="40" alt="관리자"></a></li>
 		</c:when>
 		<c:otherwise>
 			<!-- null -->
