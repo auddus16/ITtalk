@@ -338,7 +338,38 @@ public class AdminMenu {
 		return true;
 	}
 	
-	
+	// 게시판 카테고리 출력
+	public ArrayList<Bc> getBoardCategory() {
+		ArrayList<Bc> boardCategory=new ArrayList();
+		
+		conn= DBManager.connect();
+		String sql="select * FROM Bc";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Bc bc=new Bc();
+				
+				bc.setBc_no(rs.getInt("bc_no"));
+				bc.setBc_name(rs.getString("bc_name"));
+
+				boardCategory.add(bc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return boardCategory;
+		
+	}
 	
 	// 게시판 카테고리 수정 기능
 	public boolean updateBc(int bc_no) {
