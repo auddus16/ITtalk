@@ -372,15 +372,13 @@ public class AdminMenu {
 	}
 	
 	// 게시판 카테고리 수정 기능
-	public boolean updateBc(int bc_no,String bc_name) {
+	public boolean updateBc(int bc_no, String bc_name) {
 		conn=DBManager.connect();
-		String sql="update Bc set bc_no=?,bc_name=? where bc_no=?";
+		String sql="update Bc set bc_name=? where bc_no=?";
 		try {
-			Bc bc = new Bc();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bc.getBc_no());
-			pstmt.setString(2, bc.getBc_name());
-			pstmt.setInt(3, bc_no);
+			pstmt.setString(1, bc_name);
+			pstmt.setInt(2, bc_no);
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

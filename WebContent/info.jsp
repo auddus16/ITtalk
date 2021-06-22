@@ -79,6 +79,12 @@ function newpw2(){
                   <label class="text-black" for="id">아이디</label> 
                   <input type="text" name="id" class="form-control"  value="${myInfo.mb_id}"  disabled>
                 </div>
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="id">이메일</label> 
+                  <input type="text" name="email" class="form-control"  value="${myInfo.mb_email}"  disabled>
+                </div>
+                <br>
               </div>
 
               <div class="row form-group">

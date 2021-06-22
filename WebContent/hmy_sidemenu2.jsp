@@ -15,7 +15,7 @@
                 <li><a href="adpost.ad?cnt=10">신고게시글</a></li>
                 <li><a href="adreply.ad?cnt=10">신고댓글</a></li>
                 <li><a href="adallpost.ad?cnt=10">전체 게시글 조회 및 삭제</a></li>
-                <li><a href="admodifycate.ad">게시판카테고리 수정</a></li>
+                <li><a href="adcate.ad">게시판카테고리 수정</a></li>
               </div>
       </section>
 </body>

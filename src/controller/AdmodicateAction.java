@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import itTalkDAO.AdminMenu;
 
@@ -15,7 +14,6 @@ public class AdmodicateAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		HttpSession session= req.getSession();
 		AdminMenu adDAO = new AdminMenu();
 		//updateBc(int bc_no)
 		

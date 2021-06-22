@@ -31,12 +31,6 @@
               </div>
               </c:forEach>
 			<!-- 게시판카테고리 출력부분 foreach -->
-
-              <div class="row form-group">
-                <div class="col-md-6">
-                <button type="submit" class="btn btn-primary btn-md text-white" formaction="">수정완료</button>
-                </div> 
-                </div> 
             </form>
 </div>
 </body>

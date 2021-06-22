@@ -15,22 +15,20 @@ public class AddelcateAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-//		HttpSession session= req.getSession();
-//		AdminMenu adDAO = new AdminMenu();
-//		//updateBc(int bc_no)
-//		
-//		req.setCharacterEncoding("UTF-8");
-//		res.setContentType("text/html; charset=UTF-8");
-//		
-//		PrintWriter out=res.getWriter();
-//		
-//		if(adDAO.updateBc(Integer.parseInt(req.getParameter("bc_no")), req.getParameter("cate"))) {
-//			out.println("<script>alert('수정되었습니다.');location.href='adcate.ad';</script>");
-//		}
-//		else {
-//			
-//			out.println("<script>alert('다시 시도하세요. 수정실패!');location.href='adcate.ad';</script>");
-//		}
+		AdminMenu adDAO = new AdminMenu();
+		
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out=res.getWriter();
+		
+		if(adDAO.deleteBc(Integer.parseInt(req.getParameter("bc_no")))) {
+			out.println("<script>alert('삭제되었습니다.');location.href='adcate.ad';</script>");
+		}
+		else {
+			
+			out.println("<script>alert('다시 시도하세요. 삭제실패!');location.href='adcate.ad';</script>");
+		}
 		return null;
 	}
 
