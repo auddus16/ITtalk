@@ -254,6 +254,79 @@ public class Board {
 		System.out.println("게시글 출력 성공");
 		return datas;
 	}
+	// 댓글 리밋 셋팅
+	public ArrayList<BoardSet> BoardPrint(int b_no , int cnt){//게시글 번호 , 댓글 리밋
+		
+		ArrayList<BoardSet> datas=new ArrayList<>();
+		BoardSet bs = new BoardSet();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, b_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {// 게시글 데이터
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				
+				ArrayList<C> cs=new ArrayList<>();
+				
+				String sql2="select * from c where b_no=? limit 0,?";
+				pstmt=conn.prepareStatement(sql2);
+				pstmt.setInt(1, b_no);
+				pstmt.setInt(2, cnt);
+				ResultSet rs2=pstmt.executeQuery();
+				while(rs2.next()) { //게시글 댓글 데이터
+					C c=new C();
+					c.setC_no(rs2.getInt("c_no"));
+					c.setB_no(rs2.getInt("b_no"));
+					c.setMb_no(rs2.getInt("mb_no"));
+					c.setC_write(rs2.getString("c_write"));
+					c.setC_date(rs2.getString("c_date"));
+					c.setC_secret(rs2.getBoolean("c_secret"));
+					c.setC_deleted(rs2.getBoolean("c_deleted"));
+					c.setC_report(rs2.getInt("c_report"));
+					cs.add(c);
+				}
+				rs2.close();
+				
+				
+				bs.setBoard(b);;
+				bs.setRlist(cs);
+				
+				datas.add(bs);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("게시글 출력 실패");
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("게시글 출력 성공");
+		return datas;
+	}
 	
 	
 	// 댓글 등록
@@ -488,22 +561,71 @@ public class Board {
 	
 	
 	// 검색 게시글 목록 출력(제목+내용)
+	// 리밋
 	public ArrayList<B> titleSearch(String search){
 
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_title=? or b_write=? order by b_no desc";
+			String sql="select * from b where b_title=? or b_write=? order by b_no desc ";
 			pstmt=conn.prepareStatement(sql);
 
 			pstmt.setString(1, search);
 			pstmt.setString(2, search);
 
-
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();
 
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("검색 게시글 목록 출력 실패(제목+내용)");
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("검색 게시글 목록 출력 성공(제목+내용)");
+		return datas;
+	}
+	
+	// 리밋
+	public ArrayList<B> titleSearch(String search , int cnt){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_title=? or b_write=? limit 0,? order by b_no desc ";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setInt(3, cnt);
+			
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
 				b.setB_no(rs.getInt("b_no"));
 				b.setMb_no(rs.getInt("mb_no"));
 				b.setBc_no(rs.getInt("bc_no"));
@@ -545,6 +667,52 @@ public class Board {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, nick);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("검색 게시글 목록 출력 실패(작성자)");
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("검색 게시글 목록 출력 성공(작성자)");
+		return datas;
+	}
+	//리밋
+	public ArrayList<B> nickSearch(String nick , int cnt){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where b_nick=? limit 0,? order by b_no desc";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, nick);
+			pstmt.setInt(2, cnt);
 			
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -625,6 +793,52 @@ public class Board {
 		return datas;
 	}
 	
+	// 리밋
+	public ArrayList<B> search(int cnt){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b limit 0,? order by b_no desc";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cnt);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("게시글 목록 출력 실패");
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("게시글 목록 출력 성공");
+		return datas;
+	}
+	
 	// 카테고리 게시글 목록 출력 
 	
 	public ArrayList<B> bcSearch(String bc_no){
@@ -636,6 +850,53 @@ public class Board {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, bc_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				B b=new B();
+				
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				datas.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("카테고리 게시글 목록 출력 실패");
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("카테고리 게시글 목록 출력 성공");
+		return datas;
+	}
+	
+	//리밋
+	public ArrayList<B> bcSearch(String bc_no , int cnt){
+		
+		ArrayList<B> datas = new ArrayList<>();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from b where bc_no=? limit 0,? order by b_no desc";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bc_no);
+			pstmt.setInt(2, cnt);
 			
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
