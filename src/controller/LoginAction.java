@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Login;
 import itTalkDAO.MyPageDAO;
+import itTalkDO.B;
 import itTalkDO.Mb;
 
 
@@ -21,18 +24,18 @@ public class LoginAction implements Action{
 		Login login = new Login();
 		MyPageDAO dao=new MyPageDAO();
 		String id=req.getParameter("id");
-		Mb mb=new Mb();
-
+		int mb_no=dao.getMb_no(id);
+		Mb mb= dao.Info(mb_no);
+		
 		ActionForward forward= null;
 		String password = req.getParameter("pw");
 		System.out.println("id : "+id+"/ pw : "+password);
 		if(login.login(id, req.getParameter("pw"))) {
 			HttpSession session=req.getSession();
 			session.setAttribute("mb_id", id);
-			session.setAttribute("mb_no", dao.getMb_no(id));
-			System.out.println("mb_no : "+dao.getMb_no(id));
-			System.out.println("技记 mb_id : "+session.getAttribute("mb_id"));
-			System.out.println("技记 mb_no : "+session.getAttribute("mb_no"));
+			session.setAttribute("mb_no", mb_no);
+			session.setAttribute("mb_job", mb.isMb_job());
+			session.setAttribute("mb_nick", mb.getMb_nick());
 			forward=new ActionForward();
 			forward.setPath("main.main");
 			forward.setRedirect(false);

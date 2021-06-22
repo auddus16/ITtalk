@@ -20,14 +20,14 @@
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
 
 	<c:choose>
-		<c:when test="${mb_id != null}">
-		<li>${mb_id}님,환영합니다!</li>&nbsp;&nbsp;
+		<c:when test="${mb_nick != null}">
+		<li>${mb_nick}님,환영합니다!</li>&nbsp;&nbsp;
 			<!-- 로그아웃 -->
 			<input type="hidden" name="action" value="logout">
 			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
-		<c:when test="${ad_id != null }">
-			<li>${ad_id}님,환영합니다!</li>&nbsp;&nbsp;
+		<c:when test="${ad_nick != null }">
+			<li>${ad_nick} 관리자님,환영합니다!</li>&nbsp;&nbsp;
 			<input type="hidden" name="action" value="logout">
 			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
@@ -39,18 +39,26 @@
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${mb_id == null && ad_id==null }" >
-	<li><a class="nav-link" href="newmem.jsp">회원가입</a><li>
+	<li><a class="nav-link" href="regform.jsp">회원가입</a><li>
 	</c:if>
 	
 	<!-- ****관리자인지 회원인지 먼저 구별해야함.. 관리자아이콘도 추가 -->
 	<c:choose>
-	<c:when test="${ujob == null}"><!-- 개발자/예비개발자 아이콘 -->
+	<c:when test="${mb_job == true}"><!-- 개발자/예비개발자 아이콘 -->
 			<!-- 예비 -->
 			<li><a href="info.mem" class="nav-link"><img src="images/user1.png" width="40" height="40" alt="예비"></a></li>
 		</c:when>
-		<c:otherwise>
+		<c:when test="${mb_job == false}">
 			<!-- 개발자 -->
-			<li><a href="#work-section" class="nav-link"><img src="images/user2.png" alt="예비"></a></li>
+			<li><a href="info.mem" class="nav-link"><img src="images/user2.png" width="40" height="40" alt="예비"></a></li>
+		</c:when>
+		<c:when test="${ad_id != null }">
+			<!-- 관리자 -->
+			<li><a href="adfost.ad" class="nav-link"><img src="images/ad.png" width="40" height="40" alt="관리자"></a></li>
+		</c:when>
+		<c:otherwise>
+			<!-- null -->
+			
 		</c:otherwise>
 	</c:choose>
               </ul>
