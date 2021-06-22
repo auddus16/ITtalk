@@ -22,7 +22,7 @@ public class MyPageDAO {
 	public ArrayList<C> getMyComment(int mb_no) {
 		conn= DBManager.connect();
 		ArrayList<C> myComments=new ArrayList();
-		String sql="select * FROM C WHERE mb_no=?";
+		String sql="select * FROM C WHERE mb_no=? ORDER BY c_date DESC";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
@@ -187,7 +187,7 @@ public class MyPageDAO {
 	public ArrayList<Bs> getMyBoardSave(int mb_no) {
 		conn= DBManager.connect();
 		ArrayList<Bs> myBoardsSave=new ArrayList();
-		String sql="select * FROM Bs WHERE mb_no=?";
+		String sql="select * FROM Bs WHERE mb_no=? ORDER BY bs_date DESC";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, mb_no);
