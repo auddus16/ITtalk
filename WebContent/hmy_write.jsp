@@ -27,7 +27,14 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-    
+ <script type="text/javascript">
+function report(){
+	window.open("report.jsp","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
+	//어떤 페이지를 어떻게 띄울지 옵션
+);
+}
+
+</script>   
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
@@ -54,10 +61,11 @@
                   	<a href="#">삭제</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 -->
                &nbsp;<a href="#">수정</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 (복붙)-->
               &nbsp;<a href="#"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
-              &nbsp;<a href="#"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능 컨롤 링크 연결 -->
+              &nbsp;<a href="javascript:report();"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
                   </div>
                &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">30</a><!-- 댓글수 -->
                 </div>
+ 	
  	<!-- 댓글 작성 폼 시작 -->
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
@@ -68,6 +76,7 @@
                     
                     <label for="message">댓글작성자닉네임11</label><!--닉네임 적어주세요-->
                     <textarea name="" id="message" cols="2" rows="2" class="form-control" required></textarea>
+                    <label><input type="checkbox" name="secret" value="1">비밀댓글</label>
                     <input type="submit" value="등록" class="btn btn-primary btn-md text-white" style="float:right;">
                 </form>
                   </div>
@@ -84,12 +93,21 @@
                     <label for="message">댓글작성자닉네임11</label>
                     <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
                     <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
-                    <!--  
+                    <!--  (본인댓글이 아닌)비밀댓글을 만났을때 블라인드처리
                     <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
                 </form>
                   </div>
                   <br>
                   <!-- forEach 끝 -->
+              
+              <!-- 비밀댓글 출력 형태 -->
+              <div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
+               <div>비밀댓글입니다.</div> 
+               </div>
+                 <br>
+               <!-- 비밀댓글 출력 끝 -->
+              
+              
               <div>
                 <form action="#" class=""><!-- 컨롤링크 연결 -->
                     <label for="message">댓글작성자닉네임11</label>
@@ -109,7 +127,8 @@
                     <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
                 </form>
                   </div>
-                  <br>
+                  
+               
                   <div align="center"><a id="load-more" href="mypost.mem?cnt=${cnt+1}">더보기&gt;&gt;</a></div>
         </div>
 	
