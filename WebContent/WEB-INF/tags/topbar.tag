@@ -26,8 +26,8 @@
 			<input type="hidden" name="action" value="logout">
 			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>
-		<c:when test="${ad_id != null }">
-			<li>${ad_id} 관리자님,환영합니다!</li>&nbsp;&nbsp;
+		<c:when test="${ad_nick != null }">
+			<li>${ad_nick} 관리자님,환영합니다!</li>&nbsp;&nbsp;
 			<input type="hidden" name="action" value="logout">
 			<li><a href="logout.main" class="nav-link">로그아웃</a></li>
 		</c:when>

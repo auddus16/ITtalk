@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import itTalkDAO.AdminMenu;
 import itTalkDAO.Login;
 import itTalkDAO.MyPageDAO;
+import itTalkDO.Ad;
 import itTalkDO.B;
 import itTalkDO.Mb;
 
@@ -23,15 +25,20 @@ public class LoginAction implements Action{
 		
 		Login login = new Login();
 		MyPageDAO dao=new MyPageDAO();
+		AdminMenu adm=new AdminMenu();
+		
 		String id=req.getParameter("id");
 		int mb_no=dao.getMb_no(id);
-		Mb mb= dao.Info(mb_no);
+		int ad_no=adm.getAd_no(id);
 		
+		Mb mb= dao.Info(mb_no);
+		Ad ad= adm.AdInfo(ad_no);
+		
+		HttpSession session=req.getSession();
 		ActionForward forward= null;
 		String password = req.getParameter("pw");
 		System.out.println("id : "+id+"/ pw : "+password);
 		if(login.login(id, req.getParameter("pw"))) {
-			HttpSession session=req.getSession();
 			session.setAttribute("mb_id", id);
 			session.setAttribute("mb_no", mb_no);
 			session.setAttribute("mb_job", mb.isMb_job());
@@ -41,8 +48,9 @@ public class LoginAction implements Action{
 			forward.setRedirect(false);
 		}
 		else if(login.adminLogin(id, req.getParameter("pw"))) {
-			HttpSession session=req.getSession();
 			session.setAttribute("ad_id", id);
+			session.setAttribute("ad_nick", ad.getAd_nick());
+			System.out.println("ad_nick :"+session.getAttribute("ad_nick"));
 			forward=new ActionForward();
 			forward.setPath("main.main");
 			forward.setRedirect(false);

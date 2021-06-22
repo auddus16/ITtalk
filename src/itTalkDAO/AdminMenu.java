@@ -461,6 +461,38 @@ public class AdminMenu {
 			}
 		}
 		return ad;
-	}	
+	}
+	
+	// 로그인할때 입력받은 ad_id로  ad_no을 받을 수 있는 메소드
+	public int getAd_no(String ad_id){
+		int ad_no=0;
+		try {
+			conn=DBManager.connect();
+			String sql="select ad_no from Ad where ad_id=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ad_id);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ad_no=rs.getInt("ad_no");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return ad_no;
+	}
 	
 }
