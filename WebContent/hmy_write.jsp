@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,50 +32,91 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
-    <!-- 게시글 작성 폼 시작 -->
+	<!-- 게시글시작 -->
     <section class="site-section">
-        <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:5%;">
-            <h3 class="mb-5">글쓰기</h3>
+        <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:0;">
+            <div>&gt;&gt;카테고리명-코드도움</div><!-- 카테고리명 넣어주세요 -->
+            <h3>게시글 제목11</h3>
+            <div>작성자닉네임1 2021-06-23 00:00:00 <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
+              <hr>
               <div style="">
-                
-                <form action="#" class=""><!-- 컨롤링크 연결 -->
-                  
-                  <div>
-                  <span style="float:left;">
-        			<label for="pet-select">카테고리 *</label><!-- 이부분 카테고리table에서 카테고리가져와서 출력 -->
-						<select name="pets" id="category">
-						<!-- forEach 시작 -->
-    						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
-    						<option value="2">개발자의 회사생활</option>
-    						<option value="2">자유</option>
-    					<!-- forEach 끝 -->
-						</select>
-					</span>
-					</div>
-					<br><br>
-                  
-                  <div class="form-group">
-                    <label for="name">제목 *</label>
-                    <input type="text" class="form-control" id="title" required>
-                  </div>
-                  <div class="form-group">
                     <label for="email">첨부파일</label>
-                    <input type="file" class="form-control" id="" multiple> 
+                    <input type="file" class="form-control" id="">
                   </div>
                   <div class="form-group">
-                    <label for="message">내용 *</label>
+                    <label for="message"></label>
                     <textarea name="" id="message" cols="30" rows="10" class="form-control" required></textarea>
                   </div>
-                  <div class="form-group">
-                    <input type="submit" value="게시글 등록" class="btn btn-primary btn-md text-white" style="float:right;">
+                  <div style="float:right;">
+                  <!-- 본인게시글이라면, 삭제, 수정 버튼 보임(활성화) -->
+                  <!-- session에 저장된 id와 해당게시글의 id가 같은지-->
+					<!-- jstl로 test해주세요 + 컨롤링크 -->
+                  	<a href="#">삭제</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 -->
+               &nbsp;<a href="#">수정</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 (복붙)-->
+              &nbsp;<a href="#"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
+              &nbsp;<a href="#"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능 컨롤 링크 연결 -->
                   </div>
-
-                </form>
+               &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">30</a><!-- 댓글수 -->
                 </div>
-              </div>
-    </section>
+ 	<!-- 댓글 작성 폼 시작 -->
+        <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
+              <hr>
+              <div style="">
+                <form action="#" class=""><!-- 컨롤링크 연결 -> 신고버튼 때문-->
+                
+                <input type="hidden" name="c_no" value="c_no"> <!-- 신고시, 댓글 번호 넘겨줘야함.값 추가해야함. -->
+                    
+                    <label for="message">댓글작성자닉네임11</label><!--닉네임 적어주세요-->
+                    <textarea name="" id="message" cols="2" rows="2" class="form-control" required></textarea>
+                    <input type="submit" value="등록" class="btn btn-primary btn-md text-white" style="float:right;">
+                </form>
+                  </div>
+                  </div>
 	
- 	<!-- 작성폼 끝 -->
+ 	<!-- 댓글작성 끝 -->
+ 	
+ 	 	<!-- 댓글 시작 -->
+        <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
+              <hr>
+              <!-- forEach 댓글 출력 부분 -->
+              <div>
+                <form action="#" class=""><!-- 컨롤링크 연결 -->
+                    <label for="message">댓글작성자닉네임11</label>
+                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
+                    <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
+                    <!--  
+                    <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
+                </form>
+                  </div>
+                  <br>
+                  <!-- forEach 끝 -->
+              <div>
+                <form action="#" class=""><!-- 컨롤링크 연결 -->
+                    <label for="message">댓글작성자닉네임11</label>
+                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
+                    <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
+                    <!--  
+                    <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
+                </form>
+                  </div>
+                  <br>
+              <div style="">
+                <form action="#" class=""><!-- 컨롤링크 연결 -->
+                    <label for="message">댓글작성자닉네임11</label>
+                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
+                    <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
+                    <!--  
+                    <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
+                </form>
+                  </div>
+                  <br>
+                  <div align="center"><a id="load-more" href="mypost.mem?cnt=${cnt+1}">더보기&gt;&gt;</a></div>
+        </div>
+	
+ 	<!-- 댓글 끝 -->
+    </section>
+ 	<!-- 게시글 끝 -->
+ 	
     <footer class="site-footer">
       <div class="container">
         <div class="row">
