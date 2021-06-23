@@ -109,6 +109,14 @@ public class FrontController_main extends HttpServlet {
              e.printStackTrace();
           }
        }
+      else if(action.equals("/emailsend.main")) {
+    	  try {
+              forward=new EmailSendAction().execute(req, res);
+           } catch (Exception e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+           }
+      }
       
       
       else {

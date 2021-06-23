@@ -47,6 +47,10 @@ function createFrom(obj){
 		obj.email.focus();
 		return false;
 	}
+	if(joinform.emailDuplication.value != "emailCheck"){
+        alert("이메일 인증을 해주세요.");
+        return false;
+    }
 
 
 	if(joinform.mb_job.value ==""){
@@ -57,11 +61,18 @@ function createFrom(obj){
 	function inputIdChk(){
         document.joinform.idDuplication.value ="idUncheck";
     }
+	function inputEmailChk(){
+        document.joinform.emailDuplication.value ="emailUncheck";
+    }
 
 }
 	function openCheckId(){
 		window.name="regform";
 		openWin = window.open("idCheck.jsp","idcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
+	}
+	function openCheckEmail(){
+		window.name="regform";
+		window.open("emailCheck.jsp","emailcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
 	}
 </script>
 <meta charset="utf-8">
@@ -180,8 +191,9 @@ button {
 		<div class="menu" style="border-bottom-width: 0px;">
 			<div id="id" style="margin-left: 10px,">이메일</div>
 			<span> 
-				<input type="text" name="mb_email" size="25" />
-				<button type="button" onclick="idCheck(joinform, '${root}')">이메일인증</button>
+				<input type="email" name="mb_email" size="25" onkeydown="inputEmailChk()">
+				<button type="button" onclick="openCheckEmail()">이메일인증</button>
+				<input type="hidden" name="emailDuplication" >
 			</span>
 		</div>
 		
