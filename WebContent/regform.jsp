@@ -8,64 +8,60 @@
 <title>ITtalk</title>
 <script type="text/javascript">
 function createFrom(obj){
-	if(obj.mb_id.value ==""){
+	if(joinform.mb_id.value ==""){
 		alert("아이디를 반드시 입력하세요.");
 		obj.id.focus();
 		return false;
 	}
-	
-	if(obj.mb_pw.value ==""){
+	if(joinform.idDuplication.value != "idCheck"){
+        alert("아이디 중복체크를 해주세요.");
+        return false;
+    }
+
+	if(joinform.mb_pw.value ==""){
 		alert("비밀번호를 반드시 입력하세요.");
 		obj.password.focus();
 		return false;
 	}
 	
-	if(obj.mb_pw_check.value ==""){
+	if(joinform.mb_pw_check.value ==""){
 		alert("비밀번호 확인란에 입력해주세요.");
 		obj.passwordCheck.focus();	
 		return false;
 	}
 	
-	if(obj.mb_pw.value != obj.mb_pw_check.value){
+	if(joinform.mb_pw.value != joinform.mb_pw_check.value){
 		alert("입력하신 비밀번호가 같지 않습니다.");
 		obj.passwordCheck.focus();
 		return false;
 	}
 	
-	if(obj.mb_nick.value ==""){
+	if(joinform.mb_nick.value ==""){
 		alert("닉네임을 반드시 입력하세요.");
 		obj.name.focus();
 		return false;
 	}
 	
-	if(obj.email.value ==""){
+	if(joinform.email.value ==""){
 		alert("이메일을 입력하세요.");
 		obj.email.focus();
 		return false;
 	}
 
 
-	if(obj.mb_job.value ==""){
+	if(joinform.mb_job.value ==""){
 		alert("예비/개발자를 선택하세요.");
 		obj.job.focus();
 		return false;
 	}
 	function inputIdChk(){
-        document.userInfo.idDuplication.value ="idUncheck";
+        document.joinform.idDuplication.value ="idUncheck";
     }
 
 }
 	function openCheckId(){
 		window.name="regform";
 		openWin = window.open("idCheck.jsp","idcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
-	}
-	function chkForm(){
-	var checkid=document.all.checkid.value;
-	if(checkid==0){
-	alert("ID 중복체크를 하세요!");
-	return false;
-	}
-	return true;
 	}
 </script>
 <meta charset="utf-8">
@@ -156,8 +152,9 @@ button {
 
 		<div id="menu">아이디</div>
 			<span>* 
-				<input type="text" class="checkInfo" name="mb_id" size="12" /> 
+				<input type="text" class="checkInfo" name="mb_id" size="12" onkeydown="inputIdChk()" /> 
 				<button type="button" onClick="openCheckId();">ID중복확인</button>
+				<input type="hidden" name="idDuplication" >
 			</span>
 		</div>
 

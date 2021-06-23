@@ -17,7 +17,7 @@
 		return true;
 	}
 	 function pValue(){
-         document.getElementById("idcheck").value = opener.document.joinform.mb_id.value;
+         document.idcheck.idcheck.value = opener.document.joinform.mb_id.value;
      }
 </script>
 </head>

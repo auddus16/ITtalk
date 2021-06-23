@@ -23,15 +23,16 @@ public class NewMemAction implements Action {
 		String mb_pw_check=req.getParameter("mb_pw_check");
 		String mb_email=req.getParameter("mb_email");
 		String mb_nick=req.getParameter("mb_nick");
-		
 		boolean mb_job=Boolean.parseBoolean(req.getParameter("mb_job"));
 		boolean mb_certify=Boolean.parseBoolean(req.getParameter("mb_certify"));
+		
+		
 		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=res.getWriter();
 		
-		if(mb_id!="" && mb_pw!="" && mb_email!="" && mb_nick!="" && mb_certify!=false && mb_pw.equals(mb_pw_check)) {
+		if(mb_id!="" && mb_pw!="" && mb_email!="" && mb_nick!="" && mb_certify!=false && mb_pw.equals(mb_pw_check) && membership.idCheck(mb_id)==false && membership.nickCheck(mb_nick)==false) {
 			mb.setMb_id(mb_id);
 			mb.setMb_pw(mb_pw);
 			mb.setMb_email(mb_email);

@@ -24,6 +24,7 @@ public class MbidCheckAction implements Action {
 		System.out.println(req.getAttribute("check"));
 		
 		
+		
 		forward.setRedirect(false);
 		forward.setPath("/idCheckProc.jsp");
 		

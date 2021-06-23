@@ -7,8 +7,14 @@
 <title>아이디 중복확인 결과</title>
 <script type="text/javascript">
 	function apply(idcheck){
+		opener.document.joinform.idDuplication.value = "idCheck";
 		opener.document.joinform.mb_id.value = idcheck;
-		window.close();
+		
+
+		if(opener != null){
+			opener.chkForm = null;
+			self.close();
+		}
 	}
 </script>
 </head>
