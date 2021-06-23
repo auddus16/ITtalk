@@ -50,21 +50,14 @@ function createFrom(obj){
 		obj.job.focus();
 		return false;
 	}
-	check = false;
-	var str="";
-	for(var i=0; i<obj.interest.length; i++){
-		if(obj.interest[i].checked==true){
-			str+=obj.interest[i].value + ",";
-		}
-		
-	}	
-	obj.resultInterest.value=str;
-	
-	
+	function inputIdChk(){
+        document.userInfo.idDuplication.value ="idUncheck";
+    }
+
 }
 	function openCheckId(){
-		window.open("idCheck.jsp","ID중복체크","width=400 height=350","menubar=no","toolbar=no","resizable=no")
-		
+		window.name="regform";
+		openWin = window.open("idCheck.jsp","idcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
 	}
 	function chkForm(){
 	var checkid=document.all.checkid.value;
