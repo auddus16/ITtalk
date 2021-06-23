@@ -15,37 +15,42 @@ public class NewMemAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		ActionForward forward=new ActionForward();
-		
+
 		Membership membership=new Membership();
+		Mb mb=new Mb();
+		String mb_id=req.getParameter("mb_id");
+		String mb_pw=req.getParameter("mb_pw");
+		String mb_pw_check=req.getParameter("mb_pw_check");
+		String mb_email=req.getParameter("mb_email");
+		String mb_nick=req.getParameter("mb_nick");
+		boolean mb_job=Boolean.parseBoolean(req.getParameter("mb_job"));
+		boolean mb_certify=Boolean.parseBoolean(req.getParameter("mb_certify"));
 		
-		Mb mem=new Mb();
-		mem.setMb_id(req.getParameter("mb_id"));
-		mem.setMb_pw(req.getParameter("mb_pw"));
-		mem.setMb_email(req.getParameter("mb_email"));
-		mem.setMb_nick(req.getParameter("mb_nick"));
-		mem.setMb_job(Boolean.parseBoolean(req.getParameter("mb_job")));
-		mem.setMb_certify(Boolean.parseBoolean(req.getParameter("mb_certify")));
+		
 		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out=res.getWriter();
-		if(membership.addMember(mem)){
-			forward.setPath("regcompletion.jsp");
-			forward.setRedirect(false);
-			return forward;
+		
+		if(mb_id!="" && mb_pw!="" && mb_email!="" && mb_nick!="" && mb_certify!=false && mb_pw.equals(mb_pw_check) && membership.idCheck(mb_id)==false && membership.nickCheck(mb_nick)==false) {
+			mb.setMb_id(mb_id);
+			mb.setMb_pw(mb_pw);
+			mb.setMb_email(mb_email);
+			mb.setMb_nick(mb_nick);
+			mb.setMb_job(mb_job);
+			mb.setMb_certify(mb_certify);
+			
+			membership.addMember(mb);
+			out.println("<script>alert('회원가입 성공'); location.href  ='hmy_main.jsp';</script>");
 		}
-		else{
-			out.println("<script>alert('회원가입 실패');history.go(-1);</script>");
-			forward.setPath("newmem.main");
-			forward.setRedirect(false);
-			return forward;
+		else {
+			out.println("<script>alert('회원가입 실패');location.href='regform.jsp';</script>");
 		}
 		
-		
-		
-		
+		return null;
+
+
+
 	}	
 
 }

@@ -50,7 +50,7 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		
 
 		forward.setRedirect(false);
-		forward.setPath("업데이트.jsp");
+		forward.setPath("hmy_board.jsp");
 
 
 		return forward;

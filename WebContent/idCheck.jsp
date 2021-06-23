@@ -6,30 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 확인</title>
+<script type="text/javascript">
+	function blankCheck(p){
+		var idcheck=p.idcheck.value;
+		idcheck=mb_id.trim();
+		if(idcheck==""){
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+		return true;
+	}
+	 function pValue(){
+         document.idcheck.idcheck.value = opener.document.joinform.mb_id.value;
+     }
+</script>
 </head>
-<body>
-	<c:set var="root" value="${pageContext.request.contextPath}"/>
-	<c:if test="${check == true}">
-		<div align="center"> 
-			이미 사용중인 아이디입니다.
-			<form action="${root}/member/idCheck.do" method="get">
-				<input type="text" name="id"/>
-				<input type="submit" value="확인"/>
-			</form>
-		</div>
-	</c:if>
-
-	<c:if test="${check == false}">
-		<div align="center"> 
-			사용 가능한 아이디입니다.
-		</div>
-		<script type="text/javascript">
-			opener.joinform.id.value="${id}";
-		</script>	
-	</c:if>
+<body onload="pValue()">
 	
-	<div align="center">
-		<a href="javascript:self.close();">닫기</a>
+	<div style="text-align: center;">
+		<h3>아이디 중복확인</h3>
+		<form method="post" name="idcheck" action="checkid.main" onsubmit="return blankCheck(this)">
+		아이디 : <input type="text" name="idcheck" autofocus>
+		<input type="submit" value="중복확인">
+		</form>
 	</div>
+	
 </body>
 </html>

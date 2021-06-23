@@ -26,7 +26,9 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-    
+    <script>
+    	window.setTimeout('window.location.reload()', 1000000);
+    </script>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   

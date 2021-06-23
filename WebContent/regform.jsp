@@ -8,71 +8,72 @@
 <title>ITtalk</title>
 <script type="text/javascript">
 function createFrom(obj){
-	if(obj.mb_id.value ==""){
+	if(joinform.mb_id.value ==""){
 		alert("아이디를 반드시 입력하세요.");
 		obj.id.focus();
 		return false;
 	}
-	
-	if(obj.mb_pw.value ==""){
+	if(joinform.idDuplication.value != "idCheck"){
+        alert("아이디 중복체크를 해주세요.");
+        return false;
+    }
+
+	if(joinform.mb_pw.value ==""){
 		alert("비밀번호를 반드시 입력하세요.");
 		obj.password.focus();
 		return false;
 	}
 	
-	if(obj.mb_pw_check.value ==""){
+	if(joinform.mb_pw_check.value ==""){
 		alert("비밀번호 확인란에 입력해주세요.");
-		obj.passwordCheck.focus();
+		obj.passwordCheck.focus();	
 		return false;
 	}
 	
-	if(obj.mb_pw.value != obj.mb_pw_check.value){
+	if(joinform.mb_pw.value != joinform.mb_pw_check.value){
 		alert("입력하신 비밀번호가 같지 않습니다.");
 		obj.passwordCheck.focus();
 		return false;
 	}
 	
-	if(obj.mb_nick.value ==""){
+	if(joinform.mb_nick.value ==""){
 		alert("닉네임을 반드시 입력하세요.");
 		obj.name.focus();
 		return false;
 	}
 	
-	if(obj.email.value ==""){
+	if(joinform.email.value ==""){
 		alert("이메일을 입력하세요.");
 		obj.email.focus();
 		return false;
 	}
+	if(joinform.emailDuplication.value != "emailCheck"){
+        alert("이메일 인증을 해주세요.");
+        return false;
+    }
 
 
-	if(obj.mb_job.value ==""){
+	if(joinform.mb_job.value ==""){
 		alert("예비/개발자를 선택하세요.");
 		obj.job.focus();
 		return false;
 	}
-	check = false;
-	var str="";
-	for(var i=0; i<obj.interest.length; i++){
-		if(obj.interest[i].checked==true){
-			str+=obj.interest[i].value + ",";
-		}
-		
-	}	
-	obj.resultInterest.value=str;
-	
-	
+	function inputIdChk(){
+        document.joinform.idDuplication.value ="idUncheck";
+    }
+	function inputEmailChk(){
+        document.joinform.emailDuplication.value ="emailUncheck";
+    }
+
 }
-function idCheck(obj, root){
-	if(obj.mb_id.value ==""){
-		alert("아이디를 반드시 입력하세요.");
-		obj.mb_id.focus();
-		return false;
-	}else{
-		var url = root + "checkid.main?mb_id=" + obj.mb_id.value;
-		//alert(url);
-		window.open(url, "", "width=400, height=200");
+	function openCheckId(){
+		window.name="regform";
+		openWin = window.open("idCheck.jsp","idcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
 	}
-}
+	function openCheckEmail(){
+		window.name="regform";
+		window.open("emailCheck.jsp","emailcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
+	}
 </script>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -124,6 +125,18 @@ button {
 	transition: 0.5s;
 }
 
+#button{
+	color: linen;
+	background: lightseagreen;
+	border: 2px solid white;
+	font-size: 19px;
+	border-radius: 6px;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+		rgba(0, 0, 0, 0.06);
+	cursor: pointer;
+	transition: 0.5s;
+}
+
 .right {
 	margin-left: 450px;
 	margin-top: 30px;
@@ -150,8 +163,9 @@ button {
 
 		<div id="menu">아이디</div>
 			<span>* 
-				<input type="text" class="checkInfo" name="mb_id" size="12" /> 
-				<button type="button" onclick="idCheck(joinform, '${root}')">아이디 중복</button>
+				<input type="text" class="checkInfo" name="mb_id" size="12" onkeydown="inputIdChk()" /> 
+				<button type="button" onClick="openCheckId();">ID중복확인</button>
+				<input type="hidden" name="idDuplication" >
 			</span>
 		</div>
 
@@ -177,8 +191,9 @@ button {
 		<div class="menu" style="border-bottom-width: 0px;">
 			<div id="id" style="margin-left: 10px,">이메일</div>
 			<span> 
-				<input type="text" name="mb_email" size="25" />
-				<button type="button" onclick="idCheck(joinform, '${root}')">이메일인증</button>
+				<input type="email" name="mb_email" size="25" onkeydown="inputEmailChk()">
+				<button type="button" onclick="openCheckEmail()">이메일인증</button>
+				<input type="hidden" name="emailDuplication" >
 			</span>
 		</div>
 		
@@ -186,8 +201,8 @@ button {
 			<div id="id">구분</div>
 			<span> 
 			<select name="mb_certify">
-					<option value='0' selected>인증</option>
-					<option value='1'>비인증</option>
+					<option value=true selected>인증</option>
+					<option value=false>비인증</option>
 			</select>
 			</span>
 		</div>
