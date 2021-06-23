@@ -887,7 +887,7 @@ public class Board {
 	}
 	
 	//¸®¹Ô
-	public ArrayList<B> bcSearch(String bc_no , int cnt){
+	public ArrayList<B> bcSearch(int bc_no , int cnt){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
@@ -895,7 +895,7 @@ public class Board {
 			String sql="select * from b where bc_no=? limit 0,? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, bc_no);
+			pstmt.setInt(1, bc_no);
 			pstmt.setInt(2, cnt);
 			
 			ResultSet rs=pstmt.executeQuery();
