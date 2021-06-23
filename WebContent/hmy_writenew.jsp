@@ -37,7 +37,7 @@
             <h3 class="mb-5">글쓰기</h3>
               <div style="">
                 
-                <form action="#" class=""><!-- 컨롤링크 연결 -->
+                <form action="Newmsg.do" class=""><!-- 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
@@ -46,7 +46,7 @@
 						<!-- forEach 시작 -->
     						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
     						<option value="2">개발자의 회사생활</option>
-    						<option value="2">자유</option>
+    						<option value="3">자유</option>
     					<!-- forEach 끝 -->
 						</select>
 					</span>
