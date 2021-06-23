@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,47 +82,36 @@
                 <h3>코드 도움</h3><!-- 해당카테고리화면으로 -->
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <li><a href="#">게시글1<span>(12)</span></a></li>
-                <li><a href="#">게시글2<span>(14)</span></a></li>
-                <li><a href="#">게시글3<span>(22)</span></a></li>
-                <li><a href="#">게시글4<span>(132)</span></a></li>
-                <li><a href="#">게시글5<span>(5)</span></a></li>
-				
+                <c:forEach  var="v" items="${bcwrite}">
+                <li><a href="hmy_write.jsp"><c:out value="${v.b_title}"></c:out><span>${v.b_hits}</span></a></li>
+				</c:forEach>
               </div>
      		<div class="categories">
      		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>개발자의 회사생활</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <li><a href="#">게시글1<span>(12)</span></a></li>
-                <li><a href="#">게시글2<span>(14)</span></a></li>
-                <li><a href="#">게시글3<span>(22)</span></a></li>
-                <li><a href="#">게시글4<span>(132)</span></a></li>
-                <li><a href="#">게시글5<span>(5)</span></a></li>
-				
+                <c:forEach var="v" items="bcwrite" >
+                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
+				</c:forEach>
               </div>
      		<div class="categories">
      		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>프로그램 이슈</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <li><a href="#">게시글1<span>(12)</span></a></li>
-                <li><a href="#">게시글2<span>(14)</span></a></li>
-                <li><a href="#">게시글3<span>(22)</span></a></li>
-                <li><a href="#">게시글4<span>(132)</span></a></li>
-                <li><a href="#">게시글5<span>(5)</span></a></li>
-				
+                <c:forEach var="v" items="bcwrite" >
+                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
+				</c:forEach>
               </div>
      		<div class="categories">
      		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>자유</h3>
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <li><a href="#">게시글1<span>(12)</span></a></li>
-                <li><a href="#">게시글2<span>(14)</span></a></li>
-                <li><a href="#">게시글3<span>(22)</span></a></li>
-                <li><a href="#">게시글4<span>(132)</span></a></li>
-                <li><a href="#">게시글5<span>(5)</span></a></li>
+                <c:forEach var="v" items="bcwrite" >
+                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
+				</c:forEach>
 				
               </div>
               

@@ -37,7 +37,7 @@
             <h3 class="mb-5">게시글 수정</h3>
               <div style="">
                 
-                <form action="#" class=""><!-- 수정 컨롤링크 연결 -->
+                <form action="UpdateMsg.do" class=""><!-- 수정 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
@@ -47,7 +47,7 @@
 						<!-- 원래 게시글의 카테고리가 처음 선택되어 보여질 수 있게 해주세요 ->jstl option태그에 selected 속성 넣으면 됩니다.-->
     						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
     						<option value="2" selected>개발자의 회사생활</option>
-    						<option value="2">자유</option>
+    						<option value="3">자유</option>
     					<!-- forEach 끝 -->
 						</select>
 					</span>

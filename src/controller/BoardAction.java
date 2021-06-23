@@ -62,8 +62,8 @@ public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
 		
 		
 		// 카테고리 게시글 목록 출력
-		//ArrayList<B> bcSearch(String bc_no)
-		bcwrite=board.bcSearch(req.getParameter("bc_no"));
+		//ArrayList<B> bcSearch(int bc_no)
+		bcwrite=board.bcSearch(Integer.parseInt(req.getParameter("bc_no")));
 		req.setAttribute("bcwrite", bcwrite);
 		
 		

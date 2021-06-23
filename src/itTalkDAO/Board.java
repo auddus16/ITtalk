@@ -627,7 +627,7 @@ public class Board {
 	
 	// 카테고리 게시글 목록 출력 
 	
-	public ArrayList<B> bcSearch(String bc_no){
+	public ArrayList<B> bcSearch(int bc_no){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
@@ -635,7 +635,7 @@ public class Board {
 			String sql="select * from b where bc_no=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, bc_no);
+			pstmt.setInt(1, bc_no);
 			
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
