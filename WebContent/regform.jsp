@@ -22,7 +22,7 @@ function createFrom(obj){
 	
 	if(obj.mb_pw_check.value ==""){
 		alert("비밀번호 확인란에 입력해주세요.");
-		obj.passwordCheck.focus();
+		obj.passwordCheck.focus();	
 		return false;
 	}
 	
@@ -62,17 +62,18 @@ function createFrom(obj){
 	
 	
 }
-function idCheck(obj, root){
-	if(obj.mb_id.value ==""){
-		alert("아이디를 반드시 입력하세요.");
-		obj.mb_id.focus();
-		return false;
-	}else{
-		var url = root + "checkid.main?mb_id=" + obj.mb_id.value;
-		//alert(url);
-		window.open(url, "", "width=400, height=200");
+	function openCheckId(){
+		window.open("idCheck.jsp","ID중복체크","width=400 height=350","menubar=no","toolbar=no","resizable=no")
+		
 	}
-}
+	function chkForm(){
+	var checkid=document.all.checkid.value;
+	if(checkid==0){
+	alert("ID 중복체크를 하세요!");
+	return false;
+	}
+	return true;
+	}
 </script>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -124,6 +125,18 @@ button {
 	transition: 0.5s;
 }
 
+#button{
+	color: linen;
+	background: lightseagreen;
+	border: 2px solid white;
+	font-size: 19px;
+	border-radius: 6px;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px
+		rgba(0, 0, 0, 0.06);
+	cursor: pointer;
+	transition: 0.5s;
+}
+
 .right {
 	margin-left: 450px;
 	margin-top: 30px;
@@ -151,7 +164,7 @@ button {
 		<div id="menu">아이디</div>
 			<span>* 
 				<input type="text" class="checkInfo" name="mb_id" size="12" /> 
-				<button type="button" onclick="idCheck(joinform, '${root}')">아이디 중복</button>
+				<button type="button" onClick="openCheckId();">ID중복확인</button>
 			</span>
 		</div>
 
@@ -186,8 +199,8 @@ button {
 			<div id="id">구분</div>
 			<span> 
 			<select name="mb_certify">
-					<option value='0' selected>인증</option>
-					<option value='1'>비인증</option>
+					<option value=true selected>인증</option>
+					<option value=false>비인증</option>
 			</select>
 			</span>
 		</div>

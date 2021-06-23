@@ -13,7 +13,7 @@ public class MbidCheckAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		ActionForward forward=new ActionForward();
+		ActionForward forward= new ActionForward();
 		
 		String mb_id = req.getParameter("mb_id");
 		Membership membership = new Membership();
@@ -22,12 +22,12 @@ public class MbidCheckAction implements Action {
 		System.out.println(check);
 		req.setAttribute("check", check);
 		System.out.println(req.getAttribute("check"));
-		PrintWriter out = res.getWriter();
-
-		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html; charset=UTF-8");
 		
-		return null;
+		
+		forward.setRedirect(false);
+		forward.setPath("/idCheckProc.jsp");
+		
+		return forward;
 	}
 
 }
