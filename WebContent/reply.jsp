@@ -37,6 +37,31 @@ table.type09 td {
 }
 
 </style>
+
+<script src="jquery-3.6.0.min.js"></script>
+<script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
+    var tag="";
+	var list= JSON.parse('${json}');
+	var addList=list.slice(10);//10번 인덱스부터 끝까지
+    
+	for(var i=0; i<addList.length; i++){
+		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+		tag+=addList[i].c_write+'</a></td><td>'+addList[i].c_date+'</td></tr>';
+	}
+
+	document.addEventListener('scroll', function() {
+	
+    var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
+    
+    if(currentScrollValue>200){
+    	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
+    	//$('#height').append(tag);//table의 tbody요소 앞에 append
+    	$('#replyTable').append(tag);
+    	tag=null;
+    }
+    });
+</script>
+
 </head>
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
@@ -47,7 +72,7 @@ table.type09 td {
 	<h6>총 ${fn:length(myreplyList)}개</h6>
 </div>
 <div id="myreplytable" align="center">
-		<table class="type09">
+		<table class="type09" id="replyTable">
   <thead>
   <tr>
     <th scope="cols">No</th>
@@ -59,7 +84,7 @@ table.type09 td {
 
   <!-- 내가 쓴 게시글 출력 forEach -->
 
-  <c:forEach var="v" items="${myreplyList}" varStatus="status">
+  <c:forEach var="v" items="${myreplyList}" end="9" varStatus="status">
 	  
 	  <tr>
 	    <th scope="row">${status.count}</th>

@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.AdminMenu;
 import itTalkDO.Rb;
 import itTalkDO.Rc;
@@ -30,6 +32,11 @@ public class AdreplyAction implements Action{
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
 		ArrayList<Rc> adreplyList= adDAO.getReportCommentList();
+		
+		ObjectMapper mapper= new ObjectMapper();
+		String jsonStr= mapper.writeValueAsString(adreplyList);
+		req.setAttribute("json", jsonStr);
+		
 		req.setAttribute("adreplyList", adreplyList);//댓글이 담긴 리스트
 		
 		req.setAttribute("kind", "adreply");//어떤 페이지를 include할지 정보

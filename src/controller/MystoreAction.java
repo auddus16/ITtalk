@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.MyPageDAO;
 import itTalkDO.Bs;
 
@@ -35,6 +37,9 @@ public class MystoreAction implements Action{
 		//ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
 		ArrayList<Bs> arrB= mypageDAO.getMyBoardSave((Integer)session.getAttribute("mb_no"));
 		
+		ObjectMapper mapper= new ObjectMapper();
+		String jsonStr= mapper.writeValueAsString(arrB);
+		req.setAttribute("json", jsonStr);
 		
 		req.setAttribute("mystoreList", arrB);//게시글이 담긴 리스트
 		

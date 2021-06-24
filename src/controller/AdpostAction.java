@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.AdminMenu;
 import itTalkDO.Rb;
 
@@ -30,6 +32,11 @@ public class AdpostAction implements Action{
 		req.setAttribute("cnt", cnt);//더보기변수 셋
 		
 		ArrayList<Rb> adpostList= adDAO.getReportBoardList();
+		
+		ObjectMapper mapper= new ObjectMapper();
+		String jsonStr= mapper.writeValueAsString(adpostList);
+		req.setAttribute("json", jsonStr);
+		
 		req.setAttribute("adpostList", adpostList);//댓글이 담긴 리스트
 		
 		req.setAttribute("kind", "adpost");//어떤 페이지를 include할지 정보

@@ -56,8 +56,6 @@ table.type09 td {
 	document.addEventListener('scroll', function() {
 	
     var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
-    var proDes1 =document.getElementById("programDescription1");
-    var proDes2 =document.getElementById("programDescription2");
     
     if(currentScrollValue>200){
     	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
@@ -70,7 +68,7 @@ table.type09 td {
 
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
-<div id="mypost" align="center" style="overflow-y:scroll;position:relative">
+<div id="mypost" align="center" position:relative">
 <h4>내가 쓴 게시글</h4>
 <hr>
 <div align="right">

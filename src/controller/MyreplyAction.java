@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.MyPageDAO;
 import itTalkDO.C;
 
@@ -35,7 +37,10 @@ public class MyreplyAction implements Action {
 		//ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
 		ArrayList<C> arrC= mypageDAO.getMyComment((Integer)session.getAttribute("mb_no"));
 		
-		
+		ObjectMapper mapper= new ObjectMapper();
+		String jsonStr= mapper.writeValueAsString(arrC);
+		req.setAttribute("json", jsonStr);
+
 		req.setAttribute("myreplyList", arrC);//댓글이 담긴 리스트
 		
 		req.setAttribute("kind", "reply");//마이페이지에서 어떤 페이지를 include할지 정보

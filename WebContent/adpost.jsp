@@ -40,7 +40,33 @@ table.type09 td {
 }
 
 </style>
+
+<script src="jquery-3.6.0.min.js"></script>
+<script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
+    var tag="";
+	var list= JSON.parse('${json}');
+	var addList=list.slice(10);//10번 인덱스부터 끝까지
+    
+	for(var i=0; i<addList.length; i++){
+		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].mb_no+'</td><td>'+${adDAO.getReportCategory(addList[i].rctg_no)}+'</td><td>'+addList[i].rb_write+'</td><td>';
+		tag+=addList[i].rb_date+'</td>';
+		tag+='<td><a href="ff.jsp">조회</a></td>';
+		tag+='<td><a href="addelpost.ad?b_no='+addList[i].b_no+'">삭제</a></td></tr>';
+	}
+	document.addEventListener('scroll', function() {
+	
+    var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
+    
+    if(currentScrollValue>200){
+    	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
+    	//$('#height').append(tag);//table의 tbody요소 앞에 append
+    	$('#adpostTable').append(tag);
+    	tag=null;
+    }
+    });
+</script>
 </head>
+
 <body>
 
 <div id="adpost" align="center">
@@ -49,8 +75,8 @@ table.type09 td {
 <div align="right">
 	<h6>총 ${fn:length(adpostList)}개</h6>
 </div>
-<div id="adposttable" align="center">
-		<table class="type09">
+<div align="center">
+		<table class="type09" id="adpostTable">
   <thead>
   <tr>
     <th scope="cols">NO</th>
@@ -73,7 +99,7 @@ table.type09 td {
 	private String rb_date;
   -->
 
-  <c:forEach var="v" items="${adpostList}" varStatus="status">
+  <c:forEach var="v" items="${adpostList}" end="9" varStatus="status">
 	  
 	  <tr>
 	    <th scope="row">${v.b_no}</th>

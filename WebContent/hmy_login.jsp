@@ -53,7 +53,12 @@
                   <input type="password" name="pw" required>
                 </div>
               </div>
-
+			<span class="find">
+                <a href="??">아이디찾기 </a>&nbsp;|
+                <a href="??">비밀번호찾기 </a>&nbsp;|
+                <a href="regform.jsp">회원가입</a>
+            </span>
+            <br>
               <div class="row form-group">
                 <div class="col-md-6">
                 <button type="submit" class="btn btn-primary btn-md text-white" formaction="login.main">login</button>

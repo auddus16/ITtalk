@@ -37,6 +37,31 @@ table.type09 td {
 }
 
 </style>
+
+<script src="jquery-3.6.0.min.js"></script>
+<script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
+    var tag="";
+	var list= JSON.parse('${json}');
+	var addList=list.slice(10);//10번 인덱스부터 끝까지
+    
+	for(var i=0; i<addList.length; i++){
+		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+		tag+=addList[i].b_no+'</a></td><td>'+addList[i].bs_date+'</td></tr>';
+	}
+
+	document.addEventListener('scroll', function() {
+	
+    var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
+    
+    if(currentScrollValue>200){
+    	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
+    	//$('#height').append(tag);//table의 tbody요소 앞에 append
+    	$('#storeTable').append(tag);
+    	tag=null;
+    }
+    });
+</script>
+
 </head>
 <body>
 <!-- 게시글제목 누르면 해당 게시글로 이동(추후 수정 **게시글컨트롤러에게 요청) -->
@@ -47,7 +72,7 @@ table.type09 td {
 	<h6>총 ${fn:length(mystoreList)}개</h6>
 </div>
 <div id="mystoretable" align="center">
-		<table class="type09">
+		<table class="type09" id="storeTable">
   <thead>
   <tr>
     <th scope="cols">No</th>
