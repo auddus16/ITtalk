@@ -1,34 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	function check(){
-		var form = document.authenform;
-		var authNum = ${authNum};
-		
-		if(!form.authnum.value){
-			alert("ÀÎÁõ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä")
-			return false;
-		}
-		if(form.authnum.value!=authNum){
-			alert("Æ²¸° ÀÎÁõ¹øÈ£ÀÔ´Ï´Ù. ÀÎÁõ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä");
-			form.authnum.value="";
-			return false;
-		}
-		if(form.authnum.value==authNum){
-			alert("ÀÎÁõ¿Ï·á")
-			opener.document.joinform.emailDuplication.value="emailCheck";
-		}
-	}
+	
 	function blankCheck(p){
 		var emailcheck=p.emailcheck.value;
 		emailcheck=emailcheck.trim();
 		if(emailcheck==""){
-			alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			return false;
 		}
 		return true;
@@ -40,16 +23,10 @@
 </head>
 <body onload="eValue()">
 	<div style="text-align: center;">
-		<h3>ÀÌ¸ŞÀÏ ÀÎÁõ</h3>
+		<h3>ì´ë©”ì¼ ì¸ì¦</h3>
 		<form method="post" name="emailcheck" action="emailsend.main" onsubmit="return blankCheck(this)">
-		ÀÌ¸ŞÀÏ : <input type="text" name="emailcheck" autofocus>
-		<input type="submit" value="ÀÎÁõ¹øÈ£¹ß¼Û">
-		</form>
-	</div>
-	<div class="container">
-		<form method="post" name="authenform" onsubmit="return check();">
-			ÀÎÁõ¹øÈ£ : <input type="text" name="authnum">&nbsp;&nbsp;
-			<input type="submit" class="btn btn-info" value="ÀÎÁõ">
+		ì´ë©”ì¼ : <input type="text" name="emailcheck" autofocus>
+		<input type="submit" value="ì¸ì¦ë²ˆí˜¸ë°œì†¡">
 		</form>
 	</div>
 </body>

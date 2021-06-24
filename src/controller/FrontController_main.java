@@ -117,7 +117,14 @@ public class FrontController_main extends HttpServlet {
               e.printStackTrace();
            }
       }
-      
+      else if(action.equals("/auth.main")) {
+    	  try {
+              forward=new AuthNumAction().execute(req, res);
+           } catch (Exception e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+           }
+      }
       
       else {
          // 에러페이지로 이동-404

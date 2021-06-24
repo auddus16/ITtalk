@@ -43,6 +43,37 @@ public class Membership {
 		return false;//중복되지 않은 아이디
 	}
 	
+	//이메일 중복확인
+	public boolean emailCheck(String mb_email) {
+		conn= DBManager.connect();
+
+		String sql="select mb_email from mb where mb_email=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mb_email);
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+					System.out.println("중복 이메일");
+					return true;//중복된 이메일
+			}
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;//중복되지 않은 이메일
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("중복되지 않은 이메일");
+		return false;//중복되지 않은 이메일
+	}
+	
 	//닉네임 중복확인
 	public boolean nickCheck(String mb_nick) {
 		conn= DBManager.connect();

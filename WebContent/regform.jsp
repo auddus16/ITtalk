@@ -42,9 +42,9 @@ function createFrom(obj){
 		return false;
 	}
 	
-	if(joinform.email.value ==""){
+	if(joinform.mb_email.value ==""){
 		alert("이메일을 입력하세요.");
-		obj.email.focus();
+		obj.mb_email.focus();
 		return false;
 	}
 	if(joinform.emailDuplication.value != "emailCheck"){
@@ -64,15 +64,20 @@ function createFrom(obj){
 	function inputEmailChk(){
         document.joinform.emailDuplication.value ="emailUncheck";
     }
-
+	
 }
+	
 	function openCheckId(){
 		window.name="regform";
-		openWin = window.open("idCheck.jsp","idcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
+		openWin = window.open("idCheck.jsp","idcheck","width=600 height=350","menubar=no","toolbar=no","resizable=no")
 	}
 	function openCheckEmail(){
 		window.name="regform";
-		window.open("emailCheck.jsp","emailcheck","width=400 height=350","menubar=no","toolbar=no","resizable=no")
+		window.open("emailCheck.jsp","emailcheck","width=600 height=350","menubar=no","toolbar=no","resizable=no")
+	}
+	function openCheckAuth(){
+		window.name="regform";
+		window.open("CheckAuth.jsp","emailcheck","width=600 height=350","menubar=no","toolbar=no","resizable=no")
 	}
 </script>
 <meta charset="utf-8">
@@ -143,7 +148,6 @@ button {
 }
 </style>
 </head>
-
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
 
@@ -196,7 +200,13 @@ button {
 				<input type="hidden" name="emailDuplication" >
 			</span>
 		</div>
-		
+		<div class="menu" style="border-bottom-width: 0px;">
+			<div id="id" style="margin-left: 10px,">인증번호 입력</div>
+			<span> 
+				<input type="text" name="authNum" size="25">
+				<button type="button" onclick="authcheck();">인증번호 확인</button>
+			</span>
+		</div>
 		<div class="menu" style="border-bottom-width: 0px;">
 			<div id="id">구분</div>
 			<span> 
