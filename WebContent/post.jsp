@@ -31,7 +31,7 @@ table.type09 tbody th {
   background: #f3f6f7;
 }
 table.type09 td {
-  width: 200px;
+  width: 300px;
   padding: 10px;
   vertical-align: top;
   border-bottom: 1px solid #ccc;
@@ -42,26 +42,30 @@ table.type09 td {
 </head>
 <script src="jquery-3.6.0.min.js"></script>
 <script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
-//추가될 태그를 문자열로,,
-$(document).ready(function(){
-	var list='<c:out value="${mypostList}"/>';
+    var tag="";
+	var list= JSON.parse('${json}');
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
-    console.log("ready");
+	console.log("ready");
+    
+	for(var i=0; i<addList.length; i++){
+		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
+		console.log(tag)
+	}
+
+	document.addEventListener('scroll', function() {
 	
-	$('#mypost').scroll(function(){
-		console.log("action");
-		var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
-        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
-        var contentH = $('#postTable').height(); //문서 전체 내용을 갖는 div의 높이
-        if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
-        	for(var i=0; i<addList.size(); i++){
-        		var tag='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
-        		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
-        	}
-        	$('#postTable>tbody').prepend(tag);//table의 tbody요소 앞에 append
-        }
-	});
-});
+    var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
+    var proDes1 =document.getElementById("programDescription1");
+    var proDes2 =document.getElementById("programDescription2");
+    
+    if(currentScrollValue>200){
+    	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
+    	//$('#height').append(tag);//table의 tbody요소 앞에 append
+    	$('#postTable').append(tag);
+    	tag=null;
+    }
+    });
 </script>
 
 <body>
@@ -72,10 +76,10 @@ $(document).ready(function(){
 <div align="right">
 	<h6>총 ${fn:length(mypostList)}개</h6>
 </div>
-<div id="postTable" align="center">
-	<table class="type09">
+<div  align="center">
+	<table class="type09" id="postTable">
   <thead>
-  <tr>
+  <tr id="top">
     <th scope="cols">No</th>
     <th scope="cols">제목</th>
     <th scope="cols">등록일자</th>
@@ -86,13 +90,14 @@ $(document).ready(function(){
   <!-- 내가 쓴 게시글 출력 forEach -->
   <c:forEach var="v" items="${mypostList}" end="9" varStatus="status">
 	  
-	  <tr>
+	  <tr id="height">
 	    <th scope="row">${status.count}</th>
 	    <td><a href="ff.jsp">${v.b_title}</a></td>
 	    <td>${v.b_date}</td>
 	  </tr>
   
   </c:forEach>
+  
   </tbody>
 </table>
 </div>

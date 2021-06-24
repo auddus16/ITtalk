@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.MyPageDAO;
 import itTalkDO.B;
 
@@ -35,8 +37,15 @@ public class MypostAction implements Action{
 		//ArrayList<B> arrB= mypageDAO.getMyBoard((Integer)session.getAttribute("mb_no"));
 		ArrayList<B> arrB= mypageDAO.getMyBoard((Integer)session.getAttribute("mb_no"));
 		
-		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
+		//json문자열로 변환과정
+		ObjectMapper mapper= new ObjectMapper();
+			
+		String jsonStr= mapper.writeValueAsString(arrB);
 		
+		System.out.println(jsonStr);
+		
+		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
+		req.setAttribute("json", jsonStr);
 		req.setAttribute("kind", "post");//마이페이지에서 어떤 페이지를 include할지 정보
 		
 		forward.setRedirect(false);
