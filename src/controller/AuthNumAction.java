@@ -33,7 +33,8 @@ public class AuthNumAction implements Action {
 		PrintWriter out=res.getWriter();
 		if(authNum!=null) {	// 회원가입 인증
 			if(authNum.equals(checkNum)) { // 회원가입 인증번호 일치
-				session.invalidate(); 
+				boolean authcheck = authNum.equals(checkNum);
+				req.setAttribute("authcheck", authcheck);
 				forward.setRedirect(false);
 				forward.setPath("/authCheckProc.jsp");
 				return forward;
@@ -63,7 +64,6 @@ public class AuthNumAction implements Action {
 				forward.setPath("/searchIdRes.jsp");
 				return forward;
 				}catch(Exception e) {
-					e.printStackTrace();
 					session.invalidate();
 					out.println("<script>alert('회원가입된 이메일이 아닙니다.');location.href=\"searchId.jsp\"</script>");
 					return null;
@@ -93,7 +93,6 @@ public class AuthNumAction implements Action {
 					forward.setPath("/searchPwRes.jsp");
 					return forward;
 					}catch(Exception e) {
-						e.printStackTrace();
 						session.invalidate();
 						out.println("<script>alert('아이디 및 이메일을 확인해주세요!');location.href=\"searchPw.jsp\"</script>");
 						return null;

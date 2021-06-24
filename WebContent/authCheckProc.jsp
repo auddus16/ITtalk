@@ -7,7 +7,7 @@
 <title>인증 성공</title>
 <script type="text/javascript">
 	function apply(checkedemail){
-		opener.document.joinform.mb_certify.value = "1";
+		opener.document.joinform.mb_certify.value = 0;
 		opener.document.joinform.mb_email.value = checkedemail;
 		
 		window.close();

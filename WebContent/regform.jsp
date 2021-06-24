@@ -47,7 +47,7 @@ function createFrom(obj){
 		obj.mb_email.focus();
 		return false;
 	}
-	if(joinform.emailDuplication.value != "0"){
+	if(joinform.mb_certify.value != 0){
         alert("이메일 인증을 해주세요.");
         return false;
     }
@@ -62,7 +62,7 @@ function createFrom(obj){
         document.joinform.idDuplication.value ="idUncheck";
     }
 	function inputEmailChk(){
-        document.joinform.mb_certify.value ="1";
+        document.joinform.mb_certify.value = 1;
     }
 	
 }
@@ -198,13 +198,6 @@ button {
 				<input type="email" name="mb_email" size="25" onkeydown="inputEmailChk()">
 				<button type="button" onclick="openCheckEmail()">이메일인증</button>
 				<input type="hidden" name="mb_certify" >
-			</span>
-		</div>
-		<div class="menu" style="border-bottom-width: 0px;">
-			<div id="id" style="margin-left: 10px,">인증번호 입력</div>
-			<span> 
-				<input type="text" name="authNum" size="25">
-				<button type="button" onclick="authcheck();">인증번호 확인</button>
 			</span>
 		</div>
 		<div class="menu" style="border-bottom-width: 0px;">
