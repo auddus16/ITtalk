@@ -16,26 +16,28 @@ public class MainDAO {
 	PreparedStatement pstmt;
 	
 	// 실시간 인기 게시글 10개(조회수+댓글수:1시간마다 업뎃(이용자층 고려)) view에서 자바스크립트 이용
-	public ArrayList<String> getHits() {
+	public ArrayList<B> getHits() {
 		conn= DBManager.connect();
-		ArrayList<String> Hits=new ArrayList();
-		String sql="SELECT b_no,mb_no,bc_no,b_title,b_write,b_file,b_date,b_hits,b_deleted,b_report,b_cnt,b_hits+b_cnt as b_total from B Order by b_total desc limit 0,10";
+		ArrayList<B> Hits=new ArrayList<>();
+		String sql="SELECT b_no,mb_no,bc_no,b_title,b_write,b_file,b_date,b_hits,b_deleted,b_report,b_cnt,b_hits+b_cnt as b_total from b Order by b_total desc limit 10";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				Hits.add(rs.getString("b_no"));
-				Hits.add(rs.getString("mb_no"));
-				Hits.add(rs.getString("bc_no"));
-				Hits.add(rs.getString("b_title"));
-				Hits.add(rs.getString("b_write"));
-				Hits.add(rs.getString("b_file"));
-				Hits.add(rs.getString("b_date"));
-				Hits.add(rs.getString("b_hits"));		
-				Hits.add(rs.getString("b_deleted"));
-				Hits.add(rs.getString("b_report"));
-				Hits.add(rs.getString("b_cnt"));
-				Hits.add(rs.getString("b_total"));
+				B b=new B();
+				b.setB_no(rs.getInt("b_no"));
+				b.setMb_no(rs.getInt("mb_no"));
+				b.setBc_no(rs.getInt("bc_no"));
+				b.setB_title(rs.getString("b_title"));
+				b.setB_write(rs.getString("b_write"));
+				b.setB_file(rs.getString("b_file"));
+				b.setB_date(rs.getString("b_date"));
+				b.setB_hits(rs.getInt("b_hits"));
+				b.setB_deleted(rs.getBoolean("b_deleted"));
+				b.setB_report(rs.getInt("b_report"));
+				b.setB_cnt(rs.getInt("b_cnt"));
+				
+				Hits.add(b);
 			}
 			
 		}catch (SQLException e) {
