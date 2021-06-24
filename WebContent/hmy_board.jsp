@@ -77,45 +77,19 @@
  	<div align="center" style="margin-left:10%;">
  	<div class="home-list">
  	<!-- foreach 게시판카테고리개수만큼-->
+ 	<c:forEach var="c" items="${bcwrite}" begin="1" end="4" step="1"> <!-- 카테고리 개수 4개 -->
      		<div class="categories">
-                <a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>코드 도움</h3><!-- 해당카테고리화면으로 -->
+                <a href="Board.do?bc_name=${c.bc_name}" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                
+                <h3>${c.bc_name}</h3><!-- 해당카테고리화면으로 -->
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach  var="v" items="${bcwrite}">
-                <li><a href="hmy_write.jsp"><c:out value="${v.b_title}"></c:out><span>${v.b_hits}</span></a></li>
+                <c:forEach var="v" items="${bcwrite}" begin="1" end="5" step="1">
+                <li><a href="Board.do?b_title=${b_title}&b_hits=${b_hits}">"${v.b_title}"><span>${v.b_hits}</span></a></li>
 				</c:forEach>
-              </div>
-     		<div class="categories">
-     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>개발자의 회사생활</h3>
-                <hr>
-                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach var="v" items="bcwrite" >
-                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
-				</c:forEach>
-              </div>
-     		<div class="categories">
-     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>프로그램 이슈</h3>
-                <hr>
-                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach var="v" items="bcwrite" >
-                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
-				</c:forEach>
-              </div>
-     		<div class="categories">
-     		<a href="hmy_boardcate.jsp" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>자유</h3>
-                <hr>
-                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach var="v" items="bcwrite" >
-                <li><a href="hmy_write.jsp">${v.b_title}<span>${v.b_hits}</span></a></li>
-				</c:forEach>
-				
-              </div>
-              
-              
+              </div>     
+               
+    </c:forEach>          
               
              </div>
              </div>

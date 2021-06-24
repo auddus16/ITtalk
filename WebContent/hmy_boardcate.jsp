@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,10 +34,10 @@
                 <h3>Category</h3>
                 <hr>
                 <!-- foreach로 카테고리 모두 출력 -->
-                <li><a href="#">코드 도움</a></li>
-                <li><a href="#">개발자의 회사생활</a></li>
-                <li><a href="myreply.mem?cnt=5">프로그램 이슈</a></li><!-- 컨롤로 이동 -->
-                <li><a href="#">자유</a></li>
+                <c:forEach var="v" items="${bcwrite}" begin="1" end="4" step="1">  <!-- 카테고리 4개 -->          
+                <li><a href="Board.do?bc_name=${v.bc_name}">${v.bc_name}</a></li><!-- 코드 도움 -->
+                
+                </c:forEach>
 				<!-- end -->
               </div>
       </section>
