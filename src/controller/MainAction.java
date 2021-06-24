@@ -27,7 +27,7 @@ public class MainAction implements Action {
 		req.setAttribute("topMain", topMain);
 		
 		forward.setRedirect(false);
-		forward.setPath("main1.jsp");
+		forward.setPath("hmy_main.jsp");
 		
 		return forward;
 	}
