@@ -160,5 +160,36 @@ public class Membership {
 			}
 			return nicks;
 		}
+		// 이메일로 아이디 찾기
+		public Mb SearchId(String mb_email){
+			Mb mb=new Mb();
+			try {
+				conn=DBManager.connect();
+				String sql="select mb_id from Mb where mb_email=?";
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, mb_email);
+				
+				ResultSet rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					mb.setMb_id(rs.getString("mb_id"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			finally {
+				try {
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return mb;
+		}
 		
 }

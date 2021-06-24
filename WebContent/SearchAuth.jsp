@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,19 +31,26 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
-    <!-- 아이디찾기 작성 폼 시작 -->
+    <!-- 아이디/비밀번호 찾기 인증번호 작성 폼 시작 -->
     <section class="site-section">
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:5%;">
-            <h3 class="mb-5">회원님의 아이디는 다음과 같습니다.</h3>
+            <h3 class="mb-5">인증번호 입력</h3>
             <hr>
-            <h3 class="mb-5"><c:out value="${SearchedId}" /></h3><!-- 아이디 앞 두글자 + 글자수만큼 * 출력하기 -->
-            <div style="font-size: 20px;">
-            	<span class="find">
-                <a href="hmy_login.jsp">로그인 </a>&nbsp;|
-                <a href="searchPw.jsp">비밀번호찾기 </a>
-            </span>
-            </div>
-            </div>
+              <div style="">
+                
+                <form action="auth.main" style="margin:10%;"><!-- 컨롤링크 연결 -->
+                  <div class="form-group">
+                    <label for="name">인증번호</label>
+                    <input type="text" class="form-control" id="searchauth" name="searchauth" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="submit" value="아이디 찾기" class="btn btn-primary btn-md text-white" style="float:right;"required>
+                  </div>
+
+                </form>
+                </div>
+              </div>
     </section>
 	
  	<!-- 작성폼 끝 -->

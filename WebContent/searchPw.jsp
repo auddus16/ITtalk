@@ -38,11 +38,11 @@
             <hr>
               <div style="">
                 
-                <form action="???" style="margin:10%; margin-top:0;"><!-- 컨롤링크 연결 -->
+                <form action="searchemail.main" style="margin:10%; margin-top:0;"><!-- 컨롤링크 연결 -->
              	<span style="color:blue;">*이메일로 인증번호를 보내드립니다.</span>
                   <div class="form-group">
                     <label for="name">이메일</label>
-                    <input type="text" class="form-control" id="title" required>
+                    <input type="text" class="form-control" id="title" name="mb_email" required>
                   </div>
                   
                   <div class="form-group">
