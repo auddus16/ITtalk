@@ -191,5 +191,37 @@ public class Membership {
 			}
 			return mb;
 		}
+		// 이메일 아이디로 비밀번호 찾기
+				public Mb SearchPw(String mb_id,String mb_email){
+					Mb mb=new Mb();
+					try {
+						conn=DBManager.connect();
+						String sql="select mb_pw from mb where mb_id=? and mb_email=?";
+						pstmt=conn.prepareStatement(sql);
+						
+						pstmt.setString(1, mb_id);
+						pstmt.setString(2, mb_email);
+						
+						ResultSet rs=pstmt.executeQuery();
+						
+						while(rs.next()) {
+							mb.setMb_id(rs.getString("mb_pw"));
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return null;
+					}
+					finally {
+						try {
+							pstmt.close();
+							conn.close();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					return mb;
+				}
 		
 }

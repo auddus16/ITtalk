@@ -31,26 +31,21 @@
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
-    <!-- 비밀번호찾기 작성 폼 시작 -->
+    <!-- 아이디/비밀번호 찾기 인증번호 작성 폼 시작 -->
     <section class="site-section">
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:5%;">
-            <h3 class="mb-5">비밀번호 찾기</h3>
+            <h3 class="mb-5">인증번호 입력</h3>
             <hr>
               <div style="">
                 
-                <form action="searchauth.main" style="margin:10%; margin-top:0;"><!-- 컨롤링크 연결 -->
-             	<span style="color:blue;">*이메일로 인증번호를 보내드립니다.</span>
+                <form action="auth.main" style="margin:10%;"><!-- 컨롤링크 연결 -->
                   <div class="form-group">
-                    <label for="name">아이디</label>
-                    <input type="text" class="form-control" id="title" name="mb_id" required>
+                    <label for="name">인증번호</label>
+                    <input type="text" class="form-control" id="searchauth" name="searchauth" required>
                   </div>
+                  
                   <div class="form-group">
-                    <label for="name">이메일</label>
-                    <input type="text" class="form-control" id="title" name="mb_email" required>
-                  </div>
-                 
-                  <div class="form-group">
-                    <input type="submit" value="이메일인증" class="btn btn-primary btn-md text-white" style="float:right;" required>
+                    <input type="submit" value="아이디 찾기" class="btn btn-primary btn-md text-white" style="float:right;"required>
                   </div>
 
                 </form>

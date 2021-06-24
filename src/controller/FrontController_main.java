@@ -125,15 +125,14 @@ public class FrontController_main extends HttpServlet {
               e.printStackTrace();
            }
       }
-      else if(action.equals("/searchid.main")) {
+      else if(action.equals("/searchauth.main")) {
     	  try {
-              forward=new SearchIdAction().execute(req, res);
+              forward=new SearchAuthAction().execute(req, res);
            } catch (Exception e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
            }
       }
-      
       else {
          // 에러페이지로 이동-404
          forward=new ActionForward();

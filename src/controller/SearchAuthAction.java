@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Membership;
 
-public class SearchIdAction implements Action{
+public class SearchAuthAction implements Action{
 	// 인증번호 생성
 	public String RandomNum() {
 		StringBuffer buffer = new StringBuffer();
@@ -84,9 +84,18 @@ public class SearchIdAction implements Action{
 			
 			System.out.println("메일이 전송되었습니다.");
 			out.println("<script>alert('인증 메일이 전송되었습니다.');<script>");
-			forward.setRedirect(false);
-			forward.setPath("/SearchAuth.jsp");
-			return forward;
+			String searchPwid = req.getParameter("mb_id");
+			if(searchPwid==null) {
+				forward.setRedirect(false);
+				forward.setPath("/SearchIdAuth.jsp");
+				return forward;
+			}
+			else {
+				session.setAttribute("searchPwid", searchPwid);
+				forward.setRedirect(false);
+				forward.setPath("/SearchPwAuth.jsp");
+				return forward;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.println("<script>alert('오류가 발생했습니다..');history.back();<script>");
