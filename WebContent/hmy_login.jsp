@@ -54,8 +54,8 @@
                 </div>
               </div>
 			<span class="find">
-                <a href="??">아이디찾기 </a>&nbsp;|
-                <a href="??">비밀번호찾기 </a>&nbsp;|
+                <a href="searchId.jsp">아이디찾기 </a>&nbsp;|
+                <a href="searchPw.jsp">비밀번호찾기 </a>&nbsp;|
                 <a href="regform.jsp">회원가입</a>
             </span>
             <br>
