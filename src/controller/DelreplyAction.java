@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,18 +44,17 @@ public class DelreplyAction implements Action{// 댓글 삭제(비밀댓글도 포함)
 		
 		ServletContext application = req.getServletContext();
 		
+		
+		PrintWriter out=res.getWriter();
+		
 		// 댓글 삭제
 		
 		if(!board.delC(Integer.parseInt(req.getParameter("c_no")))) {//댓글 삭제 실패
-			try {
-				throw new Exception("댓글 삭제 실패");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			out.println("<script>alert('댓글 삭제 실패');history.go(-1);</script>");
 		}
 		else {//댓글 삭제 성공
 			Boolean delreply =board.delC(Integer.parseInt(req.getParameter("c_no")));
+			out.println("<script>alert('댓글 삭제 성공');</script>");
 			application.setAttribute("delreply", delreply);
 		}
 

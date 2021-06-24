@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -56,17 +57,15 @@ public class NewmsgAction implements Action{// 게시글 등록
 //		req.setAttribute("cnt", mcnt);//게시글 수
 		
 		ServletContext application = req.getServletContext();
+		PrintWriter out =res.getWriter();
+		
 		
 		if(!board.Upload(req, res)) {//게시글 등록 실패
-			try {
-				throw new Exception("게시글 등록 실패");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			out.println("<script>alert('게시글 등록 실패');history.go(-1);</script>");
 		}
 		else {//게시글 등록 성공
 			Boolean msg=board.Upload(req, res);
+			out.println("<script>alert('게시글 등록 성공');</script>");
 			application.setAttribute("msg", msg);//등록한 댓글 정보
 		}
 		

@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Bc;
@@ -19,17 +21,17 @@ public class TitelCheckAction implements Action{//게시글 제목을 클릭했을 때 나오
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		
+
 		ArrayList<BoardSet> write =new ArrayList<>();//게시글 출력
-		
+
 		Board board = new Board();//dao
-		
+
 		Mb mb =new Mb(); //do
 		Bc bc =new Bc(); //do
 		B b = new B(); //do
 		C c= new C(); //do
-		
-		
+
+
 
 		//b_no 게시글번호
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
@@ -53,22 +55,29 @@ public class TitelCheckAction implements Action{//게시글 제목을 클릭했을 때 나오
 		c.setC_no(Integer.parseInt(req.getParameter("c_no")));
 		//c_secret 비밀댓글여부
 		c.setC_secret(c.isC_secret());
-		
-		
-		
+
+
+
 		//해당 게시글 출력
 		//ArrayList<BoardSet> BoardPrint(int b_no);
 		write=board.BoardPrint(Integer.parseInt(req.getParameter("b_no")));
-		req.setAttribute("write", write);
 		
+		//json문자열로 변환과정
+		ObjectMapper mapper= new ObjectMapper();
 
-		//view에 제목 정보를 넘겨야함.
-		
+		String jsonStr= mapper.writeValueAsString(write);
+		req.setAttribute("json", jsonStr);
+
+		req.setAttribute("write", write);
+
+
+
+
 		forward.setRedirect(false);
 		forward.setPath("제목클릭했을때 보는게시글.jsp");
 
 
 		return forward;
 	}
-	
+
 }

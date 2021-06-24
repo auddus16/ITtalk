@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class FavoriteAction implements Action {// 좋아요
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		
 		
+		PrintWriter out =res.getWriter();
 		
 		HttpSession session = req.getSession(false);
 		
@@ -36,15 +38,11 @@ public class FavoriteAction implements Action {// 좋아요
 			
 		
 		if(!board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")))) {//게시글 좋아요 실패
-			try {
-				throw new Exception("좋아요 실패");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			out.println("<script>alert('좋아요 실패');history.go(-1);</script>");
 		}
 		else {// 게시글 좋아요 성공
 			Boolean like=board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")));
+			out.println("<script>alert('좋아요 성공');</script>");
 			session.setAttribute("like", like);
 		}
 		

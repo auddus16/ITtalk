@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,9 +19,9 @@ public class ReplyReportAction implements Action{// 댓글신고
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		
+
 		Board board = new Board(); //dao
-		
+
 		C c=new C(); //do
 		Mb mb =new Mb(); //do
 		Rctg rctg =new Rctg(); //do
@@ -38,32 +39,29 @@ public class ReplyReportAction implements Action{// 댓글신고
 		c.setC_report(Integer.parseInt(req.getParameter("c_report")));
 		//c_deleted 블라인드처리여부
 		c.setC_deleted(c.isC_deleted());
-		
-		
+
+
 		ServletContext application = req.getServletContext();
+		PrintWriter out =res.getWriter();
 
 
-		
 		//댓글 신고 boolean ReportC(int c_no , int mb_no , int rctg_no , String rc_write)(댓글 번호,회원번호,신고카테고리번호,신고내용)
 		//board.ReportC(Integer.parseInt(req.getParameter("c_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
-		
-		
+
+
 		if(!board.ReportC(Integer.parseInt(req.getParameter("c_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"))) {//댓글 신고 실패
-			try {//댓글 신고 실패
-				throw new Exception("댓글 신고 실패");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//댓글 신고 실패
+			out.println("<script>alert('댓글 신고 실패');history.go(-1);</script>");
 		}
 		else {// 댓글 신고 성공
 			Boolean reportc=board.ReportC(Integer.parseInt(req.getParameter("c_no")), Integer.parseInt(req.getParameter("mb_no")), Integer.parseInt(req.getParameter("rctg_no")), req.getParameter("rc_write"));
+			out.println("<script>alert('댓글 신고 성공');</script>");
 			application.setAttribute("reportc", reportc);
 		}
-		
-		
-		
-		
+
+
+
+
 		forward.setRedirect(false);
 		forward.setPath("댓글신고.jsp");
 

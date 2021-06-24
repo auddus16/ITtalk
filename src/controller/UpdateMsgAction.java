@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Bc;
@@ -18,11 +20,11 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		ActionForward forward = new ActionForward();
 
 		Board board =new Board(); //dao
-		
+
 		B b = new B(); //do
 		Mb mb =new Mb(); //do
 		Bc bc =new Bc(); //do
-		
+
 		//b_no 게시글번호
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		//mb_no 회원번호
@@ -37,17 +39,24 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		b.setB_file(req.getParameter("b_file"));
 		//b_date 등록일자
 		b.setB_date(req.getParameter("b_date"));
-		
-		
-		
-		
-		
+
+
+
+
+
 		// 게시글 불러오기
 		b=board.Load(Integer.parseInt(req.getParameter("b_no")));
-		req.setAttribute("b", b);//게시글 불러오기 기능
 		
+		//json문자열로 변환과정
+		ObjectMapper mapper= new ObjectMapper();
 
-		
+		String jsonStr= mapper.writeValueAsString(b);
+		req.setAttribute("json", jsonStr);
+
+		req.setAttribute("b", b);//게시글 불러오기 기능
+
+
+
 
 		forward.setRedirect(false);
 		forward.setPath("hmy_board.jsp");
@@ -55,5 +64,5 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 
 		return forward;
 	}
-	
+
 }

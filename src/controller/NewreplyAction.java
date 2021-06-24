@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -54,18 +55,16 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 //		req.setAttribute("rcnt", rcnt);
 		
 		ServletContext application = req.getServletContext();
+		PrintWriter out =res.getWriter();
+		
 		
 		//댓글 등록 b_no,mb_no,c_write
 		if(!board.newReply(c)) {//댓글 등록(비밀 댓글 포함) 실패
-			try {
-				throw new Exception("댓글 등록 실패");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			out.println("<script>alert('댓글 등록 실패');history.go(-1);</script>");
 		}
 		else {//댓글 등록(비밀 댓글 포함) 성공	
 			Boolean comment=board.newReply(c);
+			out.println("<script>alert('댓글 등록 성공');</script>");
 			application.setAttribute("comment", comment);//등록한 댓글 정보
 		}
 		
