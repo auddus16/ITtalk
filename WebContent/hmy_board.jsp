@@ -85,7 +85,7 @@
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <c:forEach var="v" items="${bcwrite}" begin="1" end="5" step="1">
-                <li><a href="Board.do?b_title=${b_title}&b_hits=${b_hits}">"${v.b_title}"><span>${v.b_hits}</span></a></li>
+                <li><a href="Board.do?b_title=${v.b_title}&b_hits=${v.b_hits}">"${v.b_title}"><span>${v.b_hits}</span></a></li>
 				</c:forEach>
               </div>     
                
