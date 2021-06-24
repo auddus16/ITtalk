@@ -50,7 +50,7 @@
                   </div>
                  
                   <div class="form-group">
-                    <input type="submit" value="이메일인증" class="btn btn-primary btn-md text-white" style="float:right;" required>
+                    <input type="submit" value="비밀번호찾기" class="btn btn-primary btn-md text-white" style="float:right;" required>
                   </div>
 
                 </form>

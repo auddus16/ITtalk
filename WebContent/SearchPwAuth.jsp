@@ -41,7 +41,7 @@
                 <form action="auth.main" style="margin:10%;"><!-- 컨롤링크 연결 -->
                   <div class="form-group">
                     <label for="name">인증번호</label>
-                    <input type="text" class="form-control" id="searchauth" name="searchauth" required>
+                    <input type="text" class="form-control" id="searchauth" name="searchPwAuth" required>
                   </div>
                   
                   <div class="form-group">
