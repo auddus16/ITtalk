@@ -39,7 +39,7 @@ public class AuthNumAction implements Action {
 				return forward;
 			}
 			else { // 인증번호 불일치
-				out.println("<script>alert('인증번호를 확인해주세요.');window.history.back();</script>");
+				out.println("<script>alert('인증번호를 확인해주세요.');window.history.go(-1);</script>");
 				return null;
 			}
 		}
@@ -64,15 +64,14 @@ public class AuthNumAction implements Action {
 				return forward;
 				}catch(Exception e) {
 					e.printStackTrace();
-					out.println("<script>alert('회원가입된 이메일이 아닙니다.');location.href('searchId.jsp');</script>");
+					session.invalidate();
+					out.println("<script>alert('회원가입된 이메일이 아닙니다.');location.href=\"searchId.jsp\"</script>");
 					return null;
 				}
 			}
 			else { // 인증번호 불일치
-				out.println("<script>alert('인증번호를 확인해주세요.');</script>");
-				forward.setRedirect(false);
-				forward.setPath("/searchId.jsp");
-				return forward;
+				out.println("<script>alert('인증번호를 확인해주세요.');window.history.back();</script>");
+				return null;
 			}
 		}
 		else {
@@ -95,10 +94,9 @@ public class AuthNumAction implements Action {
 					return forward;
 					}catch(Exception e) {
 						e.printStackTrace();
-						out.println("<script>alert('회원가입된 이메일이 아닙니다.')</script>");
-						forward.setRedirect(false);
-						forward.setPath("/searchPw.jsp");
-						return forward;
+						session.invalidate();
+						out.println("<script>alert('아이디 및 이메일을 확인해주세요!');location.href=\"searchPw.jsp\"</script>");
+						return null;
 					}
 			}
 			else { // 인증번호 불일치
