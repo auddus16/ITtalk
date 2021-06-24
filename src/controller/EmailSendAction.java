@@ -14,6 +14,7 @@ import javax.mail.internet.MimeUtility;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Membership;
 
@@ -32,32 +33,34 @@ public class EmailSendAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
 		ActionForward forward= new ActionForward();
-		String authNum="";
+		String checkNum="";
 
 		String fromEmail = "pjiq98346527@gmail.com";
 		String fromName="ITtalk 관리자";
 		String toEmail = req.getParameter("emailcheck");
 		String subject = "회원가입을 위한 이메일인증 확인 메일입니다.";
-		
+		HttpSession session=req.getSession();
 		// 이메일 중복체크
 		Membership membership = new Membership(); 
 		System.out.println(toEmail);
 		boolean mailcheck = membership.emailCheck(toEmail);
-		System.out.println("emailcheck : "+mailcheck);
-		req.setAttribute("mailcheck", mailcheck);
-		System.out.println(req.getAttribute("mailcheck"));
+		System.out.println("mailcheck : "+mailcheck);
+		session.setAttribute("checkedemail", toEmail);
+		System.out.println(session.getAttribute("mailcheck"));
 		
 		PrintWriter out=res.getWriter();
 		
-		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html; charset=UTF-8");
+		
 		if(!mailcheck) {
 		try {	
-			authNum=RandomNum();
-			String content = "인증번호 ["+authNum+"]";
-			req.setAttribute("authNum", authNum);
-			System.out.println("authNum : "+req.getAttribute("authNum"));
+			checkNum=RandomNum();
+			String content = "인증번호 ["+checkNum+"]";
+			session.setAttribute("checkNum", checkNum);
+			System.out.println("checkNum : "+session.getAttribute("checkNum"));
 			req.setAttribute("mb_email", toEmail);
 			Properties p = new Properties();
 			p.put("mail.smtp.user", fromEmail);
@@ -90,8 +93,9 @@ public class EmailSendAction implements Action{
 			
 			
 			System.out.println("메일이 전송되었습니다.");
+			out.println("<script>alert('인증 메일이 전송되었습니다.');<script>");
 			forward.setRedirect(false);
-			forward.setPath("CheckAuth.jsp");
+			forward.setPath("/CheckAuth.jsp");
 			return forward;
 		} catch (Exception e) {
 			e.printStackTrace();

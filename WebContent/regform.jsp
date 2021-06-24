@@ -47,7 +47,7 @@ function createFrom(obj){
 		obj.mb_email.focus();
 		return false;
 	}
-	if(joinform.emailDuplication.value != "emailCheck"){
+	if(joinform.emailDuplication.value != "0"){
         alert("이메일 인증을 해주세요.");
         return false;
     }
@@ -62,7 +62,7 @@ function createFrom(obj){
         document.joinform.idDuplication.value ="idUncheck";
     }
 	function inputEmailChk(){
-        document.joinform.emailDuplication.value ="emailUncheck";
+        document.joinform.mb_certify.value ="1";
     }
 	
 }
@@ -197,7 +197,7 @@ button {
 			<span> 
 				<input type="email" name="mb_email" size="25" onkeydown="inputEmailChk()">
 				<button type="button" onclick="openCheckEmail()">이메일인증</button>
-				<input type="hidden" name="emailDuplication" >
+				<input type="hidden" name="mb_certify" >
 			</span>
 		</div>
 		<div class="menu" style="border-bottom-width: 0px;">
@@ -205,15 +205,6 @@ button {
 			<span> 
 				<input type="text" name="authNum" size="25">
 				<button type="button" onclick="authcheck();">인증번호 확인</button>
-			</span>
-		</div>
-		<div class="menu" style="border-bottom-width: 0px;">
-			<div id="id">구분</div>
-			<span> 
-			<select name="mb_certify">
-					<option value=true selected>인증</option>
-					<option value=false>비인증</option>
-			</select>
 			</span>
 		</div>
 		<div class="menu" style="border-bottom-width: 0px;">
@@ -227,8 +218,8 @@ button {
 		</div>
 		<div class="menu" style="text-align: center;">
 			<span> 
-				<input type="submit" value="가입" />
-			 	<input type="reset" value="취소" />
+				<button type="submit" >가입</button>
+			 	<button onclick="location.href='hmy_main.jsp'" >취소</button>
 			</span>
 		</div>
 				</form>

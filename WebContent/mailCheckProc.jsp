@@ -9,12 +9,9 @@
 	function apply(idcheck){
 		opener.document.joinform.emailDuplication.value = "emailCheck";
 		opener.document.joinform.mb_email.value = idcheck;
+		session.removeAttribute("checkedemail");
 		
-		
-		if(opener != null){
-			opener.chkForm = null;
-			self.close();
-		}
+		window.close(0);
 	}
 </script>
 </head>
@@ -22,16 +19,9 @@
 	<div style="text-align : center;">
 		<h3>이메일 중복 결과</h3>
 		<%
-			String chekedemail=request.getParameter("emailcheck").trim();
-			boolean mailcheck= (boolean)request.getAttribute("mailcheck");
-			out.println("입력 이메일 : <strong>"+chekedemail+"</strong");
-			if(mailcheck==false){
-				out.println("<br><p>사용 가능한 이메일입니다.</p>");
-				out.println("<a href='javascript:apply(\""+chekedemail+"\")'>[적용]</a>");
-			}
-			else{
-				out.println("<br><p style='color:red'>해당 이메일은 중복 사용중입니다.</p>");
-			}
+			String checkedemail=(String)session.getAttribute("checkedemail");
+			out.println("입력 이메일 : <strong>"+checkedemail+"</strong");
+			out.println("<br><p style='color:red'>해당 이메일은 중복 사용중입니다.</p>");
 		%>
 		<hr>
 		<a href="javascript:history.back()">[다시검색]</a>
