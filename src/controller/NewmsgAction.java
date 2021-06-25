@@ -20,7 +20,7 @@ public class NewmsgAction implements Action{// 게시글 등록
 		ActionForward forward = new ActionForward();
 		HttpSession session=req.getSession();
 		
-		System.out.println(session.getAttribute("mb_no") + "확인2");
+		req.setAttribute("mb_no", session.getAttribute("mb_no"));
 		
 		Board board = new Board();//dao
 		
@@ -78,7 +78,7 @@ public class NewmsgAction implements Action{// 게시글 등록
 		//req.setAttribute("datas", datas); 보낼 데이터 정보
 
 		forward.setRedirect(false);
-		forward.setPath("hmy_main.jsp");
+		forward.setPath("index.jsp");
 
 
 		return forward;

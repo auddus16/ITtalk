@@ -38,7 +38,7 @@
             <h3 class="mb-5">게시글 수정</h3>
               <div style="">
                 
-                <form action="Newmsg.do?mb_no=${mb_no}" method="post"><!-- 수정 컨롤링크 연결 -->
+                <form action="Newmsg.do?b_no=${b_no}" method="post" enctype="multipart/form-data"><!-- 수정 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
@@ -67,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <label for="email">첨부파일</label>
-                    <input type="file" class="form-control" id="" name="b_file" multiple> 
+                     <input type="file" class="form-control" id=""  name="b_file"/>
                   </div>
                   <div class="form-group">
                     <label for="message">내용 *</label>

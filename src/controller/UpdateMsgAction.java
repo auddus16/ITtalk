@@ -31,9 +31,9 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		B b = new B(); //do
 		Mb mb =new Mb(); //do
 
+		req.setAttribute("b_no", Integer.parseInt(req.getParameter("b_no")));
 		
-	
-		if(!req.getParameter("b_no").equals("")) {
+		if(!req.getParameter("b_no").equals("0")) {
 			
 			b = board.Load(Integer.parseInt(req.getParameter("b_no")));
 			// 게시글 불러오기
@@ -69,6 +69,7 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		cate=adminmenu.getBoardCategory();
 		req.setAttribute("cate", cate);
 
+		
 		forward.setRedirect(false);
 		forward.setPath("hmy_writemodify.jsp");
 

@@ -120,7 +120,7 @@ public class Board {
 		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
-
+			System.out.println(req.getParameter("b_no") + "확인2");
 			int maxSize = 3 * 1024 * 1024; // 3MB
 			String encoding = "euc-kr";
 			
@@ -135,7 +135,12 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
-							if(req.getParameter("b_no").equals("")) { // 게시글을 등록할경우
+							System.out.println(multi.getParameter("mb_no"));
+							System.out.println(multi.getParameter("bc_no"));
+							System.out.println(multi.getParameter("b_title"));
+							System.out.println(multi.getParameter("b_write"));
+							System.out.println(multi.getParameter("b_file"));
+							if(req.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
 								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
 								pstmt=conn.prepareStatement(sql);
 								pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
@@ -175,7 +180,7 @@ public class Board {
 						}
 
 					} else {
-						System.out.println("일반 전송 form 입니다.");
+						System.out.println("전송실패 fom태그확인");
 					}
 					return true;
 			
@@ -185,7 +190,6 @@ public class Board {
 	// 사용자에게 보여지는 게시글 출력 메서드
 	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
 
-		ArrayList<BoardSet> datas=new ArrayList<>();
 		BoardSet bs = new BoardSet();
 		try {
 			conn=DBManager.connect();
@@ -233,8 +237,6 @@ public class Board {
 				bs.setBoard(b);;
 				bs.setRlist(cs);
 
-				datas.add(bs);
-				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -252,7 +254,7 @@ public class Board {
 			}
 		}
 		System.out.println("게시글 출력 성공");
-		return datas;
+		return bs;
 	}
 	// 댓글 리밋 셋팅
 	public ArrayList<BoardSet> BoardPrint(int b_no , int cnt){//게시글 번호 , 댓글 리밋
