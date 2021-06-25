@@ -48,11 +48,10 @@ function report(){
               <hr>
                   <div class="form-group">
                     <label for="message"></label>
-<<<<<<< HEAD
+
                     <textarea name="" id="message" cols="90" rows="20" class="form-control" required></textarea>
-=======
+
                     <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" required></textarea>
->>>>>>> branch 'master' of https://github.com/auddus16/ITtalk.git
                   </div>
                   <div style="float:right;">
                   <!-- 본인게시글이라면, 삭제, 수정 버튼 보임(활성화) -->
