@@ -16,7 +16,7 @@
                 <li><a href="Board.do" class="nav-link">게시판</a></li>
                 <c:if test="${mb_id != null}">
                 <li>
-                	<a href="UpdateMsg.do?b_no=1" class="nav-link">글쓰기</a>
+                	<a href="UpdateMsg.do?b_no=0" class="nav-link">글쓰기</a>
                 	<input type="hidden" name="mb_no" value="${mb_no}">
                 </li>
                 </c:if>

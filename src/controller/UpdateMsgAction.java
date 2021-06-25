@@ -37,7 +37,6 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		req.setAttribute("b_no", Integer.parseInt(req.getParameter("b_no")));
 		
 		if(!req.getParameter("b_no").equals("0")) {
-			
 			b = board.Load(Integer.parseInt(req.getParameter("b_no")));
 			// 게시글 불러오기
 			req.setAttribute("b", b);//게시글 불러오기 기능

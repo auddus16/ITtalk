@@ -35,7 +35,7 @@
     <!-- 게시글 수정 폼 시작 -->
     <section class="site-section">
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:5%;">
-            <h3 class="mb-5">게시글 수정</h3>
+            <h3 class="mb-5">게시글 작성</h3>
               <div style="">
                 
                 <form action="Newmsg.do?b_no=${b_no}" method="post" enctype="multipart/form-data"><!-- 수정 컨롤링크 연결 -->
@@ -63,7 +63,7 @@
                   
                   <div class="form-group">
                     <label for="name">제목 *</label>
-                    <input type="text" class="form-control" id="title" name="b_title" value="${b.b_titel}" required>
+                    <input type="text" class="form-control" id="title" name="b_title" value="${b.b_title}" required>
                   </div>
                   <div class="form-group">
                     <label for="email">첨부파일</label>
