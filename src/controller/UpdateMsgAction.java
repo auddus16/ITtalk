@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import itTalkDAO.AdminMenu;
 import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Bc;
@@ -21,8 +22,10 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		ActionForward forward = new ActionForward();
 
 		
-		ArrayList<B> cate = new ArrayList<>();// 카테고리 게시글 목록 출력
+		ArrayList<Bc> cate =new ArrayList<>();//게시판 카테고리 출력
 		
+		
+		AdminMenu adminmenu = new AdminMenu(); //dao
 		Board board =new Board(); //dao
 
 		B b = new B(); //do
@@ -45,9 +48,10 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		b.setB_date(req.getParameter("b_date"));
 
 
-		// 카테고리 게시글 목록 출력
-		//ArrayList<B> bcSearch(int bc_no)
-		cate=board.bcSearch(Integer.parseInt(req.getParameter("bc_no")));
+		
+		// 게시판 카테고리 출력 
+		// ArrayList<Bc> getBoardCategory()
+		cate=adminmenu.getBoardCategory();
 
 		//json문자열로 변환과정
 		ObjectMapper mapper2= new ObjectMapper();
