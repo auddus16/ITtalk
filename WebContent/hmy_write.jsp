@@ -30,12 +30,16 @@
 
     <link rel="stylesheet" href="css/style.css">
  <script type="text/javascript">
-function report(){
-	window.open("report.jsp","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
+function report(v){
+	window.open("report.jsp?b_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
-
+function report2(v){
+	window.open("report.jsp?c_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
+	//어떤 페이지를 어떻게 띄울지 옵션
+);
+}
 </script>   
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -72,13 +76,13 @@ function report(){
                   	int mb_no =((B)(request.getAttribute("write"))).getMb_no();
                   	
                   	if(sessMb_no == mb_no){
-                  		out.println("<a href='#'>삭제</a>&nbsp;<a href='#'>수정</a>");
+                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
                   	}
                   
                   %>
 					
               &nbsp;<a href="favorite.do?${write.b_no}"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
-              &nbsp;<a href="javascript:report();"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
+              &nbsp;<a href="javascript:report(${write.b_no});"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
                   </div>
                &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">${write.b_cnt}</a><!-- 댓글수 -->
                 </div>
@@ -127,11 +131,13 @@ function report(){
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     </c:otherwise>
                  </c:choose>
-                    
-                    <c:if test="${session.mb_no eq v.mb_no}">
+                    <c:choose>
+                    <c:when test="${session.mb_no eq v.mb_no}">
                     	<input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;">
-                    </c:if>
-                    
+                    </c:when>
+                    </c:choose>
+                    <a href="javascript:report2(${v.c_no});"><img src="images/siren.png" width="15" height="15" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
+             
                 </form>
                   </div>
                   <br>

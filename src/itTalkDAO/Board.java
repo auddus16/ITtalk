@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -20,8 +19,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import itTalkDO.B;
 import itTalkDO.BoardSet;
 import itTalkDO.C;
-import itTalkDO.Mb;
-
+ 
 public class Board {
 
 	Connection conn;
@@ -159,8 +157,9 @@ public class Board {
 		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
+			System.out.println(req.getParameter("b_no") + "확인2");
 			int maxSize = 3 * 1024 * 1024; // 3MB
-			String encoding = "UTF-8";
+			String encoding = "euc-kr";
 			
 			// saveDir: 경로
 					// maxSize: 크기제한 설정
@@ -173,7 +172,12 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
-							if(multi.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
+							System.out.println(multi.getParameter("mb_no"));
+							System.out.println(multi.getParameter("bc_no"));
+							System.out.println(multi.getParameter("b_title"));
+							System.out.println(multi.getParameter("b_write"));
+							System.out.println(multi.getParameter("b_file"));
+							if(req.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
 								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
 								pstmt=conn.prepareStatement(sql);
 								pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));
@@ -368,7 +372,7 @@ public class Board {
 	public boolean newReply(C c){//Comment 댓글 객체
 		try {
 			conn=DBManager.connect();
-			String sql="insert into c (b_no,mb_no,c_write) values(?,?,?)";//댓글 추가
+			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";//댓글 추가
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.setInt(2, c.getMb_no());
@@ -600,14 +604,13 @@ public class Board {
 	public ArrayList<B> titleSearch(String search){
 
 		ArrayList<B> datas = new ArrayList<>();
-		String keword="%"+search+"%";
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where (b_title like ? or b_write like ?) order by b_no desc ";
+			String sql="select * from b where b_title=? or b_write=? order by b_no desc ";
 			pstmt=conn.prepareStatement(sql);
 
-			pstmt.setString(1, keword);
-			pstmt.setString(2, keword);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
 
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -693,55 +696,24 @@ public class Board {
 		return datas;
 	}
 	
-	// 검색 받은 nick 정보로 사용자 정보
-	public Mb nickSearchmb(String nick){
-		Mb mb=new Mb();
-		try {
-			conn=DBManager.connect();
-			String sql="select * from mb where mb_nick=?";
-			pstmt=conn.prepareStatement(sql);
-			
-			pstmt.setString(1, nick);
-			
-			ResultSet rs=pstmt.executeQuery();
-			while(rs.next()) {
-				
-				mb.setMb_no(rs.getInt("mb_no"));
-				mb.setMb_id(rs.getString("mb_id"));
-				mb.setMb_pw(rs.getString("mb_pw"));
-				mb.setMb_email(rs.getString("mb_email"));
-				mb.setMb_nick(rs.getString("mb_nick"));
-				mb.setMb_job(rs.getBoolean("mb_job"));
-				mb.setMb_certify(rs.getBoolean("mb_certify"));	
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return mb;
-	}
 	// 검색 게시글 목록 출력(작성자)
-	public ArrayList<B> nickSearch(int mb_no){
+	public ArrayList<B> nickSearch(String nick){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
 			
-			String sql="select * from b where mb_no=? order by b_no desc";
+			String sql="select * from mb where mb_nick=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1,mb_no);
-			
+			pstmt.setString(1, nick);
 			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			
+			sql="select * from b where mb_no=? order by b_no desc";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,rs.getInt("mb_no"));
+			
+			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();
 				

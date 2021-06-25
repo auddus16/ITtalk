@@ -27,6 +27,10 @@ public class CateAction implements Action{
 		if(req.getParameter("bc_no")==null) {//카테고리 정보 없을때 디폴트로 맨앞에꺼
 			
 			req.setAttribute("postList",bDAO.bcSearch(cateList.get(0).getBc_no()));
+			ObjectMapper mapper= new ObjectMapper();
+			
+			String jsonStr= mapper.writeValueAsString(bDAO.bcSearch(cateList.get(0).getBc_no()));//댓글리스트 스크롤위함
+			req.setAttribute("json", jsonStr);
 		}
 		else {
 			

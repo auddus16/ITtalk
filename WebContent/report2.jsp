@@ -7,8 +7,8 @@
 <title>신고하기</title>
 </head>
 <body>
-	<form method="post" action="report.do" class="p-5 bg-white">
-          <input type="hidden" name="b_no" value="${param.b_no}">    
+	<form method="post" action="report2.do" class="p-5 bg-white">
+          <input type="hidden" name="c_no" value="${param.c_no}">    
           <h2 class="h4 text-black mb-5">신고하기</h2> 
 
              <div class="row form-group">

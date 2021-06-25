@@ -62,7 +62,14 @@ public class FrontController_write extends HttpServlet {
 		}
 		else if(command.equals("/delete.do")) {
 			try {
-				forward=new DeleteAction().execute(req, res);
+				forward=new DeletepostAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/delete2.do")) {
+			try {
+				forward=new DeletereplyAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -91,6 +98,13 @@ public class FrontController_write extends HttpServlet {
 		else if(command.equals("/report.do")) {
 			try {
 				forward=new ReportAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/report2.do")) {
+			try {
+				forward=new Report2Action().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
