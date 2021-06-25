@@ -29,39 +29,68 @@
     <link rel="stylesheet" href="css/style.css">
  <style type="text/css">
     .home-list {
-    	display: flex;
-    	flex-wrap: wrap;
-    	width:70%;
-    	align:center;
-	}
-	.boardlist{
-		width:40%;
-		margin-right:20px;
-		margin-bottom:20px;
-		float:left;
-		border: 1px solid grey;
-		text-align:left;
-	}
-	a{
-		color:black;
-	}
+       display: flex;
+       flex-wrap: wrap;
+       width:70%;
+       align:center;
+   }
+   .boardlist{
+      width:40%;
+      margin-right:20px;
+      margin-bottom:20px;
+      float:left;
+      border: 1px solid grey;
+      text-align:left;
+   }
+   a{
+      color:black;
+   }
 </style>   
+ <script src="jquery-3.6.0.min.js"></script>
+<script type="text/javascript">//스크롤내리면 자동으로 이벤트 발생
+    var tag="";
+	var list= JSON.parse('${json}');
+	var addList=list.slice(10);//10번 인덱스부터 끝까지
+	console.log("ready");
     
+	for(var i=0; i<addList.length; i++){
+		
+		tag+='<div class="boardlist"><a href="post.do?b_no='+addList[i].b_no+'"><h3>'+addList[i].b_title+'</h3></a><hr>';
+		tag+='<p>'+addList[i].b_write+'</p><div style="margin:5px;">';
+		tag+='<img src="images/eye.png" width="20" height="20" alt="조회수">'+addList[i].b_hits+'&nbsp;&nbsp;';
+		tag+='<a href="favorite.do?b_no='+addList[i].b_no+'"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;' ;           
+        tag+='<a href="#"><img src="images/reply.png" width="20" height="20" alt="댓글수">'+addList[i].b_cnt+'</a>';
+        tag+='<span style="float:right;">'+addList[i].b_date+'</span></div></div>';
+            
+	}
+
+	document.addEventListener('scroll', function() {
+	
+    var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
+    
+    if(currentScrollValue>200){
+    	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
+    	//$('#height').append(tag);//table의 tbody요소 앞에 append
+    	$('.home-list').append(tag);
+    	tag=null;
+    }
+    });
+</script>    
   </head>
   
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
- 	<div style="float:left">
- 	<jsp:include page="hmy_boardcate.jsp"/>
- 	</div>
- 	
- 	<section class="site-section">
- 	<div align="center" style="margin-top:50px;">
- 	<div class="home-list">
- 			
+    <div style="float:left">
+    <jsp:include page="hmy_boardcate.jsp"/>
+    </div>
+    
+    <section class="site-section">
+    <div align="center" style="margin-top:50px;">
+    <div class="home-list">
+          
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${postList}" begin="0" end="9" > <!-- 게시글목록 출력 -->
-     		<div class="boardlist">
+           <div class="boardlist">
                 <a href="post.do?b_no=${v.b_no}"><h3>${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
@@ -76,17 +105,17 @@
                 <span style="float:right;">${v.b_date}</span><!-- 등록날짜 -->
                 
                 </div>
-				
+            
               </div>
             
             </c:forEach> 
            <!-- end -->   
               
-				               
+                           
              </div>
              </div>
       </section>
- 	
+    
 
     <footer class="site-footer">
       <div class="container">

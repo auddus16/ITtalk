@@ -33,6 +33,11 @@ public class CateAction implements Action{
 			for(Bc v: cateList) {
 				if(Integer.parseInt(req.getParameter("bc_no"))== v.getBc_no()) {
 					req.setAttribute("postList",bDAO.bcSearch(Integer.parseInt(req.getParameter("bc_no"))) );
+					//json문자열로 변환과정
+					ObjectMapper mapper= new ObjectMapper();
+								
+					String jsonStr= mapper.writeValueAsString(bDAO.bcSearch(Integer.parseInt(req.getParameter("bc_no"))));//댓글리스트 스크롤위함
+					req.setAttribute("json", jsonStr);
 					break;
 				}
 			}

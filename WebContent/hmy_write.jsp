@@ -1,3 +1,5 @@
+<%@page import="itTalkDO.B"%>
+<%@page import="itTalkDAO.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
@@ -65,27 +67,33 @@ function report(){
                   <div style="float:right;">
                   <!-- 본인게시글이라면, 삭제, 수정 버튼 보임(활성화) -->
                   <!-- session에 저장된 id와 해당게시글의 id가 같은지-->
-					<!-- jstl로 test해주세요 + 컨롤링크 -->
-                  	<a href="#">삭제</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 -->
-               &nbsp;<a href="#">수정</a> <!-- 위 테스트에서 해당될 때 a태그 넣어주세요 (복붙)-->
-              &nbsp;<a href="#"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
+                  <% 
+                  	int sessMb_no = (Integer)session.getAttribute("mb_no");
+                  	int mb_no =((B)(request.getAttribute("write"))).getMb_no();
+                  	
+                  	if(sessMb_no == mb_no){
+                  		out.println("<a href='#'>삭제</a>&nbsp;<a href='#'>수정</a>");
+                  	}
+                  
+                  %>
+					
+              &nbsp;<a href="favorite.do?${write.b_no}"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
               &nbsp;<a href="javascript:report();"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
                   </div>
-               &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">30</a><!-- 댓글수 -->
+               &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">${write.b_cnt}</a><!-- 댓글수 -->
                 </div>
  	
  	<!-- 댓글 작성 폼 시작 -->
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
               <div style="">
-                <form action="Newreply.do" class=""><!-- 컨롤링크 연결 -> 신고버튼 때문-->
-                
-                <input type="hidden" name="c_no" value="c_no"> <!-- 신고시, 댓글 번호 넘겨줘야함.값 추가해야함. -->
-                    
-                    <label for="message">댓글작성자닉네임11</label><!--닉네임 적어주세요-->
-                    <textarea name="" id="message" cols="2" rows="2" class="form-control" required></textarea>
+                <form action="Newreply.do"><!-- 컨롤링크 연결 -> 신고버튼 때문-->
+                    <input type="hidden" name="b_no" value="${write.b_no}">
+                    <label for="message">댓글작성</label><!--닉네임 적어주세요-->
+                    <textarea name="c_write" id="message" cols="2" rows="2" class="form-control" required></textarea>
                     <label><input type="checkbox" name="secret" value="1">비밀댓글</label>
                     <input type="submit" value="등록" class="btn btn-primary btn-md text-white" style="float:right;">
+                    
                 </form>
                   </div>
                   </div>
@@ -96,48 +104,40 @@ function report(){
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
               <!-- forEach 댓글 출력 부분 -->
+              <c:forEach var="v" items="${replyList}" end="9">
               <div>
                 <form action="#" class=""><!-- 컨롤링크 연결 -->
-                    <label for="message">댓글작성자닉네임11</label>
-                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
+                    <label for="message">${v.mb_no}</label>
                     <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
                     <!--  (본인댓글이 아닌)비밀댓글을 만났을때 블라인드처리
                     <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
+                 <c:choose>
+                    <c:when test="${v.c_secret eq true}">
+                    	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
+               			<div>비밀댓글입니다.</div> 
+              			</div>
+                    </c:when>
+                    <c:when test="${v.c_deleted eq true}">
+                    	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
+               			<div>신고되어 블라인드 처리되었습니다.</div> 
+              			</div>
+                    </c:when>
+                    
+                    <c:otherwise>
+	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
+                    </c:otherwise>
+                 </c:choose>
+                    
+                    <c:if test="${session.mb_no eq v.mb_no}">
+                    	<input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;">
+                    </c:if>
+                    
                 </form>
                   </div>
                   <br>
+                  </c:forEach>
                   <!-- forEach 끝 -->
-              
-              <!-- 비밀댓글 출력 형태 -->
-              <div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
-               <div>비밀댓글입니다.</div> 
-               </div>
-                 <br>
-               <!-- 비밀댓글 출력 끝 -->
-              
-              
-              <div>
-                <form action="#" class=""><!-- 컨롤링크 연결 -->
-                    <label for="message">댓글작성자닉네임11</label>
-                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
-                    <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
-                    <!--  
-                    <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
-                </form>
-                  </div>
-                  <br>
-              <div style="">
-                <form action="#" class=""><!-- 컨롤링크 연결 -->
-                    <label for="message">댓글작성자닉네임11</label>
-                    <textarea name="" id="message" cols="1" rows="1" class="form-control" disabled>여기에 댓글내용 넣어주세요!</textarea>
-                    <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
-                    <!--  
-                    <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
-                </form>
-                  </div>
-                  
-               
-                  <div align="center"><a id="load-more" href="mypost.mem?cnt=${cnt+1}">더보기&gt;&gt;</a></div>
+                  <div align="center"><a id="load-more" href="mypost.mem?cnt=${cnt+1}">더보려면 스크롤을 내리세요&gt;&gt;</a></div>
         </div>
 	
  	<!-- 댓글 끝 -->

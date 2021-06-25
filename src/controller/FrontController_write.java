@@ -60,9 +60,9 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/Delmsg.do")) {
+		else if(command.equals("/delete.do")) {
 			try {
-				forward=new DelmsgAction().execute(req, res);
+				forward=new DeleteAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -88,9 +88,9 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/MsgReport.do")) {
+		else if(command.equals("/report.do")) {
 			try {
-				forward=new MsgReportAction().execute(req, res);
+				forward=new ReportAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -116,30 +116,9 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("Delreply.do")) {
-			try {
-				forward=new DelreplyAction().execute(req, res);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/ReplyReport.do")) {
-			try {
-				forward=new ReplyReportAction().execute(req, res);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
 		else if(command.equals("/TitelCheck.do")) {
 			try {
 				forward=new TitelCheckAction().execute(req, res);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if(command.equals("/WriteCheck.do")) {
-			try {
-				forward=new ReplyReportAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
