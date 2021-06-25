@@ -38,7 +38,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="Board.do" method="post">
+        <form action="Search.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
@@ -48,7 +48,7 @@
     			<option value="2">작성자</option>
 			</select>
 			</span>
-        	<input type="text" class="form-control" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
+        	<input type="text" class="form-control" name="searchinfo" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
         	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
         </table>
 		</form>
