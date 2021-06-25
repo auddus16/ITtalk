@@ -25,6 +25,43 @@ public class Board {
 	Connection conn;
 	PreparedStatement pstmt;
 	
+	// bc_no -> bc_name
+	public String Bc_Bn(int bc_no){//카테고리 번호
+	
+		String bcName = null;
+		try {
+			conn=DBManager.connect();
+			String sql="select * from bc where bc_no=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bc_no);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			rs.next();
+				
+			bcName = rs.getString("bc_name");
+				
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("카테고리 이름 불러오기 실패");
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("카테고리 이름 불러오기 성공");
+		return bcName;
+	}
 	// 게시글 불러오기
 	// 작성된 게시글을 수정할떄 저장되어있던 데이터를 불러오는 메서드
 	public B Load(int b_no){//게시글 번호
