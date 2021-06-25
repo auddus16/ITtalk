@@ -54,7 +54,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="Board.do" method="post">
+        <form action="Search.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
