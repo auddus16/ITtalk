@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import itTalkDAO.AdminMenu;
 import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Bc;
@@ -19,6 +21,11 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
 
+		
+		ArrayList<Bc> cate =new ArrayList<>();//게시판 카테고리 출력
+		
+		
+		AdminMenu adminmenu = new AdminMenu(); //dao
 		Board board =new Board(); //dao
 
 		B b = new B(); //do
@@ -41,12 +48,23 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		b.setB_date(req.getParameter("b_date"));
 
 
+		
+		// 게시판 카테고리 출력 
+		// ArrayList<Bc> getBoardCategory()
+		cate=adminmenu.getBoardCategory();
 
+		//json문자열로 변환과정
+		ObjectMapper mapper2= new ObjectMapper();
+
+		String jsonStr2= mapper2.writeValueAsString(cate);
+		req.setAttribute("json", jsonStr2);
+
+		req.setAttribute("cate", cate);
 
 
 		// 게시글 불러오기
 		b=board.Load(Integer.parseInt(req.getParameter("b_no")));
-		
+
 		//json문자열로 변환과정
 		ObjectMapper mapper= new ObjectMapper();
 
@@ -59,7 +77,7 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 
 
 		forward.setRedirect(false);
-		forward.setPath("hmy_board.jsp");
+		forward.setPath("hmy_writemodify.jsp");
 
 
 		return forward;

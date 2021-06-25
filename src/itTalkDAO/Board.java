@@ -663,7 +663,7 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_nick=? order by b_no desc";
+			String sql="select * from b where mb_nick=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, nick);

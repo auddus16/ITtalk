@@ -75,7 +75,7 @@ public class NewmsgAction implements Action{// 게시글 등록
 		//req.setAttribute("datas", datas); 보낼 데이터 정보
 
 		forward.setRedirect(false);
-		forward.setPath("hmy_board.jsp");
+		forward.setPath("hmy_writenew.jsp");
 
 
 		return forward;

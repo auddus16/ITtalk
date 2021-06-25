@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +38,7 @@
             <h3 class="mb-5">게시글 수정</h3>
               <div style="">
                 
-                <form action="UpdateMsg.do" method="post"><!-- 수정 컨롤링크 연결 -->
+                <form action="Newmsg.do" method="post"><!-- 수정 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
@@ -51,7 +52,7 @@
     						<option value="2" selected>개발자의 회사생활</option>
     						<option value="3">자유</option>
     						 -->
-    					<c:forEach var="bc" items="${boardCategory}">
+    					<c:forEach var="bc" items="${cate}">
 							<option value="${bc.bc_no}">${bc.bc_name}</option>			
     					</c:forEach>
     					<!-- forEach 끝 -->
@@ -62,15 +63,15 @@
                   
                   <div class="form-group">
                     <label for="name">제목 *</label>
-                    <input type="text" class="form-control" id="b_title" value="${b.b_titel}" required>
+                    <input type="text" class="form-control" id="title" name="b_tirle" value="${b.b_titel}" required>
                   </div>
                   <div class="form-group">
                     <label for="email">첨부파일</label>
-                    <input type="file" class="form-control" id="b_file" multiple> 
+                    <input type="file" class="form-control" id="" name="b_file" multiple> 
                   </div>
                   <div class="form-group">
                     <label for="message">내용 *</label>
-                    <textarea name="b_write" id="b_write" cols="30" rows="10" class="form-control" required>${b.b_write}</textarea>
+                    <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" required>${b.b_write}</textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="수정완료" class="btn btn-primary btn-md text-white" style="float:right;">

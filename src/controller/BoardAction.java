@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import itTalkDAO.AdminMenu;
 import itTalkDAO.Board;
 import itTalkDO.B;
 import itTalkDO.Bc;
@@ -19,11 +20,15 @@ public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-
-		ArrayList<B> titlewrite = new ArrayList<>();// 검색 게시글 목록 출력(제목+내용)	
-		ArrayList<B> nickwrite = new ArrayList<>();// 검색 게시글 목록 출력(작성자)
+		
+		ArrayList<Bc> cate =new ArrayList<>();// 게시판 카테고리 출력
 		ArrayList<B> bcwrite = new ArrayList<>();// 카테고리 게시글 목록 출력
+		
 		ArrayList<B> write = new ArrayList<>();// 게시글 목록 출력
+
+
+		
+		AdminMenu adminmenu = new AdminMenu(); //dao
 
 		Board board = new Board(); //dao
 
@@ -31,6 +36,8 @@ public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
 		Mb mb= new Mb(); //do
 		Bc bc = new Bc(); //do
 
+		
+		
 		//b_no 게시글번호
 		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
 		//mb_no 회원번호
@@ -52,60 +59,44 @@ public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
 
 
 
-		// 검색 게시글 목록 출력(제목+내용)
-		//ArrayList<B> titleSearch(String search)
-		titlewrite=board.titleSearch(req.getParameter("search"));
-
-		//json문자열로 변환과정
-		ObjectMapper mapper= new ObjectMapper();
-
-		String jsonStr= mapper.writeValueAsString(titlewrite);
-		req.setAttribute("json", jsonStr);
-
-
-		req.setAttribute("titlewrite", titlewrite);
-
-
-
-		// 검색 게시글 목록 출력(작성자)
-		//ArrayList<B> nickSearch(String nick)
-		nickwrite=board.nickSearch(req.getParameter("nick"));
-
-		//json문자열로 변환과정
-		ObjectMapper mapper1= new ObjectMapper();
-
-		String jsonStr1= mapper.writeValueAsString(nickwrite);
-		req.setAttribute("json", jsonStr1);
-
-		req.setAttribute("nickwrite", nickwrite);
-
-
+		
+		//게시판 카테고리 출력
+		//ArrayList<Bc> getBoardCategory()
+		cate=adminmenu.getBoardCategory();
+		req.setAttribute("cate", cate);
+		
+		
+		
+		
 		// 카테고리 게시글 목록 출력
 		//ArrayList<B> bcSearch(int bc_no)
 		bcwrite=board.bcSearch(Integer.parseInt(req.getParameter("bc_no")));
 
 		//json문자열로 변환과정
-		ObjectMapper mapper2= new ObjectMapper();
+		ObjectMapper mapper= new ObjectMapper();
 
-		String jsonStr2= mapper.writeValueAsString(bcwrite);
-		req.setAttribute("json", jsonStr2);
+		String jsonStr= mapper.writeValueAsString(bcwrite);
+		req.setAttribute("json", jsonStr);
 
 		req.setAttribute("bcwrite", bcwrite);
-
+		
+		
 
 		// 게시글 목록 출력
 		//ArrayList<B> search()
 		write=board.search();
 
 		//json문자열로 변환과정
-		ObjectMapper mapper3= new ObjectMapper();
+		ObjectMapper mapper2= new ObjectMapper();
 
-		String jsonStr3= mapper.writeValueAsString(write);
-		req.setAttribute("json", jsonStr3);
+		String jsonStr2= mapper2.writeValueAsString(write);
+		req.setAttribute("json", jsonStr2);
 
 		req.setAttribute("write", write);
 
 		
+		
+
 		forward.setRedirect(false);
 		forward.setPath("hmy_board.jsp");
 
