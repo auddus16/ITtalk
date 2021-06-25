@@ -39,11 +39,11 @@
               <div style="">
                 
                 <form action="Newmsg.do?b_no=${b_no}" method="post" enctype="multipart/form-data"><!-- 수정 컨롤링크 연결 -->
-                  
+                 <input type="hidden" name="mb_no" value="${mb_no}">
                   <div>
                   <span style="float:left;">
         			<label for="pet-select">카테고리 *</label><!-- 이부분 카테고리table에서 카테고리가져와서 출력 -->
-						<select name="pets" id="category">
+						<select name="bc_no" id="category">
 						<!-- forEach 시작 -->
 						<!-- value는 no, 가운데 이름 -->
 						<!-- 원래 게시글의 카테고리가 처음 선택되어 보여질 수 있게 해주세요 ->jstl option태그에 selected 속성 넣으면 됩니다.-->
@@ -63,7 +63,7 @@
                   
                   <div class="form-group">
                     <label for="name">제목 *</label>
-                    <input type="text" class="form-control" id="title" name="b_tirle" value="${b.b_titel}" required>
+                    <input type="text" class="form-control" id="title" name="b_title" value="${b.b_titel}" required>
                   </div>
                   <div class="form-group">
                     <label for="email">첨부파일</label>
@@ -74,7 +74,7 @@
                     <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" required>${b.b_write}</textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="수정완료" class="btn btn-primary btn-md text-white" style="float:right;">
+                    <input type="submit" value="등록" class="btn btn-primary btn-md text-white" style="float:right;">
                   </div>
                 </form>
                 </div>

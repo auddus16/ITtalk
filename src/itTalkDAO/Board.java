@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -157,9 +158,10 @@ public class Board {
 		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
-			System.out.println(req.getParameter("b_no") + "확인2");
 			int maxSize = 3 * 1024 * 1024; // 3MB
-			String encoding = "euc-kr";
+			String encoding = "UTF-8";
+			
+			String
 			
 			// saveDir: 경로
 					// maxSize: 크기제한 설정
@@ -172,12 +174,13 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
+							System.out.println(multi.getParameter("b_no") + "확");
 							System.out.println(multi.getParameter("mb_no"));
 							System.out.println(multi.getParameter("bc_no"));
 							System.out.println(multi.getParameter("b_title"));
 							System.out.println(multi.getParameter("b_write"));
-							System.out.println(multi.getParameter("b_file"));
-							if(req.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
+							System.out.println(multi.getFilesystemName("b_file"));
+							if(multi.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
 								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
 								pstmt=conn.prepareStatement(sql);
 								pstmt.setInt(1, Integer.parseInt(multi.getParameter("mb_no")));

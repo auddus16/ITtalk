@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,6 +25,8 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		
 		ArrayList<Bc> cate =new ArrayList<>();//게시판 카테고리 출력
 		
+		HttpSession session=req.getSession();
+		req.setAttribute("mb_no", session.getAttribute("mb_no"));
 		
 		AdminMenu adminmenu = new AdminMenu(); //dao
 		Board board =new Board(); //dao

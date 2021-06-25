@@ -18,9 +18,6 @@ public class NewmsgAction implements Action{// 게시글 등록
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		HttpSession session=req.getSession();
-		
-		req.setAttribute("mb_no", session.getAttribute("mb_no"));
 		
 		Board board = new Board();//dao
 		
