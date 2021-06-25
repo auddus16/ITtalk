@@ -82,7 +82,7 @@ public class FrontController_ad extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(action.equals("/adreply.ad")) {//신고게시글 수정
+		else if(action.equals("/adreply.ad")) {//신고댓글
 			try {
 				forward=new AdreplyAction().execute(req, res);
 			} catch (Exception e) {
@@ -115,6 +115,22 @@ public class FrontController_ad extends HttpServlet {
 			}
 		}
 		else if(action.equals("/addelreply.ad")) {//신고댓글 삭제
+			try {
+				forward=new AddelreplyAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/removeblind.ad")) {//신고게시글 블라인드해제
+			try {
+				forward=new AddelreplyAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(action.equals("/removeblind2.ad")) {//신고댓글 블라인드해제
 			try {
 				forward=new AddelreplyAction().execute(req, res);
 			} catch (Exception e) {

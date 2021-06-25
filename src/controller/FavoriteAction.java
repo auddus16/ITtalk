@@ -16,44 +16,31 @@ public class FavoriteAction implements Action {// 좋아요
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		ActionForward forward = new ActionForward();
 
-		Board board =new Board(); //dao
+		Board bDAO =new Board(); //dao
+				
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
 		
-		Mb mb = new Mb(); //do
-		B b = new B(); //do
+		PrintWriter out=res.getWriter();
 		
-		
-		//mb_no 회원번호
-		mb.setMb_no(Integer.parseInt(req.getParameter("mb_no")));
-		//b_no 게시글번호
-		b.setB_no(Integer.parseInt(req.getParameter("b_no")));
-		
-		
-		PrintWriter out =res.getWriter();
-		
-		HttpSession session = req.getSession(false);
+		HttpSession session= req.getSession();
 		
 		// 게시글 좋아요
+		if(session.getAttribute("mb_no")== null) {
 			
-		
-		if(!board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")))) {//게시글 좋아요 실패
-			out.println("<script>alert('좋아요 실패');history.go(-1);</script>");
+			out.println("<script>alert('로그인이 필요합니다.');history.go(-1);</script>");
 		}
-		else {// 게시글 좋아요 성공
-			Boolean like=board.like(Integer.parseInt(req.getParameter("mb_no")),Integer.parseInt(req.getParameter("b_no")));
-			out.println("<script>alert('좋아요 성공');</script>");
-			session.setAttribute("like", like);
+		else {
+			
+			if(!bDAO.like((Integer)session.getAttribute("mb_no"),Integer.parseInt(req.getParameter("b_no")))) {//게시글 좋아요 실패
+			}
+			else {// 게시글 좋아요 성공
+				out.println("<script>alert('게시글을 저장하였습니다. 저장된 게시글은 마이페이지에서 확인가능합니다!');</script>");
+			}
 		}
 		
-		
-		
-
-		forward.setRedirect(false);
-		forward.setPath("좋아요를 담당하는.jsp");
-
-
-		return forward;
+		return null;
 	}
 
 }

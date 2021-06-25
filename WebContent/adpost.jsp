@@ -48,9 +48,13 @@ table.type09 td {
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
     
 	for(var i=0; i<addList.length; i++){
-		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].mb_no+'</td><td>'+${adDAO.getReportCategory(addList[i].rctg_no)}+'</td><td>'+addList[i].rb_write+'</td><td>';
+		var n= parseInt(addList[i].rctg_no);
+		console.log(n);
+		var s= "<c:out value='${adDAO.getReportCategory("+n+")}' />";
+		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].mb_no+'</td><td>'+s+'</td><td>'+addList[i].rb_write+'</td><td>';
 		tag+=addList[i].rb_date+'</td>';
 		tag+='<td><a href="ff.jsp">조회</a></td>';
+		tag+='<td><a href="removeblind.ad?b_no='+addList[i].b_no+'">blind해제</a></td>';
 		tag+='<td><a href="addelpost.ad?b_no='+addList[i].b_no+'">삭제</a></td></tr>';
 	}
 	document.addEventListener('scroll', function() {
@@ -85,6 +89,7 @@ table.type09 td {
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>
     <th scope="cols">조회</th>
+    <th scope="cols">블라인드해제</th>
     <th scope="cols">삭제</th>
   </tr>
   </thead>
@@ -108,6 +113,7 @@ table.type09 td {
 	    <td>${v.rb_write}</td>
 	    <td>${v.rb_date}</td>
 	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="removeblind.ad?b_no=${v.b_no}">blind해제</a></td>
 	    <td><a href="addelpost.ad?b_no=${v.b_no}">삭제</a></td>
 	  </tr>
   

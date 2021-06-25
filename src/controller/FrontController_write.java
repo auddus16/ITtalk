@@ -67,6 +67,13 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/cate.do")) {//카테고리 더보기
+			try {
+				forward=new CateAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/UpdateMsg.do")) {
 			try {
 				forward=new UpdateMsgAction().execute(req, res);
@@ -88,7 +95,7 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/Favorite.do")) {
+		else if(command.equals("/favorite.do")) {
 			try {
 				forward=new FavoriteAction().execute(req, res);
 			}catch(Exception e) {
@@ -112,6 +119,27 @@ public class FrontController_write extends HttpServlet {
 		else if(command.equals("/ReplyReport.do")) {
 			try {
 				forward=new ReplyReportAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/TitelCheck.do")) {
+			try {
+				forward=new TitelCheckAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/WriteCheck.do")) {
+			try {
+				forward=new ReplyReportAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/Search.do")) {
+			try {
+				forward=new SearchAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

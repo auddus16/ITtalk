@@ -10,30 +10,33 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import itTalkDAO.AdminMenu;
+import itTalkDAO.Board;
 import itTalkDO.Bc;
 
-public class BoardAction implements Action{//게시판  화면(게시글 목록 화면)
+public class CateAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
 		ActionForward forward = new ActionForward();
 		AdminMenu adDAO= new AdminMenu();
+		Board bDAO = new Board();
 		
 		ArrayList<Bc> cateList= adDAO.getBoardCategory();
 		req.setAttribute("cateList", cateList);
 		
+		for(Bc v: cateList) {
+			if(Integer.parseInt(req.getParameter("bc_no"))== v.getBc_no()) {
+				req.setAttribute("postList",bDAO.bcSearch(Integer.parseInt(req.getParameter("bc_no"))) );
+				break;
+			}
+		}
 		
-		//json문자열로 변환과정
-		ObjectMapper mapper= new ObjectMapper();
-		String jsonStr= mapper.writeValueAsString(cateList);
-		req.setAttribute("json", jsonStr);
 		
 		forward.setRedirect(false);
-		forward.setPath("hmy_board.jsp");
+		forward.setPath("hmy_boardlist.jsp");
 
 
 		return forward;
 	}
-
+	
 }

@@ -7,17 +7,24 @@
         <div class="row align-items-center">
           
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="hmy_main.jsp" class="text-black h2 mb-0">ITtalk<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="main.main" class="text-black h2 mb-0">ITtalk<span class="text-primary">.</span> </a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+<<<<<<< HEAD
                 <li><a href="hmy_board.jsp" class="nav-link">게시판</a></li>
                 <li>
                   <a href="UpdateMsg.do?b_no= " class="nav-link">글쓰기</a>
                   <input type="hidden" name="mb_no" value="${mb_no}">
                 </li>
+=======
+                <li><a href="Board.do" class="nav-link">게시판</a></li>
+                <c:if test="${mb_id != null}">
+                <li><a href="hmy_writenew.jsp" class="nav-link">글쓰기</a></li>
+                </c:if>
+>>>>>>> branch 'master' of https://github.com/auddus16/ITtalk.git
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
 
 	<c:choose>
