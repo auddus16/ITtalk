@@ -69,7 +69,7 @@ public class FrontController_write extends HttpServlet {
 		}
 		else if(command.equals("/cate.do")) {//카테고리 더보기
 			try {
-				forward=new DelmsgAction().execute(req, res);
+				forward=new CateAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -95,7 +95,7 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/Favorite.do")) {
+		else if(command.equals("/favorite.do")) {
 			try {
 				forward=new FavoriteAction().execute(req, res);
 			}catch(Exception e) {

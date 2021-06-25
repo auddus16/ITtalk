@@ -34,13 +34,9 @@
                 <h3>Category</h3>
                 <hr>
                 <!-- foreach로 카테고리 모두 출력 -->
-               
-                  <!-- 카테고리 4개 -->          
-                <li><a href="Board.do?bc_no=${v.bc_no}">코드도움</a></li><!-- 코드 도움 -->
-                <li><a href="Board.do?bc_no=${v.bc_no}">프로그램이슈</a></li><!-- 코드 도움 -->
-                <li><a href="Board.do?bc_no=${v.bc_no}">개발자회사생활</a></li><!-- 코드 도움 -->
-                <li><a href="Board.do?bc_no=${v.bc_no}">자유</a></li><!-- 코드 도움 -->
-               
+               <c:forEach var="v" items="${cateList}">
+                <li><a href="cate.do?bc_no=${v.bc_no}">${v.bc_name}</a></li><!-- 코드 도움 -->
+               </c:forEach>
 				<!-- end -->
               </div>
       </section>
