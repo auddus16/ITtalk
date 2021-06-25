@@ -367,7 +367,7 @@ public class Board {
 	public boolean newReply(C c){//Comment ´ñ±Û °´Ã¼
 		try {
 			conn=DBManager.connect();
-			String sql="insert into reply (b_no,mb_no,c_write) values(?,?,?)";//´ñ±Û Ãß°¡
+			String sql="insert into c (b_no,mb_no,c_write) values(?,?,?)";//´ñ±Û Ãß°¡
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.setInt(2, c.getMb_no());
