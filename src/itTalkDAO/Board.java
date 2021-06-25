@@ -188,7 +188,7 @@ public class Board {
 	
 	// 게시글 출력 ☆☆☆
 	// 사용자에게 보여지는 게시글 출력 메서드
-	public ArrayList<BoardSet> BoardPrint(int b_no){//게시글 번호
+	public BoardSet BoardPrint(int b_no){//게시글 번호
 
 		BoardSet bs = new BoardSet();
 		try {
