@@ -30,11 +30,11 @@ public class SearchAction implements Action{//검색할 때 쓰임
 		String searchinfo =req.getParameter("searchinfo");
 		System.out.println("검색내용 : "+searchinfo);
 		//ArrayList<B> titleSearch(String search) 검색 게시글 목록 출력(제목+내용)
-		if(pets.equals("1")) {
+		if(pets.equals("1")) { // 제목+내용 
 			searchB=board.titleSearch(searchinfo);
 			req.setAttribute("searchB", searchB);
 		}
-		else {
+		else { // 작성자명
 			Mb mb=board.nickSearchmb(req.getParameter("searchinfo"));
 			System.out.println("mb_no : "+mb.getMb_no());
 			searchB=board.nickSearch(mb.getMb_no());
