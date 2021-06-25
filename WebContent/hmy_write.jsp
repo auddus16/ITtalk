@@ -43,16 +43,12 @@ function report(){
     <section class="site-section">
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:0;">
             <div>&gt;&gt;${write.bc_name}</div><!-- 카테고리명 넣어주세요 -->
-            <h3>게시글 제목11</h3>
-            <div>작성자닉네임1 2021-06-23 00:00:00 <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
+            <h3>${write.b_title}</h3>
+            <div>${write.mb_name} &nbsp; ${write.b_date} &nbsp; <img src="images/eye.png" width="20" height="20" alt="조회수">${write.b_hits}&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
               <hr>
-              <div style="">
-                    <label for="email">첨부파일</label>
-                    <input type="file" class="form-control" id="">
-                  </div>
                   <div class="form-group">
                     <label for="message"></label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control" required></textarea>
+                    <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" required></textarea>
                   </div>
                   <div style="float:right;">
                   <!-- 본인게시글이라면, 삭제, 수정 버튼 보임(활성화) -->
