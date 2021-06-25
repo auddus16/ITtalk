@@ -67,6 +67,13 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/cate.do")) {//카테고리 더보기
+			try {
+				forward=new DelmsgAction().execute(req, res);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		else if(command.equals("/UpdateMsg.do")) {
 			try {
 				forward=new UpdateMsgAction().execute(req, res);
