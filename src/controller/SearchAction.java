@@ -21,11 +21,10 @@ public class SearchAction implements Action{//검색할 때 쓰임
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		ActionForward forward = new ActionForward();
-
-
+		Board board =new Board(); //dao
 		ArrayList<B> searchB = new ArrayList<>();// 검색된 게시글
 		
-		Board board =new Board(); //dao
+		
 		String pets=req.getParameter("pets"); // 검색옵션
 		System.out.println("검색옵션 :" +pets);
 		String searchinfo =req.getParameter("searchinfo");
@@ -36,7 +35,9 @@ public class SearchAction implements Action{//검색할 때 쓰임
 			req.setAttribute("searchB", searchB);
 		}
 		else {
-			searchB=board.nickSearch(searchinfo);
+			Mb mb=board.nickSearchmb(req.getParameter("searchinfo"));
+			System.out.println("mb_no : "+mb.getMb_no());
+			searchB=board.nickSearch(mb.getMb_no());
 			req.setAttribute("searchB", searchB);
 		}
 		

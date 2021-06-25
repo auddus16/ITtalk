@@ -43,6 +43,9 @@ public class NewMemAction implements Action {
 			membership.addMember(mb);
 			out.println("<script>alert('회원가입 성공'); location.href  ='hmy_main.jsp';</script>");
 		}
+		else if(membership.nickCheck(mb_nick)){
+			out.println("<script>alert('중복된 닉네임입니다.');history.go(-1)</script>");
+		}
 		else {
 			out.println("<script>alert('회원가입 실패');location.href='regform.jsp';</script>");
 		}

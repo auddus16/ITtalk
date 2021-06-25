@@ -20,6 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import itTalkDO.B;
 import itTalkDO.BoardSet;
 import itTalkDO.C;
+import itTalkDO.Mb;
 
 public class Board {
 
@@ -599,13 +600,14 @@ public class Board {
 	public ArrayList<B> titleSearch(String search){
 
 		ArrayList<B> datas = new ArrayList<>();
+		String keword="%"+search+"%";
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where b_title=? or b_write=? order by b_no desc ";
+			String sql="select * from b where (b_title like ? or b_write like ?) order by b_no desc ";
 			pstmt=conn.prepareStatement(sql);
 
-			pstmt.setString(1, search);
-			pstmt.setString(2, search);
+			pstmt.setString(1, keword);
+			pstmt.setString(2, keword);
 
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
@@ -691,24 +693,55 @@ public class Board {
 		return datas;
 	}
 	
+	// 검색 받은 nick 정보로 사용자 정보
+	public Mb nickSearchmb(String nick){
+		Mb mb=new Mb();
+		try {
+			conn=DBManager.connect();
+			String sql="select * from mb where mb_nick=?";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, nick);
+			
+			ResultSet rs=pstmt.executeQuery();
+			while(rs.next()) {
+				
+				mb.setMb_no(rs.getInt("mb_no"));
+				mb.setMb_id(rs.getString("mb_id"));
+				mb.setMb_pw(rs.getString("mb_pw"));
+				mb.setMb_email(rs.getString("mb_email"));
+				mb.setMb_nick(rs.getString("mb_nick"));
+				mb.setMb_job(rs.getBoolean("mb_job"));
+				mb.setMb_certify(rs.getBoolean("mb_certify"));	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return mb;
+	}
 	// 검색 게시글 목록 출력(작성자)
-	public ArrayList<B> nickSearch(String nick){
+	public ArrayList<B> nickSearch(int mb_no){
 		
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
 			
-			String sql="select * from mb where mb_nick=?";
+			String sql="select * from b where mb_no=? order by b_no desc";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, nick);
+			pstmt.setInt(1,mb_no);
+			
 			ResultSet rs=pstmt.executeQuery();
-			rs.next();
-			
-			sql="select * from b where mb_no=? order by b_no desc";
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1,rs.getInt("mb_no"));
-			
-			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();
 				

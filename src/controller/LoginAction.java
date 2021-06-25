@@ -38,7 +38,7 @@ public class LoginAction implements Action{
 		ActionForward forward= null;
 		String password = req.getParameter("pw");
 		System.out.println("id : "+id+"/ pw : "+password);
-		if(login.login(id, req.getParameter("pw"))) {
+		if(login.login(id, req.getParameter("pw"))) { // mb 로그인
 			session.setAttribute("mb_id", id);
 			session.setAttribute("mb_no", mb_no);
 			session.setAttribute("mb_job", mb.isMb_job());
@@ -47,7 +47,7 @@ public class LoginAction implements Action{
 			forward.setPath("main.main");
 			forward.setRedirect(false);
 		}
-		else if(login.adminLogin(id, req.getParameter("pw"))) {
+		else if(login.adminLogin(id, req.getParameter("pw"))) { // ad 로그인
 			session.setAttribute("ad_id", id);
 			session.setAttribute("ad_nick", ad.getAd_nick());
 			forward=new ActionForward();
