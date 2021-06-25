@@ -20,7 +20,7 @@
                 </li>
                 <li><a href="Board.do" class="nav-link">게시판</a></li>
                 <c:if test="${mb_id != null}">
-                <li><a href="hmy_writenew.jsp" class="nav-link">글쓰기</a></li>
+                <li><a href="UpdateMsg.do?b_no=" class="nav-link">글쓰기</a></li>
                 </c:if>
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
 
