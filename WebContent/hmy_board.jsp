@@ -87,7 +87,7 @@
                 
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <c:forEach var="i" items="${bDAO.bcSearch(v.getBc_no())}" begin="0" end="4">
-                <li><a href="">${i.b_title}<span>${i.b_hits}</span></a></li>
+                <li><a href="post.do?b_no=${i.b_no}">${i.b_title}<span>${i.b_hits}</span></a></li>
 				</c:forEach>
 				
               </div>     

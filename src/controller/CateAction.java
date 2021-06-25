@@ -24,10 +24,17 @@ public class CateAction implements Action{
 		ArrayList<Bc> cateList= adDAO.getBoardCategory();
 		req.setAttribute("cateList", cateList);
 		
-		for(Bc v: cateList) {
-			if(Integer.parseInt(req.getParameter("bc_no"))== v.getBc_no()) {
-				req.setAttribute("postList",bDAO.bcSearch(Integer.parseInt(req.getParameter("bc_no"))) );
-				break;
+		if(req.getParameter("bc_no")==null) {//카테고리 정보 없을때 디폴트로 맨앞에꺼
+			
+			req.setAttribute("postList",bDAO.bcSearch(cateList.get(0).getBc_no()));
+		}
+		else {
+			
+			for(Bc v: cateList) {
+				if(Integer.parseInt(req.getParameter("bc_no"))== v.getBc_no()) {
+					req.setAttribute("postList",bDAO.bcSearch(Integer.parseInt(req.getParameter("bc_no"))) );
+					break;
+				}
 			}
 		}
 		

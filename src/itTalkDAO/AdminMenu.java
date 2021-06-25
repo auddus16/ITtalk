@@ -519,13 +519,12 @@ public class AdminMenu {
 	
 	//게시글 신고 해제 기능
 	
-	public boolean updateB_deleted(int b_no,boolean b_deleted) {
+	public boolean updateB_deleted(int b_no) {
 		conn=DBManager.connect();
-		String sql="update B set b_deleted=? where b_no=?";
+		String sql="update B set b_deleted=0 where b_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setBoolean(1,b_deleted);
-			pstmt.setInt(2,b_no);
+			pstmt.setInt(1,b_no);
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -546,13 +545,12 @@ public class AdminMenu {
 	
 	//댓글 신고 해제 기능
 	
-	public boolean updateC_deleted(int c_no,boolean c_deleted) {
+	public boolean updateC_deleted(int c_no) {
 		conn=DBManager.connect();
-		String sql="update C set c_deleted=? where c_no=?";
+		String sql="update C set c_deleted=0 where c_no=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setBoolean(1,c_deleted);
-			pstmt.setInt(2,c_no);
+			pstmt.setInt(1,c_no);
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -76,7 +76,7 @@ public class FrontController_write extends HttpServlet {
 		}
 		else if(command.equals("/post.do")) {//게시글 확인
 			try {
-				forward=new CateAction().execute(req, res);
+				forward=new PostAction().execute(req, res);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

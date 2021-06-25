@@ -62,8 +62,7 @@
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${postList}" begin="0" end="9" > <!-- 게시글목록 출력 -->
      		<div class="boardlist">
-                <a href="" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>${v.b_title}</h3><!-- 해당게시글화면으로 -->
+                <a href="post.do?b_no=${v.b_no}"><h3>${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
                 <p>${v.b_write}</p>

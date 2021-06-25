@@ -50,7 +50,7 @@ table.type09 td {
 	for(var i=0; i<addList.length; i++){
 		var n= parseInt(addList[i].rctg_no);
 		console.log(n);
-		var s= "<c:out value='${adDAO.getReportCategory("+n+")}' />";
+		var s= "<c:out value='${adDAO.getReportCategory(n)}' />";
 		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].mb_no+'</td><td>'+s+'</td><td>'+addList[i].rb_write+'</td><td>';
 		tag+=addList[i].rb_date+'</td>';
 		tag+='<td><a href="ff.jsp">조회</a></td>';
