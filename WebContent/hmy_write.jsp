@@ -42,7 +42,7 @@ function report(){
 	<!-- 게시글시작 -->
     <section class="site-section">
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:0;">
-            <div>&gt;&gt;카테고리명-코드도움</div><!-- 카테고리명 넣어주세요 -->
+            <div>&gt;&gt;${write.bc_name}</div><!-- 카테고리명 넣어주세요 -->
             <h3>게시글 제목11</h3>
             <div>작성자닉네임1 2021-06-23 00:00:00 <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
               <hr>

@@ -52,7 +52,7 @@
     						<option value="2">개발자의 회사생활</option>
     						<option value="3">자유</option>
     					-->
-    					<c:forEach var="bc" items="${boardCategory}">
+    					<c:forEach var="bc" items="${cate}">
 							<option value="${bc.bc_no}">${bc.bc_name}</option>			
     					</c:forEach>
     					<!-- forEach 끝 -->

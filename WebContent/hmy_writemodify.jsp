@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,7 +52,7 @@
     						<option value="2" selected>개발자의 회사생활</option>
     						<option value="3">자유</option>
     						 -->
-    					<c:forEach var="bc" items="${boardCategory}">
+    					<c:forEach var="bc" items="${cate}">
 							<option value="${bc.bc_no}">${bc.bc_name}</option>			
     					</c:forEach>
     					<!-- forEach 끝 -->
