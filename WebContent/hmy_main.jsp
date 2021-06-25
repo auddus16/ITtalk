@@ -62,7 +62,7 @@
                 <h5>실시간 인기글</h5>
                 <ol>
 					<c:forEach  var="h" items="${Hits}">
-					<li><a href="hmy_write.jsp"><c:out value="${h.b_title}" /></a></li>
+					<li><a href="post.do?b_no=${h.b_no}"><c:out value="${h.b_title}" /></a></li>
 					</c:forEach>
 				</ol>
             </div>	
