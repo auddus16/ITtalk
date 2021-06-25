@@ -54,7 +54,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="Search.do" method="post">
+        <form action="Board.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
@@ -77,14 +77,14 @@
  	<div align="center" style="margin-left:10%;">
  	<div class="home-list">
  	<!-- foreach 게시판카테고리개수만큼-->
- 	<c:forEach var="c" items="${cate}"> <!-- 카테고리 개수 4개 -->
+ 	<c:forEach var="cate" items="${cate}"> <!-- 카테고리 개수 4개 -->
      		<div class="categories">
-                <a href="Board.do?bc_no=${c.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <a href="Board.do?bc_no=${cate.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 
-                <h3>코드 도움</h3><!-- 해당카테고리화면으로 -->
+                <h3>${cate.bc_name}</h3><!-- 해당카테고리화면으로 -->
                 <hr>
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach var="v" items="${write}">
+                <c:forEach var="v" items="${bcwrite}">
                 <li><a href="Board.do?b_title=${v.b_title}&b_hits=${v.b_hits}">${v.b_title}<span>${v.b_hits}</span></a></li>
 				</c:forEach>
 				
