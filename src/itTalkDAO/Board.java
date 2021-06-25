@@ -172,12 +172,6 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
-							System.out.println(multi.getParameter("b_no") + "확2");
-							System.out.println(multi.getParameter("mb_no"));
-							System.out.println(multi.getParameter("bc_no"));
-							System.out.println(multi.getParameter("b_title"));
-							System.out.println(multi.getParameter("b_write"));
-							System.out.println(multi.getFilesystemName("b_file"));
 							if(multi.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
 								sql="insert into b(mb_no,bc_no,b_title,b_write,b_file) values(?,?,?,?,?)";
 								pstmt=conn.prepareStatement(sql);
