@@ -50,8 +50,9 @@ table.type09 td {
 	for(var i=0; i<addList.length; i++){
 		tag+='<tr><th scope="row">'+addList[i].c_no+'</th><td>'+addList[i].mb_no+'</td><td>'+${adDAO.getReportCategory(addList[i].rctg_no)}+'</td><td>'+addList[i].rc_write+'</td><td>';
 		tag+=addList[i].rc_date+'</td>';
-		tag+='<td><a href="ff.jsp">조회</a></td>';
-		tag+='<td><a href="addelpost.ad?b_no='+addList[i].c_no+'">삭제</a></td></tr>';
+		tag+='<td><a href="#"  onclick="javascript:newc('+addList[i].c_no+');">조회</a></td>';
+		tag+='<td><a href="removeblind2.ad?c_no='+addList[i].c_no+'">blind해제</a></td>';
+		tag+='<td><a href="addelpost.ad?c_no='+addList[i].c_no+'">삭제</a></td></tr>';
 	}
 
 	  
@@ -66,6 +67,16 @@ table.type09 td {
     	tag=null;
     }
     });
+	
+</script>
+<script type="text/javascript">
+	function newc(v){
+		console.log(v);
+		window.open("checkreply.jsp?c_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=500,height=350"
+		//어떤 페이지를 어떻게 띄울지 옵션
+	);
+	}
+	
 </script>
 </head>
 <body>
@@ -86,6 +97,7 @@ table.type09 td {
     <th scope="cols">신고내용</th>
     <th scope="cols">신고일자</th>
     <th scope="cols">조회</th>
+    <th scope="cols">블라인드해제</th>
     <th scope="cols">삭제</th>
   </tr>
   </thead>
@@ -108,7 +120,8 @@ table.type09 td {
 	    <td>${adDAO.getReportCategory(v.rctg_no)}</td>
 	    <td>${v.rc_write}</td>
 	    <td>${v.rc_date}</td>
-	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="#" onclick="javascript:newc(${v.c_no});">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="removeblind2.ad?c_no=${v.c_no}">blind해제</a></td>
 	    <td><a href="addelreply.ad?c_no=${v.c_no}">삭제</a></td>
 	  </tr>
   

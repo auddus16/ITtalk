@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import itTalkDO.Ad;
 import itTalkDO.B;
 import itTalkDO.Bc;
-import itTalkDO.Mb;
+import itTalkDO.C;
 import itTalkDO.Rb;
 import itTalkDO.Rc;
-import itTalkDO.Rctg;
 
 public class AdminMenu {
 
@@ -164,25 +163,19 @@ public class AdminMenu {
 	}
 	
 	// 조회 클릭시 해당 신고 받은 댓글 출력
-	public ArrayList<Rc> getReportComment(int rc_no) {
-		ArrayList<Rc> reportComments=new ArrayList();
+	public C getReportComment(int rc_no) {
 		
+		C c=new C();
 		conn= DBManager.connect();
-		String sql="select * FROM Rc where rc_no=?";
+		String sql="select * FROM C where c_no=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, rc_no);
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
-				Rc rc=new Rc();
 				
-				rc.setRc_no(rs.getInt("rc_no"));
-				rc.setC_no(rs.getInt("c_no"));
-				rc.setMb_no(rs.getInt("mb_no"));
-				rc.setRctg_no(rs.getInt("rctg_no"));
-				rc.setRc_write(rs.getString("rc_write"));
-				rc.setRc_date(rs.getString("rc_date"));
-				reportComments.add(rc);
+				c.setC_write(rs.getString("c_write"));
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,7 +189,7 @@ public class AdminMenu {
 				e.printStackTrace();
 			}
 		}
-		return reportComments;
+		return c;
 		
 	}
 	// 삭제 클릭시 해당 신고받은 댓글 삭제
