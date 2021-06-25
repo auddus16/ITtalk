@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="bDAO" class="itTalkDAO.Board"/> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,15 +78,16 @@
  	<div align="center" style="margin-left:10%;">
  	<div class="home-list">
  	<!-- foreach 게시판카테고리개수만큼-->
- 	<c:forEach var="cate" items="${cate}"> <!-- 카테고리 개수 4개 -->
+ 	<c:forEach var="v" items="${cateList}">
      		<div class="categories">
-                <a href="Board.do?bc_no=${cate.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <a href="cate.do?bc_no=${v.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 
-                <h3>${cate.bc_name}</h3><!-- 해당카테고리화면으로 -->
+                <h3>${v.bc_name}</h3><!-- 해당카테고리화면으로 -->
                 <hr>
+                
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <c:forEach var="v" items="${bcwrite}">
-                <li><a href="Board.do?b_title=${v.b_title}&b_hits=${v.b_hits}">${v.b_title}<span>${v.b_hits}</span></a></li>
+                <c:forEach var="i" items="${bDAO.bcSearch(v.getBc_no())}" begin="0" end="4">
+                <li><a href="">${i.b_title}<span>${i.b_hits}</span></a></li>
 				</c:forEach>
 				
               </div>     
