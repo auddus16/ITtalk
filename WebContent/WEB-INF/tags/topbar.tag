@@ -15,7 +15,8 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="hmy_board.jsp" class="nav-link">게시판</a></li>
                 <li>
-                  <a href="hmy_writenew.jsp" class="nav-link">글쓰기</a>
+                  <a href="UpdateMsg.do?b_no= " class="nav-link">글쓰기</a>
+                  <input type="hidden" name="mb_no" value="${mb_no}">
                 </li>
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
 

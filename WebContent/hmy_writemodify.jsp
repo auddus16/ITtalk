@@ -38,7 +38,7 @@
             <h3 class="mb-5">게시글 수정</h3>
               <div style="">
                 
-                <form action="Newmsg.do" method="post"><!-- 수정 컨롤링크 연결 -->
+                <form action="Newmsg.do?mb_no=${mb_no}" method="post"><!-- 수정 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">

@@ -66,7 +66,7 @@ function report(){
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
               <div style="">
-                <form action="#" class=""><!-- 컨롤링크 연결 -> 신고버튼 때문-->
+                <form action="Newreply.do" class=""><!-- 컨롤링크 연결 -> 신고버튼 때문-->
                 
                 <input type="hidden" name="c_no" value="c_no"> <!-- 신고시, 댓글 번호 넘겨줘야함.값 추가해야함. -->
                     

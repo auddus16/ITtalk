@@ -663,12 +663,18 @@ public class Board {
 		ArrayList<B> datas = new ArrayList<>();
 		try {
 			conn=DBManager.connect();
-			String sql="select * from b where mb_nick=? order by b_no desc";
+			
+			String sql="select * from mb where mb_nick=?";
 			pstmt=conn.prepareStatement(sql);
-			
 			pstmt.setString(1, nick);
-			
 			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			
+			sql="select * from b where mb_no=? order by b_no desc";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,rs.getInt("mb_no"));
+			
+			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				B b=new B();
 				
