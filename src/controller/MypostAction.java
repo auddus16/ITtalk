@@ -43,8 +43,6 @@ public class MypostAction implements Action{
 		String jsonStr= mapper.writeValueAsString(arrB);
 		req.setAttribute("json", jsonStr);
 		
-		System.out.println(jsonStr);
-		
 		req.setAttribute("mypostList", arrB);//게시글이 담긴 리스트
 		req.setAttribute("kind", "post");//마이페이지에서 어떤 페이지를 include할지 정보
 		

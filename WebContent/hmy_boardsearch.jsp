@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,9 +52,9 @@
     <test:topbar/> <!-- 로그인/로그아웃, 아이콘 커스텀태그 -->
     
     <section class="site-section">
-      <div class="container" style="text-align:center;margin-top:5% margin-bottom:0;">
+      <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="#" method="post">
+        <form action="Search.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
@@ -63,7 +64,7 @@
     			<option value="2">작성자</option>
 			</select>
 			</span>
-        	<input type="text" class="form-control" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
+        	<input type="text" class="form-control" name="searchinfo" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
         	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
         </table>
 		</form>
@@ -75,65 +76,29 @@
  	<div class="home-list">
  			
            <!-- foreach로 결과게시글 출력, href링크에 게시글화면으로 이동-->
+		<c:forEach var ="v" items="${searchB}" begin="0" end="9" > <!-- 게시글목록 출력 -->
      		<div class="boardlist">
-                <a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>게시글제목1</h3><!-- 해당게시글화면으로 -->
+                <a href="post.do?b_no=${v.b_no}"><h3>${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesc</p>
+                <p>${v.b_write}</p>
                 
                 <div style="margin:5px;">
                 
-                <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;<!-- 조회수 -->
-                <a href="#"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
-                <a href="#"><img src="images/reply.png" width="20" height="20" alt="댓글수">30</a><!-- 댓글수 -->
+                <img src="images/eye.png" width="20" height="20" alt="조회수">${v.b_hits}&nbsp;&nbsp;<!-- 조회수 -->
+                <a href="favorite.do?b_no=${v.b_no}"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
+                <a href="hmy_write.jsp"><img src="images/reply.png" width="20" height="20" alt="댓글수">${v.b_cnt}</a><!-- 댓글수 -->
                 
-                <span style="float:right;">2021-06-22 00:00:00</span><!-- 등록날짜 -->
+                <span style="float:right;">${v.b_date}</span><!-- 등록날짜 -->
                 
                 </div>
 				
               </div>
+            
+		</c:forEach>
               
            <!-- end -->   
-              <div class="boardlist">
-                <a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>게시글제목1</h3><!-- 해당카테고리화면으로 -->
-                <hr>
-                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <!-- 게시글내용 (원하는만큼) -->
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesc</p>
-                
-                <div style="margin:5px;">
-                
-                <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;<!-- 조회수 -->
-                <a href="#"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
-                <a href="#"><img src="images/reply.png" width="20" height="20" alt="댓글수">30</a><!-- 댓글수 -->
-                
-                <span style="float:right;">2021-06-22 00:00:00</span><!-- 등록날짜 -->
-                
-                </div>
-				
-              </div>   
               
-              <div class="boardlist">
-                <a href="#" style="float:right;color:blue;">더보기&gt;&gt;</a>
-                <h3>게시글제목1</h3><!-- 해당카테고리화면으로 -->
-                <hr>
-                <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
-                <!-- 게시글내용 (원하는만큼) -->
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesc</p>
-                
-                <div style="margin:5px;">
-                
-                <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;<!-- 조회수 -->
-                <a href="#"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
-                <a href="#"><img src="images/reply.png" width="20" height="20" alt="댓글수">30</a><!-- 댓글수 -->
-                
-                <span style="float:right;">2021-06-22 00:00:00</span><!-- 등록날짜 -->
-                
-                </div>
-				
-              </div>                
              </div>
              </div>
       </section>

@@ -65,7 +65,7 @@
     			<option value="2">작성자</option>
 			</select>
 			</span>
-        	<input type="text" class="form-control" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
+        	<input type="text" class="form-control" name="searchinfo" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
         	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
         </table>
 		</form>
@@ -87,7 +87,7 @@
                 
                 <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
                 <c:forEach var="i" items="${bDAO.bcSearch(v.getBc_no())}" begin="0" end="4">
-                <li><a href="">${i.b_title}<span>${i.b_hits}</span></a></li>
+                <li><a href="post.do?b_no=${i.b_no}">${i.b_title}<span>${i.b_hits}</span></a></li>
 				</c:forEach>
 				
               </div>     

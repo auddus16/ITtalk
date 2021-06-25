@@ -124,7 +124,7 @@ public class FrontController_ad extends HttpServlet {
 		}
 		else if(action.equals("/removeblind.ad")) {//신고게시글 블라인드해제
 			try {
-				forward=new AddelreplyAction().execute(req, res);
+				forward=new RemoveBlind1Action().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,7 +132,7 @@ public class FrontController_ad extends HttpServlet {
 		}
 		else if(action.equals("/removeblind2.ad")) {//신고댓글 블라인드해제
 			try {
-				forward=new AddelreplyAction().execute(req, res);
+				forward=new RemoveBlind2Action().execute(req, res);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

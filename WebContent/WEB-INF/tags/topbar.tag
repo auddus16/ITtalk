@@ -13,14 +13,12 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="hmy_board.jsp" class="nav-link">게시판</a></li>
-                <li>
-                  <a href="UpdateMsg.do?b_no=0" class="nav-link">글쓰기</a>
-                  <input type="hidden" name="mb_no" value="${mb_no}">
-                </li>
                 <li><a href="Board.do" class="nav-link">게시판</a></li>
                 <c:if test="${mb_id != null}">
-                <li><a href="UpdateMsg.do?b_no=0" class="nav-link">글쓰기</a></li>
+                <li>
+                	<a href="UpdateMsg.do?b_no=0" class="nav-link">글쓰기</a>
+                	<input type="hidden" name="mb_no" value="${mb_no}">
+                </li>
                 </c:if>
                 <!-- 커스텀 태그 : 로그인/로그아웃, 마이페이지/관리자메뉴 -->
 
