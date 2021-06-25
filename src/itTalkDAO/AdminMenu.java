@@ -517,4 +517,58 @@ public class AdminMenu {
 		return ad_no;
 	}
 	
+	//게시글 신고 해제 기능
+	
+	public boolean updateB_deleted(int b_no,boolean b_deleted) {
+		conn=DBManager.connect();
+		String sql="update B set b_deleted=? where b_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setBoolean(1,b_deleted);
+			pstmt.setInt(2,b_no);
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
+	//댓글 신고 해제 기능
+	
+	public boolean updateC_deleted(int c_no,boolean c_deleted) {
+		conn=DBManager.connect();
+		String sql="update C set c_deleted=? where c_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setBoolean(1,c_deleted);
+			pstmt.setInt(2,c_no);
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	
 }
