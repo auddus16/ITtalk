@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import itTalkDAO.Board;
 import itTalkDO.B;
@@ -17,8 +18,9 @@ public class NewmsgAction implements Action{// 게시글 등록
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
+		HttpSession session=req.getSession();
 		
-		System.out.println(req.getParameter("mb_no") + "확인2");
+		System.out.println(session.getAttribute("mb_no") + "확인2");
 		
 		Board board = new Board();//dao
 		

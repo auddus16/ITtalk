@@ -69,10 +69,6 @@ public class UpdateMsgAction implements Action{// 게시글 수정(본인게시글 보여줌-
 		cate=adminmenu.getBoardCategory();
 		req.setAttribute("cate", cate);
 
-		//사용자 번호
-		System.out.println(req.getParameter("mb_no") + "확인1");
-		req.setAttribute("mb_no", req.getParameter("mb_no"));
-
 		forward.setRedirect(false);
 		forward.setPath("hmy_writemodify.jsp");
 
