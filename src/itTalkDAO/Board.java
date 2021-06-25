@@ -161,8 +161,6 @@ public class Board {
 			int maxSize = 3 * 1024 * 1024; // 3MB
 			String encoding = "UTF-8";
 			
-			String
-			
 			// saveDir: 경로
 					// maxSize: 크기제한 설정
 					// encoding: 인코딩타입 설정
@@ -174,7 +172,7 @@ public class Board {
 									new DefaultFileRenamePolicy());
 							conn=DBManager.connect();
 							String sql = null;
-							System.out.println(multi.getParameter("b_no") + "확");
+							System.out.println(multi.getParameter("b_no") + "확2");
 							System.out.println(multi.getParameter("mb_no"));
 							System.out.println(multi.getParameter("bc_no"));
 							System.out.println(multi.getParameter("b_title"));
