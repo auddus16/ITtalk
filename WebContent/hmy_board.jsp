@@ -54,7 +54,7 @@
     <section class="site-section">
       <div class="container" style="text-align:center;margin-top:5%">
         <div style="display:inline-block">
-        <form action="Board.do" method="post">
+        <form action="Search.do" method="post">
         <table style="width:1000px;">
         	<tr><td>
         	<span style="float:right;">
@@ -77,7 +77,7 @@
  	<div align="center" style="margin-left:10%;">
  	<div class="home-list">
  	<!-- foreach 게시판카테고리개수만큼-->
- 	<c:forEach var="c" items="${bcwrite}"> <!-- 카테고리 개수 4개 -->
+ 	<c:forEach var="c" items="${cate}"> <!-- 카테고리 개수 4개 -->
      		<div class="categories">
                 <a href="Board.do?bc_no=${c.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 
