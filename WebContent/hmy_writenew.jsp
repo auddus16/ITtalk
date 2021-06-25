@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,16 +39,22 @@
             <h3 class="mb-5">글쓰기</h3>
               <div style="">
                 
-                <form action="Newmsg.do" class=""><!-- 컨롤링크 연결 -->
+                <form action="Newmsg.do" method="post"><!-- 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
         			<label for="pet-select">카테고리 *</label><!-- 이부분 카테고리table에서 카테고리가져와서 출력 -->
 						<select name="pets" id="category">
 						<!-- forEach 시작 -->
-    						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
+						<!-- value는 no, 가운데 이름 -->
+						<!-- 
+    						<option value="1">코드도움</option> 
     						<option value="2">개발자의 회사생활</option>
     						<option value="3">자유</option>
+    					-->
+    					<c:forEach var="bc" items="${boardCategory}">
+							<option value="${bc.bc_no}">${bc.bc_name}</option>			
+    					</c:forEach>
     					<!-- forEach 끝 -->
 						</select>
 					</span>

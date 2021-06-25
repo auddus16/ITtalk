@@ -37,17 +37,23 @@
             <h3 class="mb-5">게시글 수정</h3>
               <div style="">
                 
-                <form action="UpdateMsg.do" class=""><!-- 수정 컨롤링크 연결 -->
+                <form action="UpdateMsg.do" method="post"><!-- 수정 컨롤링크 연결 -->
                   
                   <div>
                   <span style="float:left;">
         			<label for="pet-select">카테고리 *</label><!-- 이부분 카테고리table에서 카테고리가져와서 출력 -->
 						<select name="pets" id="category">
 						<!-- forEach 시작 -->
+						<!-- value는 no, 가운데 이름 -->
 						<!-- 원래 게시글의 카테고리가 처음 선택되어 보여질 수 있게 해주세요 ->jstl option태그에 selected 속성 넣으면 됩니다.-->
-    						<option value="1">코드도움</option> <!-- value는 no, 가운데 이름 -->
+    						<!-- 
+    						<option value="1">코드도움</option> 
     						<option value="2" selected>개발자의 회사생활</option>
     						<option value="3">자유</option>
+    						 -->
+    					<c:forEach var="bc" items="${boardCategory}">
+							<option value="${bc.bc_no}">${bc.bc_name}</option>			
+    					</c:forEach>
     					<!-- forEach 끝 -->
 						</select>
 					</span>
@@ -56,20 +62,19 @@
                   
                   <div class="form-group">
                     <label for="name">제목 *</label>
-                    <input type="text" class="form-control" id="title" value="가져온게시글제목1" required>
+                    <input type="text" class="form-control" id="b_title" value="${b.b_titel}" required>
                   </div>
                   <div class="form-group">
                     <label for="email">첨부파일</label>
-                    <input type="file" class="form-control" id="" multiple> 
+                    <input type="file" class="form-control" id="b_file" multiple> 
                   </div>
                   <div class="form-group">
                     <label for="message">내용 *</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control" required>가져온게시글내용1111</textarea>
+                    <textarea name="b_write" id="b_write" cols="30" rows="10" class="form-control" required>${b.b_write}</textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="수정완료" class="btn btn-primary btn-md text-white" style="float:right;">
                   </div>
-
                 </form>
                 </div>
               </div>
