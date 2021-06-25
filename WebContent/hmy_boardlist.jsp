@@ -62,7 +62,7 @@
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${write}" begin="1" end="5" step="1"> <!-- 게시글목록 출력 -->
      		<div class="boardlist">
-                <a href="Board.do?b_title=${v.b_title}&b_write=${v.b_write}" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <a href="WriteCheck.do?b_no=${v.b_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
                 <h3>${v.b_title}</h3><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
@@ -70,11 +70,11 @@
                 
                 <div style="margin:5px;">
                 
-                <img src="images/eye.png" width="20" height="20" alt="조회수">15&nbsp;&nbsp;<!-- 조회수 -->
-                <a href="#"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
-                <a href="hmy_write.jsp"><img src="images/reply.png" width="20" height="20" alt="댓글수">30</a><!-- 댓글수 -->
+                <img src="images/eye.png" width="20" height="20" alt="조회수">${v.b_hits}&nbsp;&nbsp;<!-- 조회수 -->
+                <a href="Favorite.do?mb_no=${v.mb_no}&b_no=${v.b_no}"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
+                <a href="hmy_write.jsp"><img src="images/reply.png" width="20" height="20" alt="댓글수">${v.b_cnt}</a><!-- 댓글수 -->
                 
-                <span style="float:right;">2021-06-22 00:00:00</span><!-- 등록날짜 -->
+                <span style="float:right;">${v.b_date}</span><!-- 등록날짜 -->
                 
                 </div>
 				

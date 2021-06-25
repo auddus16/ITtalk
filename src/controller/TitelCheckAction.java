@@ -53,6 +53,8 @@ public class TitelCheckAction implements Action{//게시글 제목을 클릭했을 때 나오
 		b.setB_deleted(b.isB_deleted());
 		//c_no 댓글번호
 		c.setC_no(Integer.parseInt(req.getParameter("c_no")));
+		//b_cnt 댓글 수
+		b.setB_cnt(Integer.parseInt(req.getParameter("b_cnt")));
 		//c_secret 비밀댓글여부
 		c.setC_secret(c.isC_secret());
 
