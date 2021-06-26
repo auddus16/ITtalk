@@ -446,13 +446,19 @@ public class Board {
 		}
 	
 	// ´ñ±Û »èÁ¦
-	public boolean delC(int c_no){//´ñ±Û¹øÈ£
+	public boolean delC(int c_no , int b_no){//´ñ±Û¹øÈ£
 		try {
 			conn=DBManager.connect();
 			String sql="delete from c where c_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c_no);
 			pstmt.executeUpdate();
+			
+			sql="update b set b_cnt=b_cnt-1 where b_no=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, b_no);
+			pstmt.executeUpdate();
+			
 		}
 		catch(Exception e) {
 			System.out.println("´ñ±Û »èÁ¦ ½ÇÆÐ");
