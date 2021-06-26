@@ -37,10 +37,17 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 			c.setB_no(Integer.parseInt(req.getParameter("b_no")));
 			c.setMb_no((Integer)session.getAttribute("mb_no"));
 			c.setC_write(req.getParameter("c_write"));
-			c.setC_secret(Boolean.parseBoolean(req.getParameter("c_secret")));
+			if(req.getParameter("secret") != null) {//비밀댓글여부
+				
+				c.setC_secret(true);
+			}
+			else {
+				c.setC_secret(false);
+			}
 			
 			if(bDAO.newReply(c)) {
-				out.println("<script>window.location.reload();</script>");
+				String s="post.do?b_no="+req.getParameter("b_no");
+				out.println("<script>alert('댓글 등록되었습니다.');location.href='"+s+"';</script>");
 			}
 		}
 		

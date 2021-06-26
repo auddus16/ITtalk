@@ -81,7 +81,7 @@ function report2(v){
                   
                   %>
 					
-              &nbsp;<a href="favorite.do?${write.b_no}"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
+              &nbsp;<a href="favorite.do?b_no=${write.b_no}"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
               &nbsp;<a href="javascript:report(${write.b_no});"><img src="images/siren.png" width="25" height="25" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
                   </div>
                &nbsp;<a href="#"><img src="images/reply.png" width="25" height="25" alt="댓글수">${write.b_cnt}</a><!-- 댓글수 -->

@@ -100,7 +100,7 @@
                 
                 <img src="images/eye.png" width="20" height="20" alt="조회수">${v.b_hits}&nbsp;&nbsp;<!-- 조회수 -->
                 <a href="favorite.do?b_no=${v.b_no}"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;<!-- 저장기능 -->
-                <a href="hmy_write.jsp"><img src="images/reply.png" width="20" height="20" alt="댓글수">${v.b_cnt}</a><!-- 댓글수 -->
+                <a href="post.do?b_no=${v.b_no}"><img src="images/reply.png" width="20" height="20" alt="댓글수">${v.b_cnt}</a><!-- 댓글수 -->
                 
                 <span style="float:right;">${v.b_date}</span><!-- 등록날짜 -->
                 

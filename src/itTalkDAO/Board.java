@@ -84,6 +84,7 @@ public class Board {
 				b.setBc_no(rs.getInt("bc_no"));
 				b.setB_title(rs.getString("b_title"));
 				b.setB_write(rs.getString("b_write"));
+				b.setB_cnt(rs.getInt("b_cnt"));
 				b.setB_file(rs.getString("b_file"));
 				b.setB_date(rs.getString("b_date"));
 				b.setB_hits(rs.getInt("b_hits"));
@@ -239,6 +240,7 @@ public class Board {
 				b.setBc_no(rs.getInt("bc_no"));
 				b.setB_title(rs.getString("b_title"));
 				b.setB_write(rs.getString("b_write"));
+				b.setB_cnt(rs.getInt("b_cnt"));
 				b.setB_file(rs.getString("b_file"));
 				b.setB_date(rs.getString("b_date"));
 				b.setB_hits(rs.getInt("b_hits"));
@@ -524,7 +526,7 @@ public class Board {
 	public boolean ReportB(int b_no , int mb_no , int rctg_no , String rc_write) {//게시글번호,회원번호,신고카테고리번호,신고내용
 		try {
 			conn=DBManager.connect();
-			String sql="insert into rc(b_no , mb_no , rctg_no , rc_write) values (?,?,?,?)";
+			String sql="insert into rb(b_no , mb_no , rctg_no , rb_write) values (?,?,?,?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
 			pstmt.setInt(2, mb_no);
@@ -901,6 +903,7 @@ public class Board {
 				b.setBc_no(rs.getInt("bc_no"));
 				b.setB_title(rs.getString("b_title"));
 				b.setB_write(rs.getString("b_write"));
+				b.setB_cnt(rs.getInt("b_cnt"));
 				b.setB_file(rs.getString("b_file"));
 				b.setB_date(rs.getString("b_date"));
 				b.setB_hits(rs.getInt("b_hits"));
