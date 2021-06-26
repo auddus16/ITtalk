@@ -20,29 +20,28 @@ public class Report2Action implements Action {
 		
 		Board bDAO= new Board();
 		HttpSession session= req.getSession();
-		System.out.println(req.getParameter("b_no"));
-		System.out.println(req.getParameter("c_no"));
-		if(req.getParameter("b_no") == null) {
-			//댓글신고
-			if(bDAO.ReportC(Integer.parseInt(req.getParameter("c_no")), (Integer)session.getAttribute("mb_no"), 
-					Integer.parseInt(req.getParameter("cate")), req.getParameter("r_write"))){
-				out.println("<script>alert('신고가 완료되었습니다.');window.close();</script>");
-			}
-			else {
-				out.println("<script>alert('신고를 실패했습니다. 다시 시도해주세요.');window.close();</script>");
-			}
+		
+		if(session.getAttribute("mb_no") == null) {
+			
+			out.println("<script>alert('로그인이 필요합니다.');window.close();</script>");
 		}
-		else if(req.getParameter("c_no")==null) {
-			//게시글신고
-			if(bDAO.ReportB(Integer.parseInt(req.getParameter("b_no")), (Integer)session.getAttribute("mb_no"), 
-					Integer.parseInt(req.getParameter("cate")), req.getParameter("r_write"))){
-				out.println("<script>alert('신고가 완료되었습니다.');window.close();</script>");
-			}
-			else {
-				out.println("<script>alert('신고를 실패했습니다. 다시 시도해주세요.');window.close();</script>");
+		else {
+			
+			if(req.getParameter("c_no") != null) {
+				
+				if(bDAO.ReportC(Integer.parseInt(req.getParameter("c_no")), (Integer)session.getAttribute("mb_no"), 
+						Integer.parseInt(req.getParameter("cate")), req.getParameter("r_write"))){
+					out.println("<script>alert('신고가 완료되었습니다.');window.close();</script>");
+				}
+				else {
+					out.println("<script>alert('신고를 실패했습니다. 다시 시도해주세요.');window.close();</script>");
+				}
 			}
 		}
 		
-		return null;
+		ActionForward forward= new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("post.do?b_no="+req.getParameter("b_no"));
+		return forward;
 	}
 }

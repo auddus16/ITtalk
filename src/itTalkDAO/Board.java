@@ -536,7 +536,7 @@ public class Board {
 			pstmt.setString(4, rc_write);
 			pstmt.executeUpdate();
 			
-			sql="update b set b_report=b_report+1 b_deleted=true where b_no=?";
+			sql="update b set b_report=b_report+1, b_deleted=true where b_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
 			pstmt.executeUpdate();

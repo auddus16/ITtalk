@@ -21,10 +21,10 @@ public class DeletereplyAction implements Action{
 		Board bDAO= new Board();
 		
 		if(bDAO.delC(Integer.parseInt(req.getParameter("c_no")))) {
-			out.println("<script>alert('삭제되었습니다.');location.href='cate.do';</script>");
+			out.println("<script>alert('삭제되었습니다.');window.reload();</script>");
 		}
 		else {
-			out.println("<script>alert('삭제실패했습니다.');location.href='cate.do';</script>");
+			out.println("<script>alert('삭제실패했습니다.');window.reload();</script>");
 			
 		}
 		return null;

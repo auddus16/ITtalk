@@ -36,12 +36,12 @@
     <link rel="stylesheet" href="css/style.css">
  <script type="text/javascript">
 function report(v){
-	window.open("report.jsp?b_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
+	window.open("report.jsp?b_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=600,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
 function report2(v){
-	window.open("report.jsp?c_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=400,height=350"
+	window.open("report2.jsp?c_no="+v,"_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=600,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }
@@ -60,6 +60,11 @@ function report2(v){
                   <div class="form-group">
                     <label for="message"></label>
 					<c:choose>
+						
+						<c:when test="${write.b_deleted eq true}">
+ 	                   <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>신고되어 블라인드처리 되었습니다.</textarea>
+						</c:when>
+						
 						<c:when test="${write.b_file == null}">
  	                   <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>${write.b_write}</textarea>
 						</c:when>
@@ -121,10 +126,9 @@ function report2(v){
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
               <!-- forEach 댓글 출력 부분 -->
-              <c:forEach var="v" items="${replyList}" end="9">
+              <c:forEach var="v" items="${replyList}" end="9" varStatus="status">
               <div>
                 <form action="#" class=""><!-- 컨롤링크 연결 -->
-                    <label for="message">${v.mb_no}</label>
                     <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
                     <!--  (본인댓글이 아닌)비밀댓글을 만났을때 블라인드처리
                     <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
@@ -135,24 +139,45 @@ function report2(v){
               			</div>
                     </c:when>
                     <c:when test="${v.c_deleted eq true}">
+	                    <label for="message">${v.mb_no}</label>
                     	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>신고되어 블라인드 처리되었습니다.</div> 
               			</div>
                     </c:when>
                     
                     <c:otherwise>
+	                    <label for="message">${v.mb_no}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     </c:otherwise>
                  </c:choose>
                    
                     <a href="javascript:report2(${v.c_no});"><img src="images/siren.png" width="15" height="15" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
-             
+             		
+             		<c:choose>
+             			<c:when test="${sessionScope.mb_no == null }">
+             			<c:choose>
+             				<c:when test="${sessionScope.ad_id != null }">
+             					<a href='delete2.do?c_no=${v.c_no}'>삭제</a>
+             				</c:when>
+             				<c:otherwise>
+             				</c:otherwise>
+             			</c:choose>
+             			</c:when>
+             			
+             			<c:otherwise>
+             				<c:choose>
+             				<c:when test="${sessionScope.mb_no eq v.mb_no }">
+             					<a href='delete2.do?c_no=${v.c_no}'>삭제</a>
+             				</c:when>
+             				</c:choose>
+             			</c:otherwise>
+             		</c:choose>
                 </form>
                   </div>
                   <br>
                   </c:forEach>
                   <!-- forEach 끝 -->
-                  <div align="center"><a id="load-more" href="mypost.mem?cnt=${cnt+1}">더보려면 스크롤을 내리세요&gt;&gt;</a></div>
+                  <div align="center"><a id="load-more" href="post.do?cnt=${cnt+5}">더보기&gt;&gt;</a></div>
         </div>
 	
  	<!-- 댓글 끝 -->

@@ -130,13 +130,6 @@ public class FrontController_write extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/TitelCheck.do")) {
-			try {
-				forward=new TitelCheckAction().execute(req, res);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
 		else if(command.equals("/Search.do")) {
 			try {
 				forward=new SearchAction().execute(req, res);
