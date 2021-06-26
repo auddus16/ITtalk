@@ -370,11 +370,12 @@ public class Board {
 	public boolean newReply(C c){//Comment ´ñ±Û °´Ã¼
 		try {
 			conn=DBManager.connect();
-			String sql="insert into c (b_no,mb_no,c_write) values(?,?,?)";//´ñ±Û Ãß°¡
+			String sql="insert into c (b_no,mb_no,c_write,c_secret) values(?,?,?,?)";//´ñ±Û Ãß°¡
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c.getB_no());
 			pstmt.setInt(2, c.getMb_no());
 			pstmt.setString(3, c.getC_write());
+			pstmt.setBoolean(4, c.isC_secret());
 			pstmt.executeUpdate();
 			
 			sql="update b set b_cnt=b_cnt+1 where b_no=?"; // °Ô½Ã±Û ´ñ±Û °¹¼ö ++
@@ -534,7 +535,7 @@ public class Board {
 			pstmt.setString(4, rc_write);
 			pstmt.executeUpdate();
 			
-			sql="update b set b_report=b_report+1 b_deleted=true, where b_no=?";
+			sql="update b set b_report=b_report+1 b_deleted=true where b_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
 			pstmt.executeUpdate();
