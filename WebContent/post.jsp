@@ -48,7 +48,7 @@ table.type09 td {
 	console.log("ready");
     
 	for(var i=0; i<addList.length; i++){
-		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="post.do?b_no='+addList[i].b_no+'">'
 		tag+=addList[i].b_title+'</a></td><td>'+addList[i].b_date+'</td></tr>';
 		console.log(tag)
 	}
@@ -90,7 +90,7 @@ table.type09 td {
 	  
 	  <tr id="height">
 	    <th scope="row">${status.count}</th>
-	    <td><a href="ff.jsp">${v.b_title}</a></td>
+	    <td><a href="post.do?b_no=${v.b_no}">${v.b_title}</a></td>
 	    <td>${v.b_date}</td>
 	  </tr>
   

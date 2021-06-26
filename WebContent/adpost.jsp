@@ -53,7 +53,7 @@ table.type09 td {
 		var s= "<c:out value='${adDAO.getReportCategory(n)}' />";
 		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].mb_no+'</td><td>'+s+'</td><td>'+addList[i].rb_write+'</td><td>';
 		tag+=addList[i].rb_date+'</td>';
-		tag+='<td><a href="ff.jsp">조회</a></td>';
+		tag+='<td><a href="post.do?b_no='+addList[i].b_no+'">조회</a></td>';
 		tag+='<td><a href="removeblind.ad?b_no='+addList[i].b_no+'">blind해제</a></td>';
 		tag+='<td><a href="addelpost.ad?b_no='+addList[i].b_no+'">삭제</a></td></tr>';
 	}
@@ -112,7 +112,7 @@ table.type09 td {
 	    <td>${adDAO.getReportCategory(v.rctg_no)}</td>
 	    <td>${v.rb_write}</td>
 	    <td>${v.rb_date}</td>
-	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="post.do?b_no=${v.b_no}">조회</a></td><!-- 게시판 컨롤 -->
 	    <td><a href="removeblind.ad?b_no=${v.b_no}">blind해제</a></td>
 	    <td><a href="addelpost.ad?b_no=${v.b_no}">삭제</a></td>
 	  </tr>

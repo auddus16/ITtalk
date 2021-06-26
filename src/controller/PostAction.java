@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,6 +14,7 @@ import itTalkDAO.MyPageDAO;
 import itTalkDO.BoardSet;
 
 public class PostAction implements Action{
+	@SuppressWarnings("null")
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
@@ -32,7 +34,6 @@ public class PostAction implements Action{
 		
 		//json문자열로 변환과정
 		ObjectMapper mapper= new ObjectMapper();
-					
 		String jsonStr= mapper.writeValueAsString(boardSet.getRlist());//댓글리스트 스크롤위함
 		req.setAttribute("json", jsonStr);
 		

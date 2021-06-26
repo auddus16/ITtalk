@@ -50,7 +50,7 @@ table.type09 td {
 	for(var i=0; i<addList.length; i++){
 		tag+='<tr><th scope="row">'+addList[i].b_no+'</th><td>'+addList[i].b_title+'</td><td>'+addList[i].mb_no+'</td><td>'+addList[i].b_hits+'</td><td>';
 		tag+=addList[i].b_cnt+'</td><td>'+addList[i].b_report+'</td><td>'+addList[i].b_date+'</td>';
-		tag+='<td><a href="ff.jsp">조회</a></td>';
+		tag+='<td><a href="post.do?b_no='+addList[i].b_no+'">조회</a></td>';
 		tag+='<td><a href="addelpost2.ad?b_no='+addList[i].b_no+'">삭제</a></td></tr>';
 	}
 	
@@ -118,7 +118,7 @@ private int b_no;
 	    <td>${v.b_cnt}</td>
 	    <td>${v.b_report}</td>
 	    <td>${v.b_date}</td>
-	    <td><a href="ff.jsp">조회</a></td><!-- 게시판 컨롤 -->
+	    <td><a href="post.do?b_no=${v.b_no}">조회</a></td><!-- 게시판 컨롤 -->
 	    <td><a href="addelpost2.ad?b_no=${v.b_no}">삭제</a></td>
 	  </tr>
   

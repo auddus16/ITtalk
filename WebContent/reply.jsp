@@ -45,7 +45,7 @@ table.type09 td {
 	var addList=list.slice(10);//10번 인덱스부터 끝까지
     
 	for(var i=0; i<addList.length; i++){
-		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="ff.jsp">'
+		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="post.do?b_no='+addList[i].b_no+'">'
 		tag+=addList[i].c_write+'</a></td><td>'+addList[i].c_date+'</td></tr>';
 	}
 
@@ -88,7 +88,7 @@ table.type09 td {
 	  
 	  <tr>
 	    <th scope="row">${status.count}</th>
-	    <td><a href="ff.jsp">${v.c_write}</a></td>
+	    <td><a href="post.do?b_no=${v.b_no}">${v.c_write}</a></td>
 	    <td>${v.c_date}</td>
 	  </tr>
   

@@ -4,6 +4,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="DAO" class="itTalkDAO.MyPageDAO"/>
+<%
+	String mb= (String)session.getAttribute("mb_id");
+	String ad= (String)session.getAttribute("ad_id");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -72,13 +77,21 @@ function report2(v){
                   <!-- 본인게시글이라면, 삭제, 수정 버튼 보임(활성화) -->
                   <!-- session에 저장된 id와 해당게시글의 id가 같은지-->
                   <% 
-                  	int sessMb_no = (Integer)session.getAttribute("mb_no");
-                  	int mb_no =((B)(request.getAttribute("write"))).getMb_no();
-                  	
-                  	if(sessMb_no == mb_no){
-                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
-                  	}
-                  
+                  		int mb_no =((B)(request.getAttribute("write"))).getMb_no();
+	                  	
+                  		if(mb == null){
+	                  		if(ad != null){
+		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
+	                  			
+	                  		}
+	                  	}
+	                  	else{
+		                  	if(DAO.getMb_no(mb)==mb_no){
+		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
+		                  	}
+	                  		
+	                  	}
+                  		                  		
                   %>
 					
               &nbsp;<a href="favorite.do?b_no=${write.b_no}"><img src="images/like.png" width="27" height="27" alt="좋아요">좋아요</a><!-- 좋아요 기능 컨롤 링크 연결 -->
@@ -131,11 +144,7 @@ function report2(v){
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     </c:otherwise>
                  </c:choose>
-                    <c:choose>
-                    <c:when test="${session.mb_no eq v.mb_no}">
-                    	<input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;">
-                    </c:when>
-                    </c:choose>
+                   
                     <a href="javascript:report2(${v.c_no});"><img src="images/siren.png" width="15" height="15" alt="신고">신고</a><!-- 신고 기능->report.jsp로 연결됨. -->
              
                 </form>
