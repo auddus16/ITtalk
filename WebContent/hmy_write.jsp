@@ -62,7 +62,16 @@ function report2(v){
 					<c:choose>
 						
 						<c:when test="${write.b_deleted eq true}">
+							<c:choose>
+							<c:when test="${sessionScope.ad_id != null }">
+								
+ 	                   <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>${write.b_write}</textarea>
+							</c:when>
+							<c:otherwise>
+							
  	                   <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>신고되어 블라인드처리 되었습니다.</textarea>
+							</c:otherwise>
+							</c:choose>
 						</c:when>
 						
 						<c:when test="${write.b_file == null}">
@@ -138,13 +147,24 @@ function report2(v){
                			<div>비밀댓글입니다.</div> 
               			</div>
                     </c:when>
+                    
+                    
                     <c:when test="${v.c_deleted eq true}">
+							<c:choose>
+							<c:when test="${sessionScope.ad_id != null }">
+							<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
+	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
+							</c:when>
+							<c:otherwise>
+							
 	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
                     	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>신고되어 블라인드 처리되었습니다.</div> 
               			</div>
-                    </c:when>
-                    
+							</c:otherwise>
+							</c:choose>
+						</c:when>
+                
                     <c:otherwise>
 	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>

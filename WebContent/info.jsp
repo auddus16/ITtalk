@@ -111,7 +111,7 @@ function newpw2(){
                 </div> 
                 </div> 
             </form>
-          <div>${flag}</div>
+        <!--    <div>${flag}</div> -->
 </div>
 </body>
 </html>

@@ -31,17 +31,13 @@ public class Report2Action implements Action {
 				
 				if(bDAO.ReportC(Integer.parseInt(req.getParameter("c_no")), (Integer)session.getAttribute("mb_no"), 
 						Integer.parseInt(req.getParameter("cate")), req.getParameter("r_write"))){
-					out.println("<script>alert('신고가 완료되었습니다.');window.close();</script>");
+					out.println("<script>alert('신고가 완료되었습니다.');opener.parent.location.reload(); window.close();</script>");
 				}
 				else {
-					out.println("<script>alert('신고를 실패했습니다. 다시 시도해주세요.');window.close();</script>");
+					out.println("<script>alert('신고를 실패했습니다. 다시 시도해주세요.');opener.parent.location.reload(); window.close();</script>");
 				}
 			}
 		}
-		
-		ActionForward forward= new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("post.do?b_no="+req.getParameter("b_no"));
-		return forward;
+		return null;
 	}
 }
