@@ -119,6 +119,30 @@ public class AdminMenu {
 		}
 		return true;
 	}
+	// 삭제 클릭시 해당 신고받은 게시글 삭제
+	public boolean deleteRb2(int b_no) {
+		conn=DBManager.connect();
+		String sql="DELETE FROM Rb WHERE b_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_no);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
 	
 	
 	
@@ -199,6 +223,30 @@ public class AdminMenu {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rc_no);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	// 삭제 클릭시 해당 신고받은 댓글 삭제
+	public boolean deleteRc2(int c_no) {
+		conn=DBManager.connect();
+		String sql="DELETE FROM Rc WHERE c_no=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

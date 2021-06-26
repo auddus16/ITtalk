@@ -21,7 +21,7 @@ public class RemoveBlind2Action implements Action{
 		AdminMenu adDAO= new AdminMenu();
 		
 		if(adDAO.updateC_deleted(Integer.parseInt(req.getParameter("c_no")))){
-			adDAO.deleteRc(Integer.parseInt(req.getParameter("c_no")));
+			adDAO.deleteRc2(Integer.parseInt(req.getParameter("c_no")));
 			out.println("<script>alert('블라인드 해제되었습니다.');location.href='adreply.ad';</script>");
 		}
 		else {
