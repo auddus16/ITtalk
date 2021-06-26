@@ -22,8 +22,19 @@ public class PostAction implements Action{
 		Board bDAO = new Board();
 		MyPageDAO myDAO= new MyPageDAO();
 		
+		int cnt=0; //처음 몇개 게시글을 업로드 할지 저장하는 변수
+		if(req.getParameter("cnt")==null){//기본 게시글 개수 10개로 지정
+			cnt=5;
+		}
+		else {
+			cnt=Integer.parseInt(req.getParameter("cnt"));
+		}
+		
+		req.setAttribute("cnt", cnt);//더보기변수 셋
+		
 		bDAO.hits(Integer.parseInt(req.getParameter("b_no")));
-		BoardSet boardSet = bDAO.BoardPrint(Integer.parseInt(req.getParameter("b_no")));
+		BoardSet boardSet = bDAO.BoardPrint(Integer.parseInt(req.getParameter("b_no")), cnt);
+		
 		req.setAttribute("write", boardSet.getBoard());		
 		req.setAttribute("replyList", boardSet.getRlist());		
 		

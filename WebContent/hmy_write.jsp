@@ -70,8 +70,8 @@ function report2(v){
 						</c:when>
 						
 						<c:otherwise>
-							
-                    	<textarea name="b_write" id="message" cols="30" rows="10" class="form-control" required><img /></textarea>
+						<img src="${write.b_file}"/>	
+                    	<textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>${write.b_write}</textarea>
 						</c:otherwise>
 					
 					</c:choose>	
@@ -126,7 +126,7 @@ function report2(v){
         <div class="comment-form-wrap pt-5"style="margin:25%; margin-top:0; margin-bottom:0;">
               <hr>
               <!-- forEach 댓글 출력 부분 -->
-              <c:forEach var="v" items="${replyList}" end="9" varStatus="status">
+              <c:forEach var="v" items="${replyList}" varStatus="status">
               <div>
                 <form action="#" class=""><!-- 컨롤링크 연결 -->
                     <!-- 삭제 버튼도 위와 동일하게 처리해야함 ->본인댓글 삭제-->
@@ -139,14 +139,14 @@ function report2(v){
               			</div>
                     </c:when>
                     <c:when test="${v.c_deleted eq true}">
-	                    <label for="message">${v.mb_no}</label>
+	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
                     	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>신고되어 블라인드 처리되었습니다.</div> 
               			</div>
                     </c:when>
                     
                     <c:otherwise>
-	                    <label for="message">${v.mb_no}</label>
+	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     </c:otherwise>
                  </c:choose>
@@ -157,7 +157,7 @@ function report2(v){
              			<c:when test="${sessionScope.mb_no == null }">
              			<c:choose>
              				<c:when test="${sessionScope.ad_id != null }">
-             					<a href='delete2.do?c_no=${v.c_no}'>삭제</a>
+             					<a href='delete2.do?c_no=${v.c_no}&b_no=${write.b_no}'>삭제</a>
              				</c:when>
              				<c:otherwise>
              				</c:otherwise>
@@ -167,7 +167,7 @@ function report2(v){
              			<c:otherwise>
              				<c:choose>
              				<c:when test="${sessionScope.mb_no eq v.mb_no }">
-             					<a href='delete2.do?c_no=${v.c_no}'>삭제</a>
+             					<a href='delete2.do?c_no=${v.c_no}&b_no=${write.b_no}'>삭제</a>
              				</c:when>
              				</c:choose>
              			</c:otherwise>
@@ -177,7 +177,7 @@ function report2(v){
                   <br>
                   </c:forEach>
                   <!-- forEach 끝 -->
-                  <div align="center"><a id="load-more" href="post.do?cnt=${cnt+5}">더보기&gt;&gt;</a></div>
+                  <div align="center"><a id="load-more" href="post.do?b_no=${write.b_no}&cnt=${cnt+3}">더보기&gt;&gt;</a></div>
         </div>
 	
  	<!-- 댓글 끝 -->

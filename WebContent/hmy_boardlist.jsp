@@ -42,7 +42,7 @@
       border: 1px solid grey;
       text-align:left;
    }
-   a{
+   a {
       color:black;
    }
 </style>   
@@ -55,7 +55,7 @@
     
 	for(var i=0; i<addList.length; i++){
 		
-		tag+='<div class="boardlist"><a href="post.do?b_no='+addList[i].b_no+'"><h3>'+addList[i].b_title+'</h3></a><hr>';
+		tag+='<div class="boardlist"><a href="post.do?b_no='+addList[i].b_no+'"><h3>&nbsp;'+addList[i].b_title+'</h3></a><hr>';
 		tag+='<p>'+addList[i].b_write+'</p><div style="margin:5px;">';
 		tag+='<img src="images/eye.png" width="20" height="20" alt="조회수">'+addList[i].b_hits+'&nbsp;&nbsp;';
 		tag+='<a href="favorite.do?b_no='+addList[i].b_no+'"><img src="images/like.png" width="20" height="20" alt="좋아요">좋아요</a>&nbsp;&nbsp;' ;           
@@ -68,7 +68,7 @@
 	
     var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
     
-    if(currentScrollValue>200){
+    if(currentScrollValue>150){
     	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
     	//$('#height').append(tag);//table의 tbody요소 앞에 append
     	$('.home-list').append(tag);
@@ -91,7 +91,7 @@
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${postList}" begin="0" end="9" > <!-- 게시글목록 출력 -->
            <div class="boardlist">
-                <a href="post.do?b_no=${v.b_no}"><h3>${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
+                <a href="post.do?b_no=${v.b_no}"><h3>&nbsp;${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
                 <p>${v.b_write}</p>

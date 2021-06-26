@@ -33,12 +33,20 @@ public class SearchAction implements Action{//검색할 때 쓰임
 		if(pets.equals("1")) { // 제목+내용 
 			searchB=board.titleSearch(searchinfo);
 			req.setAttribute("searchB", searchB);
+			
+			ObjectMapper mapper= new ObjectMapper();
+			String jsonStr= mapper.writeValueAsString(searchB);
+			req.setAttribute("json", jsonStr);
 		}
 		else { // 작성자명
 			Mb mb=board.nickSearchmb(req.getParameter("searchinfo"));
 			System.out.println("mb_no : "+mb.getMb_no());
 			searchB=board.nickSearch(mb.getMb_no());
 			req.setAttribute("searchB", searchB);
+			
+			ObjectMapper mapper= new ObjectMapper();
+			String jsonStr= mapper.writeValueAsString(searchB);
+			req.setAttribute("json", jsonStr);
 		}
 		
 		forward.setRedirect(false);

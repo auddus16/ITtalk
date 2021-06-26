@@ -222,7 +222,7 @@ public class Board {
 	
 	// 게시글 출력 ☆☆☆
 	// 사용자에게 보여지는 게시글 출력 메서드
-	public BoardSet BoardPrint(int b_no){//게시글 번호
+	public BoardSet BoardPrint(int b_no, int cnt){//게시글 번호
 
 		BoardSet bs = new BoardSet();
 		try {
@@ -250,9 +250,10 @@ public class Board {
 				
 				ArrayList<C> cs=new ArrayList<>();
 
-				String sql2="select * from c where b_no=?";
+				String sql2="select * from c where b_no=? limit 0,?";
 				pstmt=conn.prepareStatement(sql2);
 				pstmt.setInt(1, b_no);
+				pstmt.setInt(2, cnt);
 				ResultSet rs2=pstmt.executeQuery();
 				while(rs2.next()) { //게시글 댓글 데이터
 					C c=new C();
@@ -293,7 +294,7 @@ public class Board {
 	}
 	
 	// 댓글 리밋 셋팅
-	public ArrayList<BoardSet> BoardPrint(int b_no , int cnt){//게시글 번호 , 댓글 리밋
+	public ArrayList<BoardSet> BoardPrint2(int b_no , int cnt){//게시글 번호 , 댓글 리밋
 		
 		ArrayList<BoardSet> datas=new ArrayList<>();
 		BoardSet bs = new BoardSet();
