@@ -73,11 +73,10 @@ public class NewmsgAction implements Action{// 게시글 등록
 		
 		
 		//req.setAttribute("datas", datas); 보낼 데이터 정보
-		req.setAttribute("bc_no", req.getParameter("bc_no"));
 		
 		
 		forward.setRedirect(false);
-		forward.setPath("cate.do");
+		forward.setPath("cate.do?bc_no=" + req.getParameter("bc_no"));
 
 
 		return forward;
