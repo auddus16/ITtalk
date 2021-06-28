@@ -56,9 +56,9 @@ public class AuthNumAction implements Action {
 				
 				String str = "*";
 				String repeated = new String(new char[SearchedId.length()-2]).replace("\0", str);
-				//String Vid = SearchedId.substring(0, 2)+str.repeat(SearchedId.length()-2);
-				System.out.println(repeated);
-				req.setAttribute("SearchedId",repeated);
+				String Vid = SearchedId.substring(0, 2)+repeated;
+				System.out.println(Vid);
+				req.setAttribute("SearchedId",Vid);
 				
 				session.invalidate();
 				forward.setRedirect(false);
@@ -86,9 +86,9 @@ public class AuthNumAction implements Action {
 					
 					String str = "*";
 					String repeated = new String(new char[SearchedPw.length()-2]).replace("\0", str);
-					//String Vid = SearchedPw.substring(0, 2)+str.repeat(SearchedPw.length()-2);
-					System.out.println(repeated);
-					req.setAttribute("SearchedPw",repeated);
+					String Vid = SearchedPw.substring(0, 2)+repeated;
+					System.out.println(Vid);
+					req.setAttribute("SearchedPw",Vid);
 					
 					session.invalidate();
 					forward.setRedirect(false);
