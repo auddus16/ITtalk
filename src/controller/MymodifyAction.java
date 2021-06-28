@@ -36,6 +36,8 @@ public class MymodifyAction implements Action {
 		
 		if(mypageDAO.updateMember(mb)) {
 			System.out.println("업데이트 성공");
+			session.setAttribute("mb_job", b);
+			session.setAttribute("mb_nick", req.getParameter("nick"));
 			out.println("<script>alert('수정완료되었습니다.');location.href='info.mem';</script>");
 		}
 		else {

@@ -84,7 +84,7 @@ table.type09 td {
 
   <!-- 내가 쓴 게시글 출력 forEach -->
 
-  <c:forEach var="v" items="${mystoreList}" varStatus="status">
+  <c:forEach var="v" items="${mystoreList}" end="9" varStatus="status">
 	  
 	  <tr>
 	    <th scope="row">${status.count}</th>

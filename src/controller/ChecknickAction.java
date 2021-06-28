@@ -43,6 +43,7 @@ public class ChecknickAction implements Action{
 		else {
 			if(!(memDAO.nickCheck(paramNick))) {
 				req.setAttribute("flag", true);
+				
 				//info.jsp에 변경된 닉네임이 안보임..
 				out.println("<script>alert('사용가능한 닉네임입니다.');location.href='info.mem?flag=true&nick="+paramNick+"';</script>");
 			}

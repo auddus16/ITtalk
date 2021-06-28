@@ -37,7 +37,7 @@
         <div style="display:inline-block">
        <form class="p-5 bg-white" style="display:inline-block;">
               
-              <h2 class="h4 text-black mb-5">Login</h2> 
+              <h2 class="h3 text-black mb-5">Login</h2> 
               <div class="row form-group">
                 
                 <div class="col-md-12">
@@ -59,8 +59,9 @@
                 <a href="regform.jsp">회원가입</a>
             </span>
             <br>
-              <div class="row form-group">
+              <div class="row form-group" style="float:right;">
                 <div class="col-md-6">
+                <br>
                 <button type="submit" class="btn btn-primary btn-md text-white" formaction="login.main">login</button>
                 </div> 
                 </div> 

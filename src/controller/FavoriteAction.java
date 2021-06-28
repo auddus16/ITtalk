@@ -23,7 +23,6 @@ public class FavoriteAction implements Action {// 좋아요
 		res.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=res.getWriter();
-		
 		HttpSession session= req.getSession();
 		
 		// 게시글 좋아요
@@ -35,11 +34,13 @@ public class FavoriteAction implements Action {// 좋아요
 			
 			if(!bDAO.like((Integer)session.getAttribute("mb_no"),Integer.parseInt(req.getParameter("b_no")))) {//게시글 좋아요 실패
 			
-				out.println("<script>alert('게시글 저장실패하였습니다. 다시 시도해주세요!');</script>");
+				out.println("<script>alert('게시글 저장실패하였습니다. 다시 시도해주세요!');history.go(-1);</script>");
 			}
 			else {// 게시글 좋아요 성공
-				out.println("<script>alert('게시글을 저장하였습니다. 저장된 게시글은 마이페이지에서 확인가능합니다!');</script>");
+				
+				out.println("<script>alert('게시글을 저장하였습니다.저장된 게시글은 마이페이지에서 확인가능합니다!');location.href='post.do?b_no="+req.getParameter("b_no")+"';</script>");
 			}
+			
 		}
 		
 		return null;

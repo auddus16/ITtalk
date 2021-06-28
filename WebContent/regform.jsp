@@ -157,7 +157,7 @@ button {
 
 	<section class="site-section">
 		<div class="container" style="text-align: center;">
-			<div style="display: inline-block">
+			<div style="display: inline-block; text-align:left">
 				<form id="joinform" name="joinform" action="newmem.main" method="post" 
 		onsubmit="return createFrom(this)">
 
@@ -165,8 +165,8 @@ button {
 					<div class="menu" style="border-bottom-width: 0px;">
 
 
-		<div id="menu">아이디</div>
-			<span>* 
+		<div id="menu">아이디*</div>
+			<span> 
 				<input type="text" class="checkInfo" name="mb_id" size="12" onkeydown="inputIdChk()" /> 
 				<button type="button" onClick="openCheckId();">ID중복확인</button>
 				<input type="hidden" name="idDuplication" >
@@ -174,26 +174,26 @@ button {
 		</div>
 
 		<div class="menu " style="border-bottom-width: 0px;">
-			<div id="id">비밀번호</div>
-			<span>* <input type="password" class="checkInfo" name="mb_pw" size="12" />
+			<div id="id">비밀번호*</div>
+			<span> <input type="password" class="checkInfo" name="mb_pw" size="12" />
 			</span>
 		</div>
 
 		<div class="menu " style="border-bottom-width: 0px;">
-			<div id="id">비밀번호확인</div>
-			<span>* <input type="password" class="checkInfo" name="mb_pw_check" size="12" />
+			<div id="id">비밀번호확인*</div>
+			<span><input type="password" class="checkInfo" name="mb_pw_check" size="12" />
 			</span>
 		</div>
 		
 		
 		<div class="menu " style="border-bottom-width: 0px;">
-			<div id="id">닉네임</div>
-			<span>* <input type="text" class="checkInfo" name="mb_nick" size="12" />
+			<div id="id">닉네임*</div>
+			<span> <input type="text" class="checkInfo" name="mb_nick" size="12" />
 			</span>
 		</div>
 
 		<div class="menu" style="border-bottom-width: 0px;">
-			<div id="id" style="margin-left: 10px,">이메일</div>
+			<div id="id" style="margin-left: 10px,">이메일*</div>
 			<span> 
 				<input type="email" name="mb_email" size="25" onkeydown="inputEmailChk()">
 				<button type="button" onclick="openCheckEmail()">이메일인증</button>
@@ -201,7 +201,7 @@ button {
 			</span>
 		</div>
 		<div class="menu" style="border-bottom-width: 0px;">
-			<div id="id">구분</div>
+			<div id="id">구분*</div>
 			<span> 
 			<select name="mb_job">
 					<option value='0' selected>예비</option>
@@ -209,6 +209,7 @@ button {
 			</select>
 			</span>
 		</div>
+		<br>
 		<div class="menu" style="text-align: center;">
 			<span> 
 				<button type="submit" >가입</button>
