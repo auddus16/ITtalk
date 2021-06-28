@@ -6,7 +6,7 @@ import javax.mail.PasswordAuthentication;
 public class Gmail extends Authenticator { //아이디 패스워드 인증받기 함수
 	  PasswordAuthentication pa;
 	  public Gmail(){
-	    pa=new PasswordAuthentication("gmail 아이디","gmail 비밀번호");        
+	    pa=new PasswordAuthentication("ssikhj1214@gmail.com","kkhji1024@");        
 	  }
 	  @Override
 	  protected PasswordAuthentication getPasswordAuthentication() {
