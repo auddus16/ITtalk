@@ -29,7 +29,7 @@ public class NewreplyAction implements Action{//댓글 등록(비밀 댓글도 포함)
 		HttpSession session= req.getSession();
 		
 		if(session.getAttribute("mb_no") == null) {
-			out.println("<script>alert('로그인이 필요합니다.');location.href='/hmy_login.jsp';</script>");
+			out.println("<script>alert('로그인이 필요합니다.');location.href='/ITtalk/hmy_login.jsp';</script>");
 		}
 		
 		else {

@@ -21,9 +21,8 @@ public class ChecknickAction implements Action{
 		Membership memDAO= new Membership();
 		
 		HttpSession session= req.getSession();
-		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호로 구현수정해야함..
 		
-		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
+		Mb myInfo= mypageDAO.Info((Integer)session.getAttribute("mb_no"));// 수정 후 바꿔야함..
 		
 		String paramNick =req.getParameter("nick");
 		

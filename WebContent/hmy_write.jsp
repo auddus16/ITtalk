@@ -143,9 +143,25 @@ function report2(v){
                     <input type="submit" value="삭제" class="btn btn-primary btn-md text-white" style="float:right;"> -->
                  <c:choose>
                     <c:when test="${v.c_secret eq true}">
-                    	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
+                    
+                    <c:choose>
+                    	<c:when test="${sessionScope.mb_no eq v.mb_no}">
+                    		<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
+	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
+                    	</c:when>
+                    	
+                    	<c:when test="${sessionScope.mb_no eq write.mb_no}">
+                    		<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
+	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
+                    	</c:when>
+                    	
+                    	<c:otherwise>
+                    		<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>비밀댓글입니다.</div> 
               			</div>
+                    	</c:otherwise>
+                    </c:choose>
+                    	
                     </c:when>
                     
                     

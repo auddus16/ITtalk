@@ -25,7 +25,9 @@ public class MymodifyAction implements Action {
 		
 		mb.setMb_no((Integer)session.getAttribute("mb_no"));
 		mb.setMb_nick(req.getParameter("nick"));
-		mb.setMb_job(Boolean.parseBoolean(req.getParameter("job")));
+		System.out.println("job:"+req.getParameter("job"));
+		boolean b= (Integer.parseInt(req.getParameter("job")) != 0);
+		mb.setMb_job(b);
 		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
@@ -33,17 +35,19 @@ public class MymodifyAction implements Action {
 		PrintWriter out=res.getWriter();
 		
 		if(mypageDAO.updateMember(mb)) {
-			out.println("<script>alert('수정완료되었습니다.');</script>");
+			System.out.println("업데이트 성공");
+			out.println("<script>alert('수정완료되었습니다.');location.href='info.mem';</script>");
 		}
 		else {
-			out.println("<script>alert('비밀번호 변경했습니다.');history.go(-1);</script>");
+			out.println("<script>alert('수정을 실패했습니다.');history.go(-1);</script>");
 		}
 		
 		//req.setAttribute("kind", "info");//마이페이지에서 어떤 페이지를 include할지 정보
-		forward.setRedirect(false);
-		forward.setPath("info.mem");
+		//forward.setRedirect(false);
+		//forward.setPath("info.mem");
 		
-		return forward;
+		//return forward;
+		return null;
 	}
 
 }
