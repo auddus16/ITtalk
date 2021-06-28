@@ -443,7 +443,6 @@ public class Board {
 				}
 			}
 			System.out.println("게시글 삭제 완료");
-//			System.out.println("게시글 삭제 완료");
 			return true;
 			
 		}
