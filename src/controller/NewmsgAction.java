@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import itTalkDAO.Board;
+import itTalkDAO.DBManager;
 import itTalkDO.B;
 import itTalkDO.Mb;
 
@@ -59,25 +63,12 @@ public class NewmsgAction implements Action{// 게시글 등록
 		ServletContext application = req.getServletContext();
 		PrintWriter out =res.getWriter();
 		
-		
-		if(!board.Upload(req, res)) {//게시글 등록 실패
-			out.println("<script>alert('게시글 등록 실패');history.go(-1);</script>");
-		}
-		else {//게시글 등록 성공
-			Boolean msg=board.Upload(req, res);
-			out.println("<script>alert('게시글 등록 성공');</script>");
-			application.setAttribute("msg", msg);//등록한 댓글 정보
-		}
-		
-
-		
+		String bc_no = null;
+		bc_no=board.Upload(req, res);		
 		
 		//req.setAttribute("datas", datas); 보낼 데이터 정보
-		req.setAttribute("bc_no", req.getParameter("bc_no"));
-		
-		
 		forward.setRedirect(false);
-		forward.setPath("cate.do");
+		forward.setPath("cate.do?bc_no=" + bc_no);
 
 
 		return forward;

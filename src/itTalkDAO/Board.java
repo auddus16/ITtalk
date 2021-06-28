@@ -157,11 +157,12 @@ public class Board {
 		// 게시글 등록 ☆☆☆
 		// 게시글 번호가 파라미터 값에 없으면 등록
 		// 게시글 번호가 파라미터 값에 있으면 수정
-		public boolean Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
+		public String Upload (HttpServletRequest req, HttpServletResponse res) {// 서블릿 request , response
 			ServletContext context = req.getSession().getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 			String saveDir = context.getRealPath(""); // 절대경로를 가져옴
 			int maxSize = 3 * 1024 * 1024; // 3MB
 			String encoding = "UTF-8";
+			String bc_no = null;
 			
 			// saveDir: 경로
 					// maxSize: 크기제한 설정
@@ -172,6 +173,7 @@ public class Board {
 						try {
 							MultipartRequest multi = new MultipartRequest(req, saveDir, maxSize, encoding,
 									new DefaultFileRenamePolicy());
+							bc_no = multi.getParameter("bc_no");
 							conn=DBManager.connect();
 							String sql = null;
 							if(multi.getParameter("b_no").equals("0")) { // 게시글을 등록할경우
@@ -210,13 +212,13 @@ public class Board {
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-							return false;
+							return bc_no;
 						}
 
 					} else {
 						System.out.println("전송실패 fom태그확인");
 					}
-					return true;
+					return bc_no;
 			
 		}
 	

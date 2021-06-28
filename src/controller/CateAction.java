@@ -23,7 +23,6 @@ public class CateAction implements Action{
 		
 		ArrayList<Bc> cateList= adDAO.getBoardCategory();
 		req.setAttribute("cateList", cateList);
-		
 		if(req.getParameter("bc_no")==null) {//카테고리 정보 없을때 디폴트로 맨앞에꺼
 			
 			req.setAttribute("postList",bDAO.bcSearch(cateList.get(0).getBc_no()));
