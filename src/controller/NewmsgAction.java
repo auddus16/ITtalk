@@ -61,7 +61,9 @@ public class NewmsgAction implements Action{// 게시글 등록
 //		req.setAttribute("cnt", mcnt);//게시글 수
 		
 		ServletContext application = req.getServletContext();
-		PrintWriter out =res.getWriter();
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
 		
 		String bc_no = null;
 		bc_no=board.Upload(req, res);		
