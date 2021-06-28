@@ -29,7 +29,6 @@ public class Board {
 	
 	// bc_no -> bc_name
 	public String Bc_Bn(int bc_no){//카테고리 번호
-	
 		String bcName = null;
 		try {
 			conn=DBManager.connect();
@@ -448,10 +447,17 @@ public class Board {
 		}
 	
 	// 댓글 삭제
-	public boolean delC(int c_no , int b_no){//댓글번호
+	public boolean delC(int c_no){//댓글번호
 		try {
 			conn=DBManager.connect();
-			String sql="delete from c where c_no=?";
+			String sql="select b_no from c where c_no=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			int b_no = rs.getInt(1);
+			
+			sql="delete from c where c_no=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c_no);
 			pstmt.executeUpdate();
