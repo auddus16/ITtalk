@@ -95,13 +95,13 @@ function report2(v){
 	                  	
                   		if(mb == null){
 	                  		if(ad != null){
-		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
+		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='UpdateMsg.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>수정</a>");
 	                  			
 	                  		}
 	                  	}
 	                  	else{
 		                  	if(DAO.getMb_no(mb)==mb_no){
-		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='#'>수정</a>");
+		                  		out.println("<a href='delete.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>삭제</a>&nbsp;<a href='UpdateMsg.do?b_no="+((B)(request.getAttribute("write"))).getB_no()+"'>수정</a>");
 		                  	}
 	                  		
 	                  	}

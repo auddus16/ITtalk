@@ -68,7 +68,7 @@
 	
     var currentScrollValue = document.documentElement.scrollTop; //스크롤 위치 구하기
     
-    if(currentScrollValue>150){
+    if(currentScrollValue>250){
     	//document.getElementById("postTable").insertRow(-1).innerHTML = tag;
     	//$('#height').append(tag);//table의 tbody요소 앞에 append
     	$('.home-list').append(tag);
