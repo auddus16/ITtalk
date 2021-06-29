@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="test" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -87,10 +88,15 @@
     <section class="site-section">
     <div align="center" style="margin-top:50px;">
     <div class="home-list">
+          <c:if test="${fn:length(postList) eq 0}">
           
+          	<div style="margin:5px; margin-bottom:20%;">
+          		해당 카테고리에는 게시글이 없습니다.
+          	</div>
+          </c:if>
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${postList}" begin="0" end="9" > <!-- 게시글목록 출력 -->
-           <div class="boardlist">
+           <div class="boardlist" style="margin-bottom:10%;">
                 <a href="post.do?b_no=${v.b_no}"><h3>&nbsp;${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->

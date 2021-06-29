@@ -49,7 +49,7 @@
 			</select>
 			</span>
         	<input type="text" class="form-control" name="searchinfo" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
-        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
+        	<td><br><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
         </table>
 		</form>
 		</div>

@@ -66,7 +66,7 @@
 			</select>
 			</span>
         	<input type="text" class="form-control" name="searchinfo" width="500%"placeholder="검색할 내용을 입력하세요!"></td>
-        	<td><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
+        	<td><br><input type="submit" class="btn btn-primary btn-md text-white" value="검색"></td></tr>
         </table>
 		</form>
 		</div>
@@ -80,7 +80,7 @@
  	<!-- foreach 게시판카테고리개수만큼-->
  	<c:forEach var="v" items="${cateList}">
      		<div class="categories">
-                <a href="cate.do?bc_no=${v.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;</a>
+                <a href="cate.do?bc_no=${v.bc_no}" style="float:right;color:blue;">더보기&gt;&gt;&nbsp;</a>
                 
                 <h3>${v.bc_name}</h3><!-- 해당카테고리화면으로 -->
                 <hr>
