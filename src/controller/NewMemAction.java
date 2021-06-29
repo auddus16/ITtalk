@@ -15,7 +15,9 @@ public class NewMemAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
+		
 		Membership membership=new Membership();
 		Mb mb=new Mb();
 		String mb_id=req.getParameter("mb_id");
