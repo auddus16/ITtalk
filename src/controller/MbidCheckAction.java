@@ -13,6 +13,8 @@ public class MbidCheckAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+	    res.setContentType("text/html; charset=UTF-8");
 		ActionForward forward= new ActionForward();
 		
 		String mb_id = req.getParameter("idcheck");

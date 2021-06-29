@@ -41,6 +41,10 @@ function createFrom(obj){
 		obj.name.focus();
 		return false;
 	}
+	if(joinform.nickDuplication.value != "nickCheck"){
+        alert("닉네임 중복체크를 해주세요.");
+        return false;
+    }
 	
 	if(joinform.mb_email.value ==""){
 		alert("이메일을 입력하세요.");
@@ -61,6 +65,9 @@ function createFrom(obj){
 	function inputIdChk(){
         document.joinform.idDuplication.value ="idUncheck";
     }
+	function inputNickChk(){
+        document.joinform.nickDuplication.value ="nickUncheck";
+    }
 	function inputEmailChk(){
         document.joinform.mb_certify.value = 1;
     }
@@ -78,6 +85,10 @@ function createFrom(obj){
 	function openCheckAuth(){
 		window.name="regform";
 		window.open("CheckAuth.jsp","emailcheck","width=600 height=350","menubar=no","toolbar=no","resizable=no")
+	}
+	function openCheckNick(){
+		window.name="regform";
+		window.open("NickCheck.jsp","emailcheck","width=600 height=350","menubar=no","toolbar=no","resizable=no")
 	}
 </script>
 <meta charset="utf-8">
@@ -188,7 +199,10 @@ button {
 		
 		<div class="menu " style="border-bottom-width: 0px;">
 			<div id="id">닉네임*</div>
-			<span> <input type="text" class="checkInfo" name="mb_nick" size="12" />
+			<span> 
+				<input type="text" class="checkInfo" name="mb_nick" size="12" onkeydown="inputNickChk()"/>
+				<button type="button" onClick="openCheckNick();">닉네임중복확인</button>
+				<input type="hidden" name="nickDuplication">
 			</span>
 		</div>
 
