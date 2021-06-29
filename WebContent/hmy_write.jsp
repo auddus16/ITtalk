@@ -64,7 +64,7 @@ function report2(v){
 						<c:when test="${write.b_deleted eq true}">
 							<c:choose>
 							<c:when test="${sessionScope.ad_id != null }">
-								
+							<img src="${write.b_file}"/>	
  	                   <textarea name="b_write" id="message" cols="30" rows="10" class="form-control" disabled>${write.b_write}</textarea>
 							</c:when>
 							<c:otherwise>
