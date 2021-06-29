@@ -155,6 +155,12 @@ function report2(v){
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     	</c:when>
                     	
+                    	<c:when test="${sessionScope.ad_id != null }">
+                    	<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
+	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
+                    		
+                    	</c:when>
+                    	
                     	<c:otherwise>
                     		<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>비밀댓글입니다.</div> 

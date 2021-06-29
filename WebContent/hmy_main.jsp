@@ -59,7 +59,8 @@
  	 <section>
   		<div class="p-4 mb-3 bg-white" style="text-align:center;">
   			<div style="display:inline-block">
-                <h5>실시간 인기글</h5>
+                <h3>실시간 인기글</h3>
+                <hr>
                 <ol>
 					<c:forEach  var="h" items="${Hits}">
 					<li><a href="post.do?b_no=${h.b_no}"><c:out value="${h.b_title}" /></a></li>
