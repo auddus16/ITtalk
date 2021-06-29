@@ -28,7 +28,7 @@ public class NewMemAction implements Action {
 		boolean mb_job=Boolean.parseBoolean(req.getParameter("mb_job"));
 		boolean mb_certify=Boolean.parseBoolean(req.getParameter("mb_certify"));
 		
-		
+		System.out.println("mb_job:"+mb_job);
 		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
@@ -53,7 +53,7 @@ public class NewMemAction implements Action {
 		}
 		
 		return null;
-
+		
 
 
 	}	
