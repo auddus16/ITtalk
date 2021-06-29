@@ -5,6 +5,14 @@ public class Bs {
 	private int bs_no;
 	private int mb_no;
 	private int b_no;
+	private String b_title;
+	
+	public String getB_title() {
+		return b_title;
+	}
+	public void setB_title(String b_title) {
+		this.b_title = b_title;
+	}
 	private String bs_date;
 	
 	public int getBs_no() {

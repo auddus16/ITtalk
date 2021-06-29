@@ -30,7 +30,7 @@ table.type09 tbody th {
   background: #f3f6f7;
 }
 table.type09 td {
-  width: 200px;
+  width: 300px;
   padding: 10px;
   vertical-align: top;
   border-bottom: 1px solid #ccc;
@@ -46,7 +46,7 @@ table.type09 td {
     
 	for(var i=0; i<addList.length; i++){
 		tag+='<tr><th scope="row">'+(11+i)+'</th><td><a href="post.do?b_no='+addList[i].b_no+'">';
-		tag+=addList[i].b_no+'</a></td><td>'+addList[i].bs_date+'</td></tr>';
+		tag+=addList[i].b_title+'</a></td><td>'+addList[i].bs_date+'</td></tr>';
 	}
 
 	document.addEventListener('scroll', function() {
@@ -76,7 +76,7 @@ table.type09 td {
   <thead>
   <tr>
     <th scope="cols">No</th>
-    <th scope="cols">게시글번호</th>
+    <th scope="cols">게시글제목</th>
     <th scope="cols">등록일자</th>
   </tr>
   </thead>
@@ -88,7 +88,7 @@ table.type09 td {
 	  
 	  <tr>
 	    <th scope="row">${status.count}</th>
-	    <td><a href="post.do?b_no=${v.b_no}">${v.b_no}</a></td>
+	    <td><a href="post.do?b_no=${v.b_no}">${v.b_title}</a></td>
 	    <td>${v.bs_date}</td>
 	  </tr>
   

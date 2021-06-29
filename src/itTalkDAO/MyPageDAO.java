@@ -199,6 +199,15 @@ public class MyPageDAO {
 				bs.setB_no(rs.getInt("b_no"));
 				bs.setBs_date(rs.getString("bs_date"));
 				
+				sql="select b_title from b where b_no=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, bs.getB_no());
+				ResultSet rs2= pstmt.executeQuery();
+				
+				while(rs2.next()) {
+					bs.setB_title(rs2.getString("b_title"));
+				}
+				
 				myBoardsSave.add(bs);
 			}
 		} catch (SQLException e) {
