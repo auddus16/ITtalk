@@ -15,7 +15,7 @@ radio{
 </style>
 <script type="text/javascript">
 function newpw(){
-	window.open("newpw.jsp","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=500,height=350"
+	window.open("newpw.jsp?c=newpw","_blank","titlebar=no,location=no,scrollbars=no,resizeable=no,menubar=no,toolbar=no,width=500,height=350"
 	//어떤 페이지를 어떻게 띄울지 옵션
 );
 }

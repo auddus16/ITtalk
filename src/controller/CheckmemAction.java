@@ -19,13 +19,11 @@ public class CheckmemAction implements Action {
 		MyPageDAO mypageDAO= new MyPageDAO();
 		
 		HttpSession session= req.getSession();
-		session.getAttribute("mb_no");//세션에 로그인되어있는 회원번호로 구현수정해야함..
 		
-		Mb myInfo= mypageDAO.Info(1);// 수정 후 바꿔야함..
+		Mb myInfo= mypageDAO.Info((Integer)session.getAttribute("mb_no"));
 		
 		String paramPw =req.getParameter("pw");
 		System.out.println(paramPw);
-		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		
@@ -36,11 +34,12 @@ public class CheckmemAction implements Action {
 			System.out.println(myInfo.getMb_pw());
 			System.out.println(req.getParameter("c"));
 			
-			if(req.getParameter("c")!=null) {//회원탈퇴 액션일 때
+			if(req.getParameter("c").equals("withdraw")) {//회원탈퇴 액션일 때
 				
 				if(req.getParameter("c").equals("withdraw")) {
-					mypageDAO.deleteMember(1);
-					out.println("<script>alert('회원탈퇴 되었습니다.');</script>");
+					mypageDAO.deleteMember((Integer)session.getAttribute("mb_no"));
+					session.invalidate();
+					out.println("<script>alert('회원탈퇴 되었습니다.');opener.document.location='main.main';self.close();</script>");
 				}
 			}
 			
