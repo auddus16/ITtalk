@@ -7,7 +7,7 @@
 <title>본인인증</title>
 </head>
 <body>
-	<form method="post" action="checkmem.mem" class="p-5 bg-white">
+	<form method="post" action="checkmem.mem?c=${param.c}" class="p-5 bg-white">
               
           <h2 class="h4 text-black mb-5">본인인증</h2> 
 
