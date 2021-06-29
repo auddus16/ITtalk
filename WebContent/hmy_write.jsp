@@ -55,7 +55,16 @@ function report2(v){
         <div class="comment-form-wrap pt-5"  style="margin:25%; margin-top:0; margin-bottom:0;">
             <div><a href="cate.do?bc_no=${write.bc_no}">&gt;&gt;${write_cate}</a></div><!-- 카테고리명 넣어주세요 -->
             <h3>${write.b_title}</h3>
-            <div>${write_nick} &nbsp; ${write.b_date} &nbsp; <img src="images/eye.png" width="20" height="20" alt="조회수">${write.b_hits}&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
+            <div>
+            <c:choose>
+			<c:when test="${DAO.Info(write.mb_no).mb_job eq true }">
+				<img src="images/user2.png" width="20" height="20" alt="개발">
+			</c:when>            
+            <c:otherwise>
+            	<img src="images/user1.png" width="20" height="20" alt="예비">
+            </c:otherwise>
+            </c:choose>
+            ${write_nick} &nbsp; ${write.b_date} &nbsp; <img src="images/eye.png" width="20" height="20" alt="조회수">${write.b_hits}&nbsp;&nbsp;</div><!-- 작성자닉네임, 등록날짜, 조회수 넣어주세요 -->
               <hr>
                   <div class="form-group">
                     <label for="message"></label>
@@ -146,16 +155,41 @@ function report2(v){
                     
                     <c:choose>
                     	<c:when test="${sessionScope.mb_no eq v.mb_no}">
+				                 <c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
+                    	
                     		<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     	</c:when>
                     	
                     	<c:when test="${sessionScope.mb_no eq write.mb_no}">
+                    	<c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
                     		<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     	</c:when>
                     	
                     	<c:when test="${sessionScope.ad_id != null }">
+                    	<c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
                     	<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     		
@@ -174,11 +208,28 @@ function report2(v){
                     <c:when test="${v.c_deleted eq true}">
 							<c:choose>
 							<c:when test="${sessionScope.ad_id != null }">
+							
+							<c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
+							
 							<label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
 							</c:when>
 							<c:otherwise>
-							
+							<c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
 	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
                     	<div style="margin-top:10px;margin-bottom:4px; background:lightgrey; height:40px; text-algin:center;">
                			<div>신고되어 블라인드 처리되었습니다.</div> 
@@ -188,6 +239,15 @@ function report2(v){
 						</c:when>
                 
                     <c:otherwise>
+                    <c:choose>
+							<c:when test="${DAO.Info(v.mb_no).mb_job eq true }">
+								<img src="images/user2.png" width="20" height="20" alt="개발">
+							</c:when>            
+				            <c:otherwise>
+				            	<img src="images/user1.png" width="20" height="20" alt="예비">
+				            </c:otherwise>
+				            </c:choose>
+                    
 	                    <label for="message">${DAO.Info(v.mb_no).mb_nick}</label>
 	                    <textarea id="message" cols="1" rows="1" class="form-control" disabled>${v.c_write}</textarea>
                     </c:otherwise>
