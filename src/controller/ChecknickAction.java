@@ -45,10 +45,10 @@ public class ChecknickAction implements Action{
 				req.setAttribute("flag", true);
 				
 				//info.jsp에 변경된 닉네임이 안보임..
-				out.println("<script>alert('사용가능한 닉네임입니다.');location.href='info.mem?flag=true&nick="+paramNick+"';</script>");
+				out.println("<script>alert('사용가능한 닉네임입니다.');location.href='info.mem?flag=true&nick="+paramNick+"&job="+req.getParameter("job")+"';</script>");
 			}
 			else {
-				out.println("<script>alert('이미 사용중인 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');location.href='info.mem?flag=false';</script>");
+				out.println("<script>alert('이미 사용중인 닉네임이 존재합니다. 다른 닉네임을 입력하세요.');location.href='info.mem?flag=false&job="+req.getParameter("job")+"';</script>");
 				req.setAttribute("flag", false);//넘어가면 안됨
 			}
 			

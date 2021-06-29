@@ -39,16 +39,36 @@ function newpw2(){
                   <label class="text-black" for="job">회원구분</label>
                   <br><br>
                   <c:choose>
-	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 구분하는 부분 -->
+                  <c:when test="${param.job eq null}">
+                  <c:choose>
+                  	<c:when test="${myInfo.mb_job == true}"><!-- 개발자/예비개발자 구분하는 부분 -->
 			<!-- 예비 -->
-			<input type="radio" name="job" value="1" style="width:15px;height:15px;border:1px;" checked>개발자<!-- 회원구분 ${mem.job}-->
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:15px;height:15px;border:1px;" >예비개발자<!-- 회원구분 ${mem.job}-->
+			<input type="radio" name="job" value="1" style="width:30px;height:30px;border:1px;" checked>개발자<!-- 회원구분 ${mem.job}-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:30px;height:30px;border:1px;" >예비개발자<!-- 회원구분 ${mem.job}-->
 		</c:when>
 		<c:otherwise>
 			<!-- 개발자 -->
 			<input type="radio" name="job" value="1" style="width:30px;height:30px;border:1px;" >개발자<!-- 회원구분 ${mem.job}-->
 			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:30px;height:30px;border:1px;" checked>예비개발자<!-- 회원구분 ${mem.job}-->
 		</c:otherwise>
+                  </c:choose>
+                  </c:when>
+                 
+                 <c:otherwise>
+                 	<c:choose>
+                  	<c:when test="${param.job eq 1}"><!-- 개발자/예비개발자 구분하는 부분 -->
+			<!-- 예비 -->
+			<input type="radio" name="job" value="1" style="width:30px;height:30px;border:1px;" checked>개발자<!-- 회원구분 ${mem.job}-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:30px;height:30px;border:1px;" >예비개발자<!-- 회원구분 ${mem.job}-->
+		</c:when>
+		<c:otherwise>
+			<!-- 개발자 -->
+			<input type="radio" name="job" value="1" style="width:30px;height:30px;border:1px;" >개발자<!-- 회원구분 ${mem.job}-->
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="job"  value="0" style="width:30px;height:30px;border:1px;" checked>예비개발자<!-- 회원구분 ${mem.job}-->
+		</c:otherwise>
+                  </c:choose>
+                 
+                 </c:otherwise>
 	</c:choose>
                 </div>
                 <br>
@@ -79,7 +99,7 @@ function newpw2(){
                   <label class="text-black" for="id">아이디</label> 
                   <input type="text" name="id" class="form-control"  value="${myInfo.mb_id}"  disabled>
                 </div>
-                
+                <br>
                 <div class="col-md-12">
                   <label class="text-black" for="id">이메일</label> 
                   <input type="text" name="email" class="form-control"  value="${myInfo.mb_email}"  disabled>

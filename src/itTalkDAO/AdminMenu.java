@@ -10,6 +10,7 @@ import itTalkDO.Ad;
 import itTalkDO.B;
 import itTalkDO.Bc;
 import itTalkDO.C;
+import itTalkDO.Mb;
 import itTalkDO.Rb;
 import itTalkDO.Rc;
 
@@ -410,6 +411,33 @@ public class AdminMenu {
 		}
 		return boardCategory;
 		
+	}
+	
+	// 게시판 카테고리 추가 기능
+	public boolean addMember(Bc bc) {
+		conn= DBManager.connect();
+
+		String sql="insert into bc(bc_no,bc_name) values (?,?)";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, bc.getBc_no());
+			pstmt.setString(2, bc.getBc_name());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
 	
 	// 게시판 카테고리 수정 기능
