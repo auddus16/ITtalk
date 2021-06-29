@@ -47,11 +47,11 @@
 	
 	<!-- ****관리자인지 회원인지 먼저 구별해야함.. 관리자아이콘도 추가 -->
 	<c:choose>
-	<c:when test="${mb_job == true}"><!-- 개발자/예비개발자 아이콘 -->
+	<c:when test="${mb_job == false}"><!-- 개발자/예비개발자 아이콘 -->
 			<!-- 예비 -->
 			<li><a href="info.mem" class="nav-link"><img src="images/user1.png" width="40" height="40" alt="예비"></a></li>
 		</c:when>
-		<c:when test="${mb_job == false}">
+		<c:when test="${mb_job == true}">
 			<!-- 개발자 -->
 			<li><a href="info.mem" class="nav-link"><img src="images/user2.png" width="40" height="40" alt="개발자"></a></li>
 		</c:when>

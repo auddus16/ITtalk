@@ -204,8 +204,8 @@ button {
 			<div id="id">구분*</div>
 			<span> 
 			<select name="mb_job" >
-					<option value='true' selected>예비</option>
-					<option value='false'>개발자</option>
+					<option value='false' selected>예비</option>
+					<option value='true'>개발자</option>
 			</select>
 			</span>
 		</div>
