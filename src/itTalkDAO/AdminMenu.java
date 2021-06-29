@@ -417,11 +417,10 @@ public class AdminMenu {
 	public boolean addMember(Bc bc) {
 		conn= DBManager.connect();
 
-		String sql="insert into bc(bc_no,bc_name) values (?,?)";
+		String sql="insert into bc(bc_name) values (?)";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, bc.getBc_no());
-			pstmt.setString(2, bc.getBc_name());
+			pstmt.setString(1, bc.getBc_name());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

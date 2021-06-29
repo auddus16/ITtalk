@@ -34,7 +34,7 @@
               </c:forEach>
 			<!-- 게시판카테고리 출력부분 foreach -->
             <br>
-            <form >
+            <form>
               
               <h2 class="h4 text-black mb-5">게시판카테고리 추가</h2>
 

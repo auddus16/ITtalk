@@ -96,7 +96,7 @@
           </c:if>
            <!-- foreach로 게시글 최신글 5개 출력, href링크에 게시글화면으로 이동-->
            <c:forEach var ="v" items="${postList}" begin="0" end="9" > <!-- 게시글목록 출력 -->
-           <div class="boardlist" style="margin-bottom:10%;">
+           <div class="boardlist">
                 <a href="post.do?b_no=${v.b_no}"><h3>&nbsp;${v.b_title}</h3></a><!-- 해당게시글화면으로 -->
                 <hr>
                 <!-- 게시글내용 (원하는만큼) -->
