@@ -74,6 +74,14 @@ public class FrontController_ad extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(action.equals("/adaddcate.ad")) {//게시판카테고리 삭제
+			try {
+				forward=new AdaddcateAction().execute(req, res);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		else if(action.equals("/adcate.ad")) {//게시판카테고리 조회
 			try {
 				forward=new AdcateAction().execute(req, res);
