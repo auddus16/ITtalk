@@ -203,7 +203,7 @@ button {
 		<div class="menu" style="border-bottom-width: 0px;">
 			<div id="id">구분*</div>
 			<span> 
-			<select name="mb_job">
+			<select name="mb_job" >
 					<option value='true' selected>예비</option>
 					<option value='false'>개발자</option>
 			</select>
