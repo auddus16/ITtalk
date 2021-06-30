@@ -40,7 +40,7 @@ public class NewMemAction implements Action {
 			mb.setMb_certify(mb_certify);
 			
 			membership.addMember(mb);
-			out.println("<script>alert('회원가입 성공'); location.href  ='hmy_main.jsp';</script>");
+			out.println("<script>alert('회원가입 성공'); location.href  ='index.jsp';</script>");
 		}
 		else if(membership.nickCheck(mb_nick)){
 			out.println("<script>alert('중복된 닉네임입니다.');history.go(-1)</script>");
