@@ -19,3 +19,13 @@ Controller : 황명연, 박정인
 HTML, JSP, JAVA
 
 ### Logic Process
+![image](https://user-images.githubusercontent.com/59945024/160123215-b6328dec-0bbc-4e5e-8862-1a4070f694d0.png)
+![image](https://user-images.githubusercontent.com/59945024/160123252-1bf08f2a-132f-4ce0-adac-4768d091e324.png)
+![image](https://user-images.githubusercontent.com/59945024/160123265-d7f6c29e-0de2-4849-898c-48bbaf478b1c.png)
+![image](https://user-images.githubusercontent.com/59945024/160123280-c3d40c42-16f6-480c-b80a-bc9ac1016578.png)
+![image](https://user-images.githubusercontent.com/59945024/160123289-dc3de793-1164-4aa1-8f34-2ab3aa43f154.png)
+![image](https://user-images.githubusercontent.com/59945024/160123306-73b0eb91-dcc1-4797-a0f8-aa8143e5db9f.png)
+![image](https://user-images.githubusercontent.com/59945024/160123318-41ea7f3f-7735-4ad6-ac09-82d17b6d65d3.png)
+
+### 데이터 구조(ERD)
+![image](https://user-images.githubusercontent.com/59945024/160123363-40737ebb-6186-4517-90c7-d4bbdc28f9cd.png)
