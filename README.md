@@ -1,24 +1,26 @@
 # ITtalk
-ITtalk-모험하는멍게
-MVC패턴으로 구현한 Web Application
+### IT 웹개발 교육 팀 프로젝트
+java MVC패턴으로 구현한 커뮤니티 Web Application
 
-### 주제
-개발자와 개발자를 꿈꾸는 사람들의 커뮤니티 웹 서비스
+## 👩‍💻 개발자
 
-### 기획 의도
-IT업계에 종사하기를 희망하는 분 혹은 이미 재직중인 분들이 하나의 커뮤니티 사이트에 모여 필요한 지식을 얻고, 서로 돕고 배울 수 있는 소통의 창구를 만들고 싶었습니다.  이를 계기로 “ITtalk(잇톡)” IT개발자 커뮤니티 사이트를 기획하였습니다.
+| Contributor                             | 팀원   | 역할          
+|----------------------------------------| ------ | -----------------
+| [auddus16](https://github.com/auddus16)| 황명연 | View, Controller         
+| [JungJun1214](https://github.com/JungJun1214) | 정준 | Model, DB
+| [Kim309](https://github.com/Kim309)| 김민석 | Model, DB         
+| [pakjungin222](https://github.com/pakjungin222)| 박정인 | Controller
 
-### 역할 분담
-Model : 정준, 김민석
+## 🗓️ 2021.05 ~ 2021.06 
 
-View : 황명연
+## 💻 Tech Stack
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white"/>
 
-Controller : 황명연, 박정인
+## ✏️ 사용언어
+JSP, JAVA
 
-### 사용언어
-HTML, JSP, JAVA
-
-### Logic Process
+### 🗃️ Logic Process
 ![image](https://user-images.githubusercontent.com/59945024/160123215-b6328dec-0bbc-4e5e-8862-1a4070f694d0.png)
 ![image](https://user-images.githubusercontent.com/59945024/160123252-1bf08f2a-132f-4ce0-adac-4768d091e324.png)
 ![image](https://user-images.githubusercontent.com/59945024/160123265-d7f6c29e-0de2-4849-898c-48bbaf478b1c.png)
@@ -27,5 +29,5 @@ HTML, JSP, JAVA
 ![image](https://user-images.githubusercontent.com/59945024/160123306-73b0eb91-dcc1-4797-a0f8-aa8143e5db9f.png)
 ![image](https://user-images.githubusercontent.com/59945024/160123318-41ea7f3f-7735-4ad6-ac09-82d17b6d65d3.png)
 
-### 데이터 구조(ERD)
+### 🧐 데이터 구조(ERD)
 ![image](https://user-images.githubusercontent.com/59945024/160123363-40737ebb-6186-4517-90c7-d4bbdc28f9cd.png)
